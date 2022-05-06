@@ -1,3 +1,1 @@
-export interface IMain {
-  id: number
-}
+export type TMintClaimOption = 'mint' | 'claim'

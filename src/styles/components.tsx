@@ -88,7 +88,7 @@ export const FlexColumn = styled.div<{
 export const PageWrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 120px);
-  margin: 120px auto 0;
+  margin: 0 auto;
   padding: 0;
 `
 export const TextWrapper = styled.span<{
@@ -156,7 +156,7 @@ export const MainButton = styled.button<{
   width: ${({ width }) => (width ? width : 'fit-content')};
   height: ${({ height }) => (height ? height : '50px')};
   background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : themeColor.button1)};
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.regular)};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.small)};
 
   &:hover {
     background: ${({ hoverColor }) => (hoverColor ? hoverColor : themeColor.buttonHover1)};
@@ -173,7 +173,7 @@ export const MainButton = styled.button<{
 export const TransparentButton = styled(MainButton)`
   color: ${({ color, theme }) => (color ? color : theme.text1)};
   background: transparent;
-  outline: ${({ theme }) => `2px solid ${theme.background3}`};
+  outline: ${({ theme }) => `1px solid ${theme.text1}`};
 `
 export const GradientButton = styled(MainButton)<{ gradient?: string }>`
   background: ${({ gradient }) => gradient ?? themeGradient.buttonGradient};

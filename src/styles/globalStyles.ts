@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
     --silver: #c7c7c7;
     --darkGrey: #3c3c3c;
     --blackCow: #464646;
+    --heavyGrey: #212121;
     --divider: #595959;
     --borderColor: #383d45;
     --borderColor2: #ccb4e9;
@@ -27,7 +28,7 @@ const GlobalStyles = createGlobalStyle`
     --buttonHoverColor1: #4597de;
     --disable: #808080;
     --scrollbarTrack: #c4c4c4;
-    --scrollbarThumb: #794cec;
+    --scrollbarThumb: #3c3c3c;
 
     // toastify style
     --toastify-font-family: ${themeFontFamily.main};

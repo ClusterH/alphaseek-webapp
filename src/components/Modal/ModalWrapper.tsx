@@ -15,7 +15,7 @@ const ModalWrapper = styled(FlexColumn)`
   max-height: 90vh;
   overflow-y: auto;
   padding: 24px;
-  border: ${themeColor.border4};
+  border: ${themeColor.border1};
   z-index: 999;
 `
 

@@ -4,6 +4,7 @@ export interface ThemeProps {
   background2: string
   background3: string
   background4: string
+  background5: string
 
   // text color
   text1: string
@@ -22,6 +23,9 @@ export interface ThemeProps {
   divider: string
   // box shadow
   boxShadow1: string
+  dropShadow1: string
+  dropShadow2: string
+  dropShadow3: string
 }
 
 export type GlobalThemeProps = {

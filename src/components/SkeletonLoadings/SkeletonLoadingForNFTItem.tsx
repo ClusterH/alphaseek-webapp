@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const SkeletonNFTItem: React.FC<{ isGridView: boolean }> = ({ isGridView }) => {
   return (
-    <SkeletonTheme baseColor={themeColor.background3} highlightColor={themeColor.background6} borderRadius={themeBorderRadius.regular}>
+    <SkeletonTheme baseColor={themeColor.background3} highlightColor={themeColor.background3} borderRadius={themeBorderRadius.regular}>
       {isGridView ? (
         <FlexColumn colWidth={isMobile ? '100%' : '10%'}>
           <Skeleton width={120} height={120} borderRadius={themeBorderRadius.regular} />

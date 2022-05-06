@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Suspense fallback={<Loader />}>
-        <Header />
+        {/* <Header /> */}
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home />} />

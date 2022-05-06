@@ -8,8 +8,8 @@ import { themeBorderRadius, themeColor } from 'styles/theme'
 
 const SkeletonUserListItem: React.FC = () => {
   return (
-    <SkeletonTheme baseColor={themeColor.background3} highlightColor={themeColor.background6} borderRadius={themeBorderRadius.regular}>
-      <FlexRow padding={'12px'} border={themeColor.border5} borderRadius={themeBorderRadius.small}>
+    <SkeletonTheme baseColor={themeColor.background3} highlightColor={themeColor.background3} borderRadius={themeBorderRadius.regular}>
+      <FlexRow padding={'12px'} border={themeColor.border1} borderRadius={themeBorderRadius.small}>
         <FlexRow rowWidth={'24%'} justifyContent={'center'}>
           <Skeleton width={200} height={30} borderRadius={themeBorderRadius.small} />
         </FlexRow>
