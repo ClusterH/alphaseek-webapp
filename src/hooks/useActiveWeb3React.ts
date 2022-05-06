@@ -6,7 +6,7 @@ import { useWeb3React } from '@web3-react/core'
 import { Web3ReactContextInterface } from '@web3-react/core/dist/types'
 
 import { SupportedChainId } from 'config/constants'
-import { getSimpleRPCProvider } from 'utils/web3Helpers'
+import { getSimpleRPCProvider } from 'utils'
 
 /**
  * Provides a web3 provider with or without user's signer

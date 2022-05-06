@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { isMobile } from 'react-device-detect'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 import { FlexColumn, FlexRow } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
+import { isMobile } from 'utils'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 const SkeletonNFTItem: React.FC<{ isGridView: boolean }> = ({ isGridView }) => {

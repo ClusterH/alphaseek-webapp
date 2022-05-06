@@ -5,7 +5,7 @@ import { FaRegCopy } from 'react-icons/fa'
 import { SUPPORTED_WALLETS } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
-import { shortenAddress } from 'utils/web3Helpers'
+import { shortenAddress } from 'utils'
 
 const WalletConnectionAccountDetail: React.FC<{ handleWalletView: () => void }> = ({ handleWalletView }) => {
   const { account, connector } = useActiveWeb3React()

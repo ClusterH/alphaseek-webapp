@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { isMobile, isTablet } from 'react-device-detect'
 import styled from 'styled-components'
 
-import COK_LOGO from 'assets/images/logox.png'
-import COK_LOGO_SM from 'assets/images/main_logo.png'
+import LOGO_SM from 'assets/images/logo_sm.svg'
+import LOGO from 'assets/images/main_logo_white_transparent.png'
 import { useAppNavigate } from 'hooks'
 import { ImageContainer } from 'styles/components'
+import { isMobile } from 'utils'
 
 const LogoWrapper = styled(ImageContainer)`
   z-index: 1;
@@ -15,9 +15,9 @@ const Logo: React.FC = () => {
   const { handleNavigate } = useAppNavigate()
   return (
     <LogoWrapper
-      src={isMobile || isTablet ? COK_LOGO_SM : COK_LOGO}
+      src={isMobile ? LOGO_SM : LOGO}
       borderRadius={'0'}
-      height={isMobile || isTablet ? '42px' : '80px'}
+      height={isMobile ? '42px' : '80px'}
       alt="Count of Kingz Logo"
       onClick={() => {
         handleNavigate('/')

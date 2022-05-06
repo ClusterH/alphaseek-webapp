@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { Contract } from 'ethers'
 
 import { COK_CONTRACT_ADDRESSES, CONTRACT_ABIS } from 'config/constants'
-import { getContract, getContractWithSimpleProvider, isSupportedNetwork } from 'utils/web3Helpers'
+import { getContract, getContractWithSimpleProvider, isSupportedNetwork } from 'utils'
 
 import { useActiveWeb3React } from './useActiveWeb3React'
 

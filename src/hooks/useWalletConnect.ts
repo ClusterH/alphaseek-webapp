@@ -11,7 +11,7 @@ import {
 import { connectorLocalStorageKey, ConnectorNames } from 'config/constants'
 import { connectorsByName } from 'config/constants/web3Connectors'
 import { notifyToast } from 'config/toast'
-import { setupNetwork } from 'utils/walletSetupMainNet'
+import { setupNetwork } from 'utils'
 
 export const useWalletConnect = () => {
   const { activate, deactivate } = useWeb3React()

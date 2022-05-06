@@ -1,4 +1,4 @@
-import { isMobile, screenWidth } from 'utils/userAgent'
+import { isMobile, screenWidth } from 'utils'
 
 import { ThemeProps } from './types'
 export const themeColor: ThemeProps = {

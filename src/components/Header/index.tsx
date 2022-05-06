@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { isMobile } from 'react-device-detect'
 import styled from 'styled-components'
 
-import { BlurBackground, FlexColumn, FlexRow } from 'styles/components'
+import { FlexColumn, FlexRow } from 'styles/components'
 import { themeColor } from 'styles/theme'
+import { isMobile } from 'utils'
 
 import Logo from '../Logo'
 
@@ -38,7 +38,6 @@ const Header: React.FC = () => {
           <Hamburger />
         </FlexRow>
       </FlexColumn>
-      <BlurBackground direction={'top'} />
     </HeaderContainer>
   )
 }

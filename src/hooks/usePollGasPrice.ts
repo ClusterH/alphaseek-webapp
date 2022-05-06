@@ -4,8 +4,7 @@ import { GAS_PRICE_POLLING_INTERVAL } from 'config/constants'
 import { AppState } from 'state'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { setGasPrice } from 'state/web3/reducer'
-import { getGasPrice } from 'utils/web3CallHelpers'
-import { getSimpleRPCProvider } from 'utils/web3Helpers'
+import { getGasPrice, getSimpleRPCProvider } from 'utils'
 
 import { useActiveWeb3React } from './useActiveWeb3React'
 

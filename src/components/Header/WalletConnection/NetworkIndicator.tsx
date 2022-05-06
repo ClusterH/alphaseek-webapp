@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { isMobile } from 'react-device-detect'
-
 import { NETWORK_INDICATOR } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
-import { isSupportedNetwork } from 'utils/web3Helpers'
+import { isMobile, isSupportedNetwork } from 'utils'
 
 const NetworkIndicator: React.FC = () => {
   const { chainId } = useActiveWeb3React()

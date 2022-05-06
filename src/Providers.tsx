@@ -4,7 +4,7 @@ import { Web3ReactProvider } from '@web3-react/core'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
-import { getLibrary } from 'utils/web3Helpers'
+import { getLibrary } from 'utils'
 
 import store from './state'
 import { themeColor } from './styles/theme'

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { useActiveWeb3React, useWalletConnect } from 'hooks'
-import { getSimpleRPCProvider } from 'utils/web3Helpers'
+import { getSimpleRPCProvider } from 'utils'
 
 export const useWalletConnectionModal = () => {
   const { connect, disconnect } = useWalletConnect()
