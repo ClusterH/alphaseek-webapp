@@ -19,7 +19,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
           </Routes>
         </ScrollToTop>
-        <Footer />
+        {/* <Footer /> */}
       </Suspense>
     </Router>
   )

@@ -14,25 +14,13 @@ export const MenuWrapper = styled(FlexRow)`
     display: flex;
   }
 `
-export const MenuItem = styled(NavLink)<{ color?: string; isDisabled?: boolean }>`
-  color: ${({ theme, color }) => (color ? color : theme.text1)};
-  font-weight: ${themeFontWeight.regular};
-  text-decoration: none;
-  padding: 0 12px;
-  &:hover {
-    color: ${({ theme, isDisabled }) => (isDisabled ? theme.buttonDisabled : theme.text3)};
-  }
-  &.active {
-    color: ${({ theme }) => theme.text3};
-  }
-`
 
 const Menu: React.FC = () => {
   const { handleNavigate } = useAppNavigate()
   const pathName = useGetCurrentURLPath()
   return (
     <MenuWrapper rowWidth={'fit-content'}>
-      <HoverTextWrapper onClick={() => handleNavigate('/')} color={pathName === '/' ? 'text3' : 'text1'}>
+      <HoverTextWrapper onClick={() => handleNavigate('/')} color={pathName === '/' ? 'text5' : 'text1'}>
         {'Home'}
       </HoverTextWrapper>
     </MenuWrapper>

@@ -3,39 +3,25 @@ import { isMobile, screenWidth } from 'utils'
 import { ThemeProps } from './types'
 export const themeColor: ThemeProps = {
   // background color
-  background1: 'var(--blue)',
+  background1: 'var(--cinder)',
   background2: 'var(--black)',
-  background3: 'var(--purple)',
-  background4: 'var(--violet)',
-  background5: 'var(--pink)',
-  background6: 'var(--greenYellow)',
+  background3: 'var(--dullOrange)',
+  background4: 'var(--dullOrange)',
+
   // text color
   text1: 'var(--white)',
-  text2: 'var(--black2)',
-  text3: 'var(--purple)',
+  text2: 'var(--osloGrey)',
+  text3: 'var(--greyGoose)',
+  text4: 'var(--silver)',
+  text5: 'var(--reddishOrange)',
 
   //button color
   button1: 'var(--buttonColor1)',
   buttonHover1: 'var(--buttonHoverColor1)',
-  button2: 'var(--buttonColor2)',
-  buttonHover2: 'var(--buttonHoverColor2)',
-  button3: 'var(--buttonColor3)',
-  buttonHover3: 'var(--buttonHoverColor3)',
-  button4: 'var(--buttonColor4)',
-  buttonHover4: 'var(--buttonHoverColor4)',
-  button5: 'var(--buttonColor5)',
-  buttonHover5: 'var(--buttonHoverColor5)',
-  button6: 'var(--buttonColor6)',
-  buttonHover6: 'var(--buttonHoverColor6)',
-
   buttonDisabled: 'var(--disable)',
 
   // border, divider color
-  border1: '1px solid var(--purple)',
-  border2: '3px solid var(--yellow)',
-  border3: '4px solid var(--lightBlue)',
-  border4: '1px solid var(--borderColor)',
-  border5: '1px solid var(--borderColor2)',
+  border1: '1px solid var(--blackCow)',
   divider: 'var(--divider)',
   // box-shadow
   boxShadow1: '0px 35px 50px var(--blackOpacity07)',
@@ -48,8 +34,8 @@ export const themeTypography = {
   lg: isMobile ? '1.7vmax' : screenWidth > 1440 ? '22px' : '1.5vmax',
   xl: isMobile ? '1.8vmax' : screenWidth > 1440 ? '24px' : '1.6vmax',
   xxl: isMobile ? '2.4vmax' : screenWidth > 1440 ? '32px' : '2.2vmax',
-  xxxl: isMobile ? '3.5vmax' : screenWidth > 1440 ? '48px' : '3.3vmax',
-  extra: isMobile ? '3.8vmax' : screenWidth > 1440 ? '52px' : '3.6vmax',
+  xxxl: isMobile ? '3.5vmax' : screenWidth > 1440 ? '52px' : '3.3vmax',
+  extra: isMobile ? '3.8vmax' : screenWidth > 1440 ? '80px' : '3.6vmax',
 }
 
 // export const themeTypography = {
@@ -59,8 +45,8 @@ export const themeTypography = {
 //   lg: '22px',
 //   xl: '24px',
 //   xxl: '32px',
-//   xxxl: '48px',
-//   extra: '52px',
+//   xxxl: '52px',
+//   extra: '80px',
 // }
 
 export const themeFontWeight = {
@@ -72,16 +58,22 @@ export const themeFontWeight = {
 }
 
 export const themeFontFamily = {
-  title: 'RoxBoroughCF',
-  main: 'Inter',
+  title: 'SFPro',
+  main: 'Poppins',
 }
 
 export const themeBorderRadius = {
   none: '0',
-  small: '5px',
-  regular: '10px',
-  medium: '66px',
+  small: '12px',
+  regular: '24px',
+  medium: '32px',
   circle: '50%',
+}
+
+export const themeGradient = {
+  buttonGradient: 'linear-gradient(234.14deg, var(--neonBlue) 5.28%, var(--purple) 91.61%)',
+  textGradient: 'linear-gradient(91.79deg, var(--white) 38.4%, rgba(255, 255, 255, 0) 102.58%);',
+  bgGradient: 'linear-gradient(180deg, var(--dune) 0%, var(--cinder) 100%)',
 }
 
 export const themeSize = {

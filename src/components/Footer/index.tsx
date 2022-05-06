@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
 
   return (
     <FlexColumn>
-      <FlexRow padding={'6%'} backgroundColor={themeColor.background2} isWrap={isMobile}>
+      <FlexRow padding={'6%'} backgroundColor={themeColor.background1} isWrap={isMobile}>
         <FlexRow justifyContent={isMobile ? 'center' : 'flex-start'} rowWidth={'fit-content'} gap={'24px'} margin={'24px 0'}>
           <HoverTextWrapper lineHeight={20} onClick={() => handleNavigate('/')}>
             {'Home'}

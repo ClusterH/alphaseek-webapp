@@ -2,7 +2,7 @@ import { CgClose } from 'react-icons/cg'
 import { ToastContainer } from 'react-toastify'
 import styled from 'styled-components'
 
-import { themeBorderRadius, themeBreakPoint, themeColor, themeFontFamily, themeFontWeight, themeTypography } from './theme'
+import { themeBorderRadius, themeBreakPoint, themeColor, themeFontFamily, themeFontWeight, themeGradient, themeTypography } from './theme'
 import { TFlexAlignItems, TFlexJustifyContents, ThemeProps } from './types'
 
 export const getWidthString = (span: number) => {
@@ -100,22 +100,33 @@ export const TextWrapper = styled.span<{
   opacity?: number
   textAlign?: string
   margin?: string
+  letterSpacing?: string
 }>`
   color: ${({ color, theme }) => (color ? (theme as any)[color] : theme.text1)};
   font-size: ${({ fontSize }) => (fontSize ? themeTypography[fontSize] : themeTypography.base)};
-  font-weight: ${({ fontWeight }) => (fontWeight ? themeFontWeight[fontWeight] : themeFontWeight.regular)};
+  font-weight: ${({ fontWeight }) => (fontWeight ? themeFontWeight[fontWeight] : themeFontWeight.medium)};
   font-family: ${({ fontFamily }) => (fontFamily ? themeFontFamily[fontFamily] : themeFontFamily.main)};
-  line-height: ${({ lineHeight }) => (lineHeight ? `${(100 * lineHeight) / 1920}vmax` : '32px')};
+  line-height: ${({ lineHeight }) => (lineHeight ? `${(100 * lineHeight) / 1440}vmax` : '30px')};
   opacity: ${({ opacity }) => (opacity ? opacity : 1)};
-  text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : 'start')};
   transition: ease-in-out 0.3s;
   margin: ${({ margin }) => (margin ? margin : '0px')};
+  letter-spacing: ${({ letterSpacing }) => (letterSpacing ? letterSpacing : '1px')};
 `
 export const HoverTextWrapper = styled(TextWrapper)`
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.text3};
+    color: ${({ theme }) => theme.text5};
   }
+`
+export const GradientTextWrapper = styled(TextWrapper)`
+  background: ${themeGradient.textGradient};
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+`
+export const BackwardTextWrapper = styled(TextWrapper)`
+  transform: matrix(-1, 0, 0, 1, 0, 0);
 `
 export const MainButton = styled.button<{
   width?: string
@@ -137,17 +148,18 @@ export const MainButton = styled.button<{
   position: relative;
   transition: 0.3s;
   color: ${({ color, theme }) => (color ? color : theme.text1)};
-  font-size: ${themeTypography.lg};
-  font-weight: ${themeFontWeight.regular};
-  padding: ${({ padding }) => (padding ? padding : '20px 45px')};
+  font-size: ${themeTypography.base};
+  font-weight: ${themeFontWeight.semiBold};
+  line-height: 30px;
+  padding: ${({ padding }) => (padding ? padding : '10px 24px')};
   margin: ${({ margin }) => (margin ? margin : '0')};
   width: ${({ width }) => (width ? width : 'fit-content')};
   height: ${({ height }) => (height ? height : '50px')};
-  background-color: ${({ backgroundColor, theme }) => (backgroundColor ? backgroundColor : theme.button5)};
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.medium)};
+  background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : themeColor.button1)};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.regular)};
 
   &:hover {
-    background: ${({ hoverColor }) => (hoverColor ? hoverColor : themeColor.buttonHover5)};
+    background: ${({ hoverColor }) => (hoverColor ? hoverColor : themeColor.buttonHover1)};
   }
 
   &:disabled {
@@ -157,6 +169,14 @@ export const MainButton = styled.button<{
     pointer-events: none;
     opacity: 0.5;
   }
+`
+export const TransparentButton = styled(MainButton)`
+  color: ${({ color, theme }) => (color ? color : theme.text1)};
+  background: transparent;
+  outline: ${({ theme }) => `2px solid ${theme.background3}`};
+`
+export const GradientButton = styled(MainButton)<{ gradient?: string }>`
+  background: ${({ gradient }) => gradient ?? themeGradient.buttonGradient};
 `
 export const CloseButton = styled(CgClose)`
   cursor: pointer;
@@ -169,18 +189,14 @@ export const CloseIconWrapper = styled(CloseButton)`
   top: 12px;
   right: 12px;
 `
-export const TransparentButton = styled(MainButton)`
-  color: ${({ color, theme }) => (color ? color : theme.text1)};
-  background: transparent;
-  outline: ${({ theme }) => `2px solid ${theme.background3}`};
-`
+
 export const InputWrapper = styled.input<{
   width?: string
   height?: string
   backgroundColor?: string
   border?: string
   borderRadius?: string
-  color?: string
+  color?: keyof ThemeProps
   padding?: string
   fontSize?: string
   fontFamily?: string
@@ -191,12 +207,12 @@ export const InputWrapper = styled.input<{
   height: ${({ height }) => (height ? height : '50px')};
   background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : 'transparent')};
   border: ${({ border, theme }) => (border ? border : theme.border1)};
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.medium)};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.regular)};
   padding: ${({ padding }) => (padding ? padding : '20px')};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : themeTypography.base)};
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : themeFontWeight.regular)};
   font-family: ${({ fontFamily }) => (fontFamily ? fontFamily : themeFontFamily.main)};
-  color: ${({ color, theme }) => (color ? color : theme.text1)};
+  color: ${({ color, theme }) => (color ? (theme as any)[color] : theme.text1)};
   outline: none;
 `
 export const ImageContainer = styled.img<{
@@ -213,7 +229,7 @@ export const ImageContainer = styled.img<{
   bottom?: string
   opacity?: number
 }>`
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '50%')};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.none)};
   width: ${({ width }) => (width ? width : '100%')};
   height: ${({ height }) => (height ? height : 'auto')};
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '100%')};

@@ -32,9 +32,9 @@ const Header: React.FC = () => {
       </FlexColumn>
       <FlexColumn colWidth={'fit-content'}>
         <FlexRow justifyContent={'flex-end'}>
-          <Menu />
-          <GasPriceContainer />
-          <WalletConnectionContainer />
+          {/* <Menu /> */}
+          {/* <GasPriceContainer />
+          <WalletConnectionContainer /> */}
           <Hamburger />
         </FlexRow>
       </FlexColumn>

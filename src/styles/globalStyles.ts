@@ -6,33 +6,26 @@ import { GlobalThemeProps } from './types'
 const GlobalStyles = createGlobalStyle`
   :root {
     --white: #ffffff;
-    --black: #02172b;
-    --black2: #0c1f30;
-    --blue: #01204c;
+    --black: #1d2427;
+    --blue: #4597de;
     --lightBlue: #2081e2;
-    --purple: #a260f3;
-    --violet: #7716bc;
-    --yellow: #d1b311;
-    --pink: #f268eA;
-    --greenYellow: #e7f268;
-    --divider: #3f444e;
+    --reddishOrange: #f7531d;
+    --dullOrange: #e07d44;
+    --osloGrey: #8a8a8e;
+    --dune: #323232;
+    --cinder: #151515;
+    --greyGoose: #d2d2d2;
+    --silver: #c7c7c7;
+    --darkGrey: #3c3c3c;
+    --blackCow: #464646;
+    --divider: #595959;
     --borderColor: #383d45;
     --borderColor2: #ccb4e9;
     --inputBGColor: #383d4526;
     --boxBGColor: #2a3039;
-    --buttonColor1: #2081e2;
-    --buttonHoverColor1: #1e70c2;
-    --buttonColor2: #5865F2;
-    --buttonHoverColor2: #4a55ce;
-    --buttonColor3: #1da1f2;
-    --buttonHoverColor3: #1890d9;
-    --buttonColor4: #833ab4;
-    --buttonHoverColor4: #682b91;
-    --buttonColor5: #a260f3;
-    --buttonHoverColor5: #7743b6;
-    --buttonColor6: #ba1550;
-    --buttonHoverColor6: #ba0223;
-    --disable: #383d4580;
+    --buttonColor1: #e07d44;
+    --buttonHoverColor1: #4597de;
+    --disable: #808080;
     --scrollbarTrack: #c4c4c4;
     --scrollbarThumb: #794cec;
 
@@ -46,7 +39,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }: GlobalThemeProps) => theme.background1};
     background-size: cover;
     color: ${({ theme }: GlobalThemeProps) => theme.text1};
-    font-family: 'Inter' !important;
+    font-family: 'Poppins' !important;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 1px;
