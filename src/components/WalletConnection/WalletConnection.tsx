@@ -10,7 +10,7 @@ import { ImageContainer, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius } from 'styles/theme'
 import { isMobile, shortenAddress } from 'utils'
 
-import { useReverseENSLookUp } from '../hook'
+import { useReverseENSLookUp } from '../Header/hook'
 
 import NetworkIndicator from './NetworkIndicator'
 

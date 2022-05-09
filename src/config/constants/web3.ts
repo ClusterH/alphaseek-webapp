@@ -1,5 +1,7 @@
 import ETHEREUM_ICON from 'assets/images/ethereum.svg'
-import COK_ABI from 'config/abis/cok.json'
+import CLAIMS_ABI from 'config/abis/claims.json'
+import FOUNDERS_PASS_ABI from 'config/abis/foundersPass.json'
+import MINTER_ABI from 'config/abis/minter.json'
 
 export enum SupportedChainId {
   MAIN = 1,
@@ -21,13 +23,25 @@ export const SUPPORTED_CHAIN_IDS: SupportedChainId[] = [SupportedChainId.MAIN, S
 
 type AddressMap = { [chainId: number]: string }
 
-export const COK_CONTRACT_ADDRESSES: AddressMap = {
-  [SupportedChainId.MAIN]: '0x34A32Df38FC511bf002Aed9dEC1B70E16870317f',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x545a267e59282af53684fbad66c05da5d3c2b1cc',
+export const MINTER_CONTRACT_ADDRESSES: AddressMap = {
+  [SupportedChainId.MAIN]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
+}
+
+export const PASS_CONTRACT_ADDRESSES: AddressMap = {
+  [SupportedChainId.MAIN]: '0xCECa344cCa67170D1b224b91fa57Ce9eA0C05f5C',
+  [SupportedChainId.RINKEBY_TESTNET]: '0xCECa344cCa67170D1b224b91fa57Ce9eA0C05f5C',
+}
+
+export const CLAIMS_CONTRACT_ADDRESSES: AddressMap = {
+  [SupportedChainId.MAIN]: '0x23E25fD67092A04a261667F5EA9Cc00734B14585',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x23E25fD67092A04a261667F5EA9Cc00734B14585',
 }
 
 export const CONTRACT_ABIS = {
-  COK: COK_ABI,
+  MINTER: MINTER_ABI,
+  PASS: FOUNDERS_PASS_ABI,
+  CLAIMS: CLAIMS_ABI,
 }
 
 const ALCHEMY_KEY = process.env.REACT_APP_ALCHEMY_KEY

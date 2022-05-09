@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import styled from 'styled-components'
 
-import { PUBLIC_APP_FLARE_URL } from 'config/constants'
 import { useAppNavigate, useHandleExternalLink } from 'hooks'
 import { CloseButton, FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
 import { themeBreakPoint, themeColor } from 'styles/theme'

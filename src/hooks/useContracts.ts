@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { Contract } from 'ethers'
 
-import { COK_CONTRACT_ADDRESSES, CONTRACT_ABIS } from 'config/constants'
+import { MINTER_CONTRACT_ADDRESSES, CONTRACT_ABIS } from 'config/constants'
 import { getContract, getContractWithSimpleProvider, isSupportedNetwork } from 'utils'
 
 import { useActiveWeb3React } from './useActiveWeb3React'
@@ -35,6 +35,6 @@ export function useContract<T extends Contract = Contract>(
   }, [addressOrAddressMap, ABI, library, chainId, withSimpleProvider, withSignerIfPossible, account]) as T
 }
 
-export const useGetCOKContract = (withSigner = false, withSimpleProvider = true) => {
-  return useContract(COK_CONTRACT_ADDRESSES, CONTRACT_ABIS.COK, withSigner, withSimpleProvider)
+export const useGetMinterContract = (withSigner = false, withSimpleProvider = true) => {
+  return useContract(MINTER_CONTRACT_ADDRESSES, CONTRACT_ABIS.MINTER, withSigner, withSimpleProvider)
 }

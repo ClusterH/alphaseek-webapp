@@ -3,7 +3,7 @@ import React from 'react'
 import { useActiveWeb3React } from 'hooks'
 import { FlexColumn } from 'styles/components'
 
-import { useWalletConnectionModal } from '../hook'
+import { useWalletConnectionModal } from '../Header/hook'
 
 import { AccountDetailContainer, ErrorContentContainer, OptionListContainer } from '.'
 

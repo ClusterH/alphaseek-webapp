@@ -1,5 +1,5 @@
-import { COK_CONTRACT_ADDRESSES } from 'config/constants'
+import { MINTER_CONTRACT_ADDRESSES } from 'config/constants'
 
-export const getCokAddress = (chainId: number) => {
-  return COK_CONTRACT_ADDRESSES[chainId]
+export const getMinterAddress = (chainId: number) => {
+  return MINTER_CONTRACT_ADDRESSES[chainId]
 }

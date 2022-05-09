@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
 
-import { IWalletModalItem } from '../types'
+import { IWalletModalItem } from '../Header/types'
 
 const ItemWrapper = styled(FlexRow)<{ isClickable?: boolean }>`
   background-color: ${themeColor.background3};

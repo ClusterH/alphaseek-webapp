@@ -6,7 +6,7 @@ import { useActiveWeb3React } from 'hooks'
 import { FlexColumn, FlexRow, TextWrapper } from 'styles/components'
 import { isMobile } from 'utils'
 
-import { useWalletConnectionModal } from '../hook'
+import { useWalletConnectionModal } from '../Header/hook'
 
 import { OptionItem } from '.'
 

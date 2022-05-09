@@ -4,14 +4,10 @@ import styled from 'styled-components'
 
 import { FlexColumn, FlexRow } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isMobile } from 'utils'
 
 import Logo from '../Logo'
 
-import GasPriceContainer from './GasPriceContainer'
 import Hamburger from './hamburgerIcon'
-import Menu from './Menu'
-import { WalletConnectionContainer } from './WalletConnection'
 
 const HeaderContainer = styled(FlexRow)`
   z-index: 9;

@@ -2,10 +2,11 @@ import React from 'react'
 
 import ReactDOM from 'react-dom'
 
-import { useEagerConnect, useInactiveListener, usePollGasPrice } from 'hooks'
+import { useEagerConnect, useInactiveListener } from 'hooks'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastWrapper } from 'styles/components'
 import GlobalStyles from 'styles/globalStyles'
+import { useMintPanelStatus } from 'views/Home/hooks'
 
 import App from './App'
 import './index.scss'
@@ -15,7 +16,7 @@ import reportWebVitals from './reportWebVitals'
 const GlobalHooks = () => {
   useEagerConnect()
   useInactiveListener()
-  usePollGasPrice()
+  useMintPanelStatus()
 
   return null
 }
