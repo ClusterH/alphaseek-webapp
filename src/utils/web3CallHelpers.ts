@@ -24,7 +24,5 @@ export const getTotalSupply = async (contract: Contract) => {
 }
 
 export const checkMintPhaseStatus = async (minterContract: Contract) => {
-  const res = await minterContract.phase()
-  console.log(res)
-  return res
+  return await minterContract.phase()
 }

@@ -26,6 +26,7 @@ const GlobalStyles = createGlobalStyle`
     --boxBGColor: #2a3039;
     --buttonColor1: #e07d44;
     --buttonHoverColor1: #4597de;
+    --success: #14ae5c;
     --disable: #808080;
     --scrollbarTrack: #c4c4c4;
     --scrollbarThumb: #3c3c3c;

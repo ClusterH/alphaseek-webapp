@@ -16,6 +16,9 @@ export const themeColor: ThemeProps = {
   text4: 'var(--silver)',
   text5: 'var(--reddishOrange)',
 
+  //status color
+  success: 'var(--success)',
+
   //button color
   button1: 'var(--buttonColor1)',
   buttonHover1: 'var(--buttonHoverColor1)',
@@ -26,6 +29,7 @@ export const themeColor: ThemeProps = {
   divider: 'var(--divider)',
   // box-shadow
   boxShadow1: '0px 35px 50px var(--blackOpacity07)',
+  boxShadow2: '0px 4px 8px rgba(0, 0, 0, 0.25)',
   dropShadow1: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
   dropShadow2: 'drop-shadow(0px 30px 50px rgba(0, 0, 0, 0.65))',
   dropShadow3: 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.05))',

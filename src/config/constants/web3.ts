@@ -8,6 +8,8 @@ export enum SupportedChainId {
   RINKEBY_TESTNET = 4,
 }
 
+export const DEFAULT_CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 export const NETWORK_INDICATOR: { [chainId: number]: { name: 'Ethereum' | 'Rinkeby'; icon: string } } = {
   [SupportedChainId.MAIN]: { name: 'Ethereum', icon: ETHEREUM_ICON },
   [SupportedChainId.RINKEBY_TESTNET]: { name: 'Rinkeby', icon: ETHEREUM_ICON },

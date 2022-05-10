@@ -186,8 +186,8 @@ export const CloseButton = styled(CgClose)`
 `
 export const CloseIconWrapper = styled(CloseButton)`
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 16px;
+  right: 16px;
 `
 
 export const InputWrapper = styled.input<{
@@ -255,8 +255,8 @@ export const OverlayContainer = styled.div`
   left: 0;
   width: 100%;
   height: 200vh;
-  background-color: var(--black2);
-  opacity: 0.5;
+  background-color: #000000;
+  opacity: 0.7;
   z-index: 1;
 `
 export const BlurBackground = styled.div<{

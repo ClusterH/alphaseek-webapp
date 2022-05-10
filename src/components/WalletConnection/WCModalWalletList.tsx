@@ -80,11 +80,11 @@ const WalletConnectionOptionList: React.FC = () => {
   return (
     <FlexColumn>
       <FlexRow>
-        <TextWrapper fontSize={'xxl'} fontFamily={'title'} lineHeight={40}>
-          {'Connect a wallet'}
+        <TextWrapper fontFamily={'title'} lineHeight={20} letterSpacing={'-0.01em'} margin={'0 0 24px'}>
+          {'Connect Your wallet'}
         </TextWrapper>
       </FlexRow>
-      <FlexColumn>{getOptions()}</FlexColumn>
+      <FlexColumn gap={'24px'}>{getOptions()}</FlexColumn>
     </FlexColumn>
   )
 }

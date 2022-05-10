@@ -3,7 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { FadeAnimationWrapper } from 'components/AnimationWrapper'
-import { useModal } from 'hooks/useGlobalModal'
 import { CloseIconWrapper, FlexColumn, OverlayContainer } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
 
@@ -15,7 +14,6 @@ const ModalWrapper = styled(FlexColumn)`
   max-height: 90vh;
   overflow-y: auto;
   padding: 24px;
-  border: ${themeColor.border1};
   z-index: 999;
 `
 
@@ -34,7 +32,7 @@ const Modal: React.FC<IModalProps> = ({ children, isOpen, handleOpenModal, width
       <OverlayContainer onClick={() => handleOpenModal()} />
       <FadeAnimationWrapper>
         <ModalWrapper
-          backgroundColor={backgroundColor ? backgroundColor : themeColor.background4}
+          backgroundColor={backgroundColor ? backgroundColor : themeColor.background5}
           borderRadius={themeBorderRadius.regular}
           colWidth={width ?? '30%'}
         >

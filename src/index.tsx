@@ -2,11 +2,11 @@ import React from 'react'
 
 import ReactDOM from 'react-dom'
 
-import { useEagerConnect, useInactiveListener } from 'hooks'
+import { useEagerConnect, useGetWalletBalance, useInactiveListener } from 'hooks'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastWrapper } from 'styles/components'
 import GlobalStyles from 'styles/globalStyles'
-import { useMintPanelStatus } from 'views/Home/hooks'
+import { useMintPhaseStatus } from 'views/Home/hooks'
 
 import App from './App'
 import './index.scss'
@@ -16,7 +16,8 @@ import reportWebVitals from './reportWebVitals'
 const GlobalHooks = () => {
   useEagerConnect()
   useInactiveListener()
-  useMintPanelStatus()
+  useMintPhaseStatus()
+  useGetWalletBalance() // We need to check wallet eth balance real-time?
 
   return null
 }

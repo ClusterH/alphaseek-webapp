@@ -60,12 +60,15 @@ export const getContract = (address: string, ABI: any, library: Web3Provider, ac
 }
 
 export const getContractWithSimpleProvider = (address: string, ABI: any, chainId: number) => {
+  console.log(chainId)
   if (!isAddress(address) || address === AddressZero) {
     throw Error(`Invalid 'address' parameter '${address}'.`)
   }
 
   const provider = getSimpleRPCProvider(chainId)
   if (!provider) throw Error('Cant Get Provider Correctly, Please check your Network status')
+
+  console.log(address, ABI, provider)
 
   return new Contract(address, ABI, provider)
 }

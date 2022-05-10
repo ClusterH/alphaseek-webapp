@@ -13,6 +13,9 @@ export interface ThemeProps {
   text4: string
   text5: string
 
+  // status color
+  success: string
+
   //button color
   button1: string
   buttonHover1: string
@@ -23,6 +26,7 @@ export interface ThemeProps {
   divider: string
   // box shadow
   boxShadow1: string
+  boxShadow2: string
   dropShadow1: string
   dropShadow2: string
   dropShadow3: string

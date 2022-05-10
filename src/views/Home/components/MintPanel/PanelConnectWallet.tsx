@@ -63,7 +63,7 @@ const ConnectWalletPanel: React.FC = () => {
           {'Connect Wallet'}
         </MainButton>
       </FlexColumn>
-      <Modal isOpen={isOpen} handleOpenModal={handleOpenModal} width={isMobile ? '90%' : '30%'}>
+      <Modal isOpen={isOpen} handleOpenModal={handleOpenModal} width={isMobile ? '90%' : '24%'}>
         <WalletConnectionModal />
       </Modal>
     </FlexColumn>

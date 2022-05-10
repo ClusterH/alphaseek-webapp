@@ -24,7 +24,3 @@ export const usePollGasPrice = () => {
     { refreshInterval: GAS_PRICE_POLLING_INTERVAL, revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
   )
 }
-
-export const useGasPrice = () => {
-  return useAppSelector((state: AppState) => state.web3Reducer.gasPrice)
-}
