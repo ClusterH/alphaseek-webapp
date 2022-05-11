@@ -1,2 +1,2 @@
 export { default as MintContainer } from './MainContainer'
-export { default as AmountCounterPanel } from './AmounterCounterPenel'
+export { default as AmountCounterPanel } from './PanelAmounterCounter'

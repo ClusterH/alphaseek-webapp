@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { useActiveWeb3React } from 'hooks'
 import { FlexColumn } from 'styles/components'
 import { themeGradient } from 'styles/theme'
+import { useGetMintPrice } from 'views/Home/hooks'
 
 import MintProcessContainer from './MintProcessContainer'
 import ConnectWalletPanel from './PanelConnectWallet'
@@ -17,6 +18,8 @@ const MainWrapper = styled(FlexColumn)`
 
 const MintContainer: React.FC = () => {
   const { account } = useActiveWeb3React()
+  useGetMintPrice()
+
   return (
     <FlexColumn gap={'0px'} colWidth={'40%'}>
       {/* Need not Claim option? */}

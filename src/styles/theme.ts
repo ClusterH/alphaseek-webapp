@@ -18,6 +18,7 @@ export const themeColor: ThemeProps = {
 
   //status color
   success: 'var(--success)',
+  error: 'var(--error)',
 
   //button color
   button1: 'var(--buttonColor1)',

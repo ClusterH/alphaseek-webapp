@@ -1,25 +1,30 @@
 import { useCallback, useState } from 'react'
 
+import { useAppDispatch } from 'state/hooks'
+import { useMintCount, useMintPrice } from 'state/mint/hooks'
+import { setMintCount } from 'state/mint/reducer'
 import { useWalletBalance } from 'state/web3/hooks'
 
 export const useAmountCounter = () => {
-  const [count, setCount] = useState<number>(0)
+  const mintCount = useMintCount()
+  const mintPrice = useMintPrice()
+
   const { ethBalance } = useWalletBalance()
 
-  const NFT_PRICE = 3 // it is hard coded for now
+  const dispatch = useAppDispatch()
 
   const handleCount = useCallback(
     (isPlus: boolean) => {
       if (isPlus) {
-        if (NFT_PRICE * (count + 1) > Number(ethBalance)) return
-        setCount(count + 1)
+        if (Number(mintPrice) * (mintCount + 1) > Number(ethBalance)) return
+        dispatch(setMintCount(mintCount + 1))
       } else {
-        if (count === 0) return
-        setCount(count - 1)
+        if (mintCount === 0) return
+        dispatch(setMintCount(mintCount - 1))
       }
     },
-    [count, ethBalance]
+    [mintPrice, mintCount, ethBalance, dispatch]
   )
 
-  return { ethBalance, count, NFT_PRICE, handleCount }
+  return { ethBalance, mintCount, mintPrice, handleCount }
 }

@@ -13,7 +13,6 @@ export const useMintPhaseStatus = () => {
   const dispatch = useAppDispatch()
 
   const handleCheckMintPhaseStatus = useCallback(async () => {
-    console.log(DEFAULT_CHAIN_ID, chainId, account)
     const minterContract = getContractWithSimpleProvider(
       getMinterAddress(chainId && account ? chainId : parseInt(DEFAULT_CHAIN_ID!)),
       CONTRACT_ABIS.MINTER,

@@ -15,6 +15,7 @@ export interface ThemeProps {
 
   // status color
   success: string
+  error: string
 
   //button color
   button1: string

@@ -13,3 +13,8 @@ export enum MintPanelStatus {
   coldWalletInput,
   mint,
 }
+
+export interface IMintPanelProps {
+  panelStatus: MintPanelStatus
+  handlePanelStatus: (status: MintPanelStatus) => void
+}

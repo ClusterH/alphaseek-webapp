@@ -149,7 +149,8 @@ export const MainButton = styled.button<{
   transition: 0.3s;
   color: ${({ color, theme }) => (color ? color : theme.text1)};
   font-size: ${themeTypography.base};
-  font-weight: ${themeFontWeight.semiBold};
+  font-weight: ${themeFontWeight.bold};
+  font-family: ${themeFontFamily.title};
   line-height: 30px;
   padding: ${({ padding }) => (padding ? padding : '10px 24px')};
   margin: ${({ margin }) => (margin ? margin : '0')};
