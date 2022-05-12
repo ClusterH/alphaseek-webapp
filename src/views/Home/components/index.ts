@@ -1,2 +1,7 @@
 export { default as WelcomeContainer } from './WelcomeContainer'
+export { default as AboutContainer } from './AboutContainer'
+export { default as UtilityContainer } from './UtilityContainer'
+export { default as WhatIsAlphaseekContainer } from './WhatIsAlphaseekContainer'
+export { default as WhyChooseAlphaSeekContainer } from './WhyChooseAlphaSeekContainer'
+export { default as TeamContainer } from './TeamContainer'
 export { default as ScrollTopBtn } from './ScrollTopBtn'

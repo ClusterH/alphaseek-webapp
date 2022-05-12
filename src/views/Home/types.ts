@@ -18,3 +18,19 @@ export interface IMintPanelProps {
   panelStatus: MintPanelStatus
   handlePanelStatus: (status: MintPanelStatus) => void
 }
+
+export interface IUtility {
+  id: number
+  title: string
+  detail: string
+  iconUrl: string
+}
+
+export interface ITeamItem {
+  id: number
+  name: string
+  avatar: string
+  role?: string
+  detail?: string
+  twitter?: string
+}

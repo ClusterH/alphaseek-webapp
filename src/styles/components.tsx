@@ -120,7 +120,7 @@ export const HoverTextWrapper = styled(TextWrapper)`
   }
 `
 export const GradientTextWrapper = styled(TextWrapper)`
-  background: ${themeGradient.textGradient};
+  background: ${themeGradient.textGradient1};
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
