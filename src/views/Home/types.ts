@@ -34,3 +34,14 @@ export interface ITeamItem {
   detail?: string
   twitter?: string
 }
+
+export type TPeriod = 'Monthly' | 'Annual'
+
+export type TCompetition = 'alphaseek' | 'binance' | 'ftx' | 'bybit' | 'crypto' | 'uniswap'
+
+export interface IComparisonData {
+  min: number
+  max: number | undefined
+  maker: number
+  taker: number
+}

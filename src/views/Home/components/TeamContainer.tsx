@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TEAM_LIST } from 'config/constants/teamList'
+import { TEAM_LIST } from 'config/constants'
 import { FlexColumn, FlexRow, GradientTextWrapper } from 'styles/components'
 import { isMobile } from 'utils'
 

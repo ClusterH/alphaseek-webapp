@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import BLUR_IMG from 'assets/images/blur_bg2.svg'
-import { UTILITY_LIST } from 'config/constants/utilityList'
+import { UTILITY_LIST } from 'config/constants'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 
 import UtilityItem from './UtilityItem'

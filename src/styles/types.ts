@@ -12,6 +12,7 @@ export interface ThemeProps {
   text3: string
   text4: string
   text5: string
+  text6: string
 
   // status color
   success: string

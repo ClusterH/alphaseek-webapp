@@ -220,6 +220,7 @@ export const ImageContainer = styled.img<{
   width?: string
   height?: string
   maxWidth?: string
+  maxHeight?: string
   margin?: string
   objectFit?: string
   borderRadius?: string
@@ -234,6 +235,7 @@ export const ImageContainer = styled.img<{
   width: ${({ width }) => (width ? width : '100%')};
   height: ${({ height }) => (height ? height : 'auto')};
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '100%')};
+  max-height: ${({ maxHeight }) => (maxHeight ? maxHeight : 'auto')};
   margin: ${({ margin }) => (margin ? margin : '0')};
   object-fit: ${({ objectFit }) => (objectFit ? objectFit : 'cover')};
   cursor: pointer;

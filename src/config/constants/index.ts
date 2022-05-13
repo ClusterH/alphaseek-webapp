@@ -1,3 +1,6 @@
 export * from './web3'
 export * from './wallet'
 export * from './baseURLs'
+export * from './comparisonData'
+export * from './teamList'
+export * from './utilityList'

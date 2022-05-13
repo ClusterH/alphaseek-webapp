@@ -4,6 +4,7 @@ import { PageWrapper } from 'styles/components'
 
 import {
   AboutContainer,
+  ComparisonContainer,
   ScrollTopBtn,
   TeamContainer,
   UtilityContainer,
@@ -19,6 +20,7 @@ const Home: React.FC = () => {
       <AboutContainer />
       <UtilityContainer />
       <WhatIsAlphaseekContainer />
+      <ComparisonContainer />
       <WhyChooseAlphaSeekContainer />
       <TeamContainer />
       <ScrollTopBtn />

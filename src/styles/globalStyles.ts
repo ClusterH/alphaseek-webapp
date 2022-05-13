@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     --greyGoose: #d2d2d2;
     --silver: #c7c7c7;
     --darkGrey: #3c3c3c;
+    --darkGrey2: #3b3b3b;
     --blackCow: #464646;
     --heavyGrey: #212121;
     --divider: #595959;
