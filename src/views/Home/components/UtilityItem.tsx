@@ -21,14 +21,14 @@ const TitleWrapper = styled(GradientTextWrapper)`
 
 const UtilityItem: React.FC<{ item: IUtility }> = ({ item }) => {
   return (
-    <ItemWrapper padding={'28px'} borderRadius={themeBorderRadius.small} alignItems={'flex-start'} colWidth={'22%'}>
-      <IconWrapper padding={'16px'} borderRadius={themeBorderRadius.small} colWidth={'fit-content'} margin={'0 0 36px'}>
+    <ItemWrapper padding={'28px'} borderRadius={themeBorderRadius.small} alignItems={'flex-start'} colWidth={'calc((100% - 60px) / 4)'}>
+      <IconWrapper padding={'16px'} borderRadius={themeBorderRadius.small} colWidth={'fit-content'}>
         <ImageContainer src={item.iconUrl} width={'24px'} />
       </IconWrapper>
-      <TitleWrapper fontFamily={'title'} fontSize={'sm'} lineHeight={24} margin={'24px 0'}>
+      <TitleWrapper fontFamily={'title'} fontSize={'sm'} lineHeight={24} margin={'48px 0 12px'}>
         {item.title}
       </TitleWrapper>
-      <TextWrapper fontFamily={'title'} fontSize={'xs'} fontWeight={'medium'} lineHeight={20}>
+      <TextWrapper fontFamily={'title'} fontSize={'xs'} fontWeight={'medium'} lineHeight={20} margin={'0 0 6px'}>
         {item.detail}
       </TextWrapper>
     </ItemWrapper>

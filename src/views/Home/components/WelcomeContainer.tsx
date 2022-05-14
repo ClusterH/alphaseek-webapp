@@ -28,9 +28,9 @@ const SeekImgWrapper = styled(ImageContainer)`
 
 const WelcomeContainer: React.FC = () => {
   return (
-    <FlexColumn colHeight={isMobile ? 'auto' : 'calc(100vh)'} padding={'2% 6% 0'}>
-      <ImgWrapper src={BG_IMG} height={'100%'} width={'auto'} />
-      <FlexRow>
+    <FlexColumn colHeight={isMobile ? 'auto' : 'calc(100vh)'} padding={'2% 12% 0'}>
+      <ImgWrapper src={BG_IMG} height={'auto'} width={'auto'} />
+      <FlexRow margin={'24px 0'}>
         <Logo />
         <LogoTextWrapper fontFamily={'title'} fontSize={'xxl'} fontWeight={'bold'} lineHeight={38} letterSpacing={'-0.02em'}>
           {'Founders Pass'}

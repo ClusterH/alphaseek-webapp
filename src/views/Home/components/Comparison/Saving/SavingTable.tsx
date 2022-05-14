@@ -1,17 +1,20 @@
 import React, { useMemo, useState } from 'react'
 
-import BINANCE_LOGO from 'assets/images/binance_logo.png'
-import BYBIT_LOGO from 'assets/images/bybit_logo.png'
-import CRYPTO_LOGO from 'assets/images/crypto_logo.png'
-import FTX_LOGO from 'assets/images/ftx_logo.png'
-import UNISWAP_LOGO from 'assets/images/uniswap_logo.png'
+import styled from 'styled-components'
+
+import { LOGO_LIST } from 'config/constants'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
-import { TPeriod } from 'views/Home/types'
+import { themeColor } from 'styles/theme'
+import { TPeriod, TComparison, TFeeTypes } from 'views/Home/types'
 
 import { calcSpotSavings } from './utils'
 
+const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
+  border-top: ${({ isBorder }) => (isBorder ? themeColor.border1 : 'none')};
+`
+
 const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ period, tradeAmount }) => {
-  const spotSaving = useMemo(() => calcSpotSavings(tradeAmount), [tradeAmount])
+  const feeAmounts = useMemo(() => calcSpotSavings(tradeAmount), [tradeAmount])
   const per = useMemo(() => (period === 'Monthly' ? 1 : 12), [period])
 
   return (
@@ -19,43 +22,42 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
       <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'medium'} fontSize={'xl'} letterSpacing={'-0.02em'}>
         {`${period} savings versus...`}
       </TextWrapper>
-      <FlexRow justifyContent={'space-between'}>
-        <FlexColumn colWidth={'10%'}></FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <ImageContainer src={BINANCE_LOGO} />
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <ImageContainer src={FTX_LOGO} />
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <ImageContainer src={BYBIT_LOGO} />
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <ImageContainer src={CRYPTO_LOGO} />
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <ImageContainer src={UNISWAP_LOGO} />
-        </FlexColumn>
+      <FlexRow justifyContent={'space-between'} gap={'0px'} margin={'42px 0 0'}>
+        {Object.keys(LOGO_LIST).map((comparison) => (
+          <FlexColumn key={comparison} alignItems={'flex-start'}>
+            {comparison !== 'alphaseek' && <ImageContainer src={LOGO_LIST[comparison as TComparison]} maxHeight={'40px'} width={'auto'} />}
+          </FlexColumn>
+        ))}
       </FlexRow>
-      <FlexRow justifyContent={'space-between'}>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <TextWrapper>{'Spot Fees'}</TextWrapper>
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <TextWrapper>{(spotSaving.binance * per).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TextWrapper>
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <TextWrapper>{(spotSaving.ftx * per).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TextWrapper>
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <TextWrapper>{(spotSaving.bybit * per).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TextWrapper>
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <TextWrapper>{(spotSaving.crypto * per).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TextWrapper>
-        </FlexColumn>
-        <FlexColumn colWidth={'10%'} alignItems={'flex-start'}>
-          <TextWrapper>{'--'}</TextWrapper>
-        </FlexColumn>
+      <FlexRow justifyContent={'space-between'} gap={'0px'}>
+        {Object.keys(feeAmounts).map((comparison) => (
+          <FlexColumn key={comparison} alignItems={'flex-start'} justifyContent={'flex-start'} gap={'0px'}>
+            {['spot', 'future', 'swap'].map((type, index) => (
+              <TableItemWrapper key={type} isBorder={index !== 0}>
+                <TextWrapper
+                  margin={'32px 0'}
+                  fontFamily={'title'}
+                  color={
+                    comparison === 'alphaseek' || feeAmounts[comparison as TComparison][type as TFeeTypes] === undefined ? 'text3' : 'text1'
+                  }
+                  fontSize={comparison === 'alphaseek' ? 'sm' : 'base'}
+                  fontWeight={comparison === 'alphaseek' ? 'medium' : 'bold'}
+                  lineHeight={20}
+                  letterSpacing={'-0.02em'}
+                >
+                  {comparison === 'alphaseek'
+                    ? `${type[0].toUpperCase()}${type.slice(1)} Fees`
+                    : feeAmounts[comparison as TComparison][type as TFeeTypes]
+                    ? (feeAmounts[comparison as TComparison][type as TFeeTypes]! * per).toLocaleString('en-US', {
+                        style: 'currency',
+                        currency: 'USD',
+                      })
+                    : '_ _'}
+                </TextWrapper>
+              </TableItemWrapper>
+            ))}
+          </FlexColumn>
+        ))}
       </FlexRow>
     </FlexColumn>
   )

@@ -19,7 +19,7 @@ const BlurImgWrapper = styled(ImageContainer)`
 
 const WhatIsAlphaseekContainer: React.FC = () => {
   return (
-    <FlexColumn padding={'6%'}>
+    <FlexColumn padding={'0 12%'}>
       <MainWrapper padding={'6%'} gap={'24px'} borderRadius={themeBorderRadius.regular}>
         <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'bold'} lineHeight={25} letterSpacing={'-0.045em'}>
           {'What is Alphaseek'}

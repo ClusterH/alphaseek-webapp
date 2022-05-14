@@ -16,7 +16,7 @@ const SavingComparison: React.FC = () => {
   }, [])
 
   return (
-    <FlexColumn alignItems={'flex-start'} padding={'6%'} gap={'0px'}>
+    <FlexColumn alignItems={'flex-start'} padding={'6% 12%'} gap={'0px'}>
       <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'bold'} lineHeight={42} letterSpacing={'0.1em'}>
         {'COMPARISON'}
       </TextWrapper>

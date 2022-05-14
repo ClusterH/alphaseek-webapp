@@ -37,7 +37,8 @@ export interface ITeamItem {
 
 export type TPeriod = 'Monthly' | 'Annual'
 
-export type TCompetition = 'alphaseek' | 'binance' | 'ftx' | 'bybit' | 'crypto' | 'uniswap'
+export type TComparison = 'alphaseek' | 'binance' | 'ftx' | 'bybit' | 'crypto' | 'uniswap'
+export type TFeeTypes = 'spot' | 'future' | 'swap'
 
 export interface IComparisonData {
   min: number

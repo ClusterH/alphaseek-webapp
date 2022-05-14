@@ -8,7 +8,7 @@ import TeamItem from './TeamItem.tsx'
 
 const TeamContainer: React.FC = () => {
   return (
-    <FlexColumn padding={'6%'}>
+    <FlexColumn padding={'6% 12%'}>
       <GradientTextWrapper fontFamily={'title'} fontSize={'extra'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
         {'Meet the Team.'}
       </GradientTextWrapper>

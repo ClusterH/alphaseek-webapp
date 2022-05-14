@@ -10,13 +10,13 @@ import UtilityItem from './UtilityItem'
 
 const BlurImgWrapper = styled(ImageContainer)`
   position: absolute;
-  left: -100px;
-  top: 0;
+  left: 74px;
+  top: 62px;
 `
 
 const UtilityContainer: React.FC = () => {
   return (
-    <FlexColumn alignItems={'flex-start'} padding={'0 6%'} gap={'24px'}>
+    <FlexColumn alignItems={'flex-start'} padding={'6% 12%'} gap={'24px'}>
       <BlurImgWrapper src={BLUR_IMG} width={'16%'} />
       <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'bold'} lineHeight={25} letterSpacing={'0.1em'}>
         {'UTILITY'}
@@ -34,7 +34,7 @@ const UtilityContainer: React.FC = () => {
           {'The Alphaseek Founders Pass was created with the sole purpose of bringing 100% utility to traders worldwide.'}
         </TextWrapper>
       </FlexRow>
-      <FlexRow isWrap alignItems={'stretch'} gap={'20px'}>
+      <FlexRow isWrap alignItems={'stretch'} margin={'40px 0'} gap={'20px'}>
         {UTILITY_LIST.map((item) => (
           <UtilityItem key={item.id} item={item} />
         ))}
