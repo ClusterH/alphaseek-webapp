@@ -29,7 +29,7 @@ const WalletModalItem: React.FC<IWalletModalItem> = ({ name, iconUrl, isClickabl
     <ItemWrapper onClick={handleClick} isClickable={isClickable && !isActive}>
       <FlexRow rowWidth={'fit-content'} justifyContent={'flex-start'}>
         <ImageContainer src={iconUrl} width={'36px'} borderRadius={themeBorderRadius.none} />
-        <TextWrapper fontFamily={'title'} fontWeight={'semiBold'} lineHeight={20} letterSpacing={'0.2px'} margin={'0 0 0 40px'}>
+        <TextWrapper fontWeight={'semiBold'} lineHeight={20} letterSpacing={'0.2px'} margin={'0 0 0 40px'}>
           {name}
         </TextWrapper>
         {isActive && <GreenCircle />}

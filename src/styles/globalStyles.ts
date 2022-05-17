@@ -43,7 +43,7 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }: GlobalThemeProps) => theme.background1};
     background-size: cover;
     color: ${({ theme }: GlobalThemeProps) => theme.text1};
-    font-family: 'Poppins' !important;
+    font-family: 'SFPro' !important;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 1px;

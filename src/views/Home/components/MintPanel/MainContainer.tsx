@@ -22,7 +22,7 @@ const MintContainer: React.FC = () => {
   useGetMintPrice()
 
   return (
-    <FlexColumn gap={'0px'} colWidth={isMobile ? '100%' : '40%'}>
+    <FlexColumn gap={'0px'} colWidth={isMobile ? '100%' : '50%'}>
       {/* Need not Claim option? */}
       {/* <MintClaimOptionContainer /> */}
       <MainWrapper colHeight={isMobile ? '40vh' : '50vh'}>{account ? <MintProcessContainer /> : <ConnectWalletPanel />}</MainWrapper>

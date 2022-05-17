@@ -69,7 +69,7 @@ export const themeFontWeight = {
 
 export const themeFontFamily = {
   title: 'SFPro',
-  main: 'Poppins',
+  main: 'SFPro',
 }
 
 export const themeBorderRadius = {

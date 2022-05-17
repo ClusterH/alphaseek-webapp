@@ -24,18 +24,10 @@ const WhyChooseAlphaSeekContainer: React.FC = () => {
       <FlexColumn padding={'0% 6% 4%'} colWidth={isMobile ? '90%' : '50%'}>
         <AngleContainer />
         <FlexColumn padding={isMobile ? '10% 4%' : '8% 0'} gap={'32px'}>
-          <TextWrapper
-            fontFamily={'title'}
-            fontWeight={'bold'}
-            fontSize={'xxxl'}
-            lineHeight={62}
-            letterSpacing={'-0.02em'}
-            textAlign={'center'}
-          >
+          <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={62} letterSpacing={'-0.02em'} textAlign={'center'}>
             {'Why choose AlphaSeek'}
           </TextWrapper>
           <TextWrapper
-            fontFamily={'title'}
             fontWeight={'medium'}
             fontSize={isMobile ? 'xl' : 'sm'}
             lineHeight={isMobile ? 42 : 24}
@@ -47,7 +39,6 @@ const WhyChooseAlphaSeekContainer: React.FC = () => {
             }
           </TextWrapper>
           <TextWrapper
-            fontFamily={'title'}
             fontWeight={'medium'}
             fontSize={isMobile ? 'xl' : 'sm'}
             lineHeight={isMobile ? 42 : 24}

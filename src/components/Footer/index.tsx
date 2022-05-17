@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
       <FooterWrapper alignItems={'flex-start'}>
         <ImageContainer src={LOGO} height={isMobile ? '32px' : '53px'} width={'auto'} />
         <FlexColumn alignItems={'flex-end'} colWidth={'fit-content'}>
-          <TextWrapper fontFamily={'title'} fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={16} letterSpacing={'-0.05em'}>
+          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={16} letterSpacing={'-0.05em'}>
             {'Come Join Us'}
           </TextWrapper>
           <FlexRow rowWidth={'fit-content'}>

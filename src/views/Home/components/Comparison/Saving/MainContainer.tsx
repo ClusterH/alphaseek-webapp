@@ -4,9 +4,10 @@ import { FlexColumn, TextWrapper } from 'styles/components'
 import { isMobile } from 'utils'
 import { usePeriodSelect } from 'views/Home/hooks'
 
+import { TRADE_AMOUNT_MIN } from '../utils'
+
 import SavingTable from './SavingTable'
 import SliderContainer from './SliderContainer'
-import { TRADE_AMOUNT_MIN } from './utils'
 
 const SavingComparison: React.FC = () => {
   const { period, handlePeriod } = usePeriodSelect()
@@ -18,13 +19,13 @@ const SavingComparison: React.FC = () => {
 
   return (
     <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '6% 18%'} gap={isMobile ? '12px' : '0px'}>
-      <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'bold'} lineHeight={42} letterSpacing={'0.1em'}>
+      <TextWrapper color={'text2'} fontWeight={'bold'} lineHeight={42} letterSpacing={'0.1em'}>
         {'COMPARISON'}
       </TextWrapper>
-      <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
+      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
         {'How much you could be saving with the'}
       </TextWrapper>
-      <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
+      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
         {'Alphaseek Founder’s pass.'}
       </TextWrapper>
       <SliderContainer period={period} handlePeriod={handlePeriod} handleTradeAmount={handleTradeAmount} />

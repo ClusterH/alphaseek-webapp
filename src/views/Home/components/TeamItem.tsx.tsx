@@ -24,19 +24,11 @@ const TeamItem: React.FC<{ item: ITeamItem; isCoreTeam?: boolean }> = ({ item, i
     <ItemWrapper padding={isMobile ? '60px 4%' : '120px 45px'} borderRadius={themeBorderRadius.small}>
       <AvatarWrapper src={item.avatar} width={isMobile ? '30%' : isCoreTeam ? '50%' : '40%'} />
       {item.role && (
-        <TextWrapper
-          color={'text2'}
-          fontFamily={'title'}
-          fontSize={isMobile ? 'xl' : 'sm'}
-          fontWeight={'bold'}
-          lineHeight={20}
-          letterSpacing={'--0.02em'}
-        >
+        <TextWrapper color={'text2'} fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={20} letterSpacing={'--0.02em'}>
           {item.role}
         </TextWrapper>
       )}
       <GradientTextWrapper
-        fontFamily={'title'}
         fontSize={'xl'}
         fontWeight={'bold'}
         lineHeight={24}
@@ -47,7 +39,6 @@ const TeamItem: React.FC<{ item: ITeamItem; isCoreTeam?: boolean }> = ({ item, i
       </GradientTextWrapper>
       {item.detail && (
         <TextWrapper
-          fontFamily={'title'}
           fontSize={isMobile ? 'xl' : 'sm'}
           fontWeight={'medium'}
           lineHeight={isMobile ? 42 : 24}

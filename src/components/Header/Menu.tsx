@@ -25,7 +25,6 @@ const Menu: React.FC = () => {
   return (
     <MenuWrapper rowWidth={'fit-content'}>
       <HoverTextWrapper
-        fontFamily={'title'}
         fontWeight={'bold'}
         fontSize={'sm'}
         lineHeight={20}
@@ -36,7 +35,6 @@ const Menu: React.FC = () => {
         {'Founders Pass'}
       </HoverTextWrapper>
       <HoverTextWrapper
-        fontFamily={'title'}
         fontWeight={'bold'}
         fontSize={'sm'}
         lineHeight={20}
@@ -47,7 +45,6 @@ const Menu: React.FC = () => {
         {'AlphaSeek'}
       </HoverTextWrapper>
       <HoverTextWrapper
-        fontFamily={'title'}
         fontWeight={'bold'}
         fontSize={'sm'}
         lineHeight={20}

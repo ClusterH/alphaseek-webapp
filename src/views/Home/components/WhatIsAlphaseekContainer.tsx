@@ -22,29 +22,21 @@ const WhatIsAlphaseekContainer: React.FC = () => {
   return (
     <FlexColumn padding={isMobile ? '2% 6%' : '0 18%'}>
       <MainWrapper padding={isMobile ? '10% 6%' : '6%'} gap={'24px'} borderRadius={themeBorderRadius.regular}>
-        <TextWrapper
-          color={'text2'}
-          fontFamily={'title'}
-          fontSize={isMobile ? 'xl' : 'base'}
-          fontWeight={'bold'}
-          lineHeight={25}
-          letterSpacing={'-0.045em'}
-        >
+        <TextWrapper color={'text2'} fontSize={isMobile ? 'xl' : 'base'} fontWeight={'bold'} lineHeight={25} letterSpacing={'-0.045em'}>
           {'What is Alphaseek'}
         </TextWrapper>
         <FlexColumn gap={'0px'} colWidth={'fit-content'}>
           {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'56%'} />}
-          <TextWrapper fontSize={'extra'} fontFamily={'title'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
+          <TextWrapper fontSize={'extra'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
             {'A new standard'}
           </TextWrapper>
-          <TextWrapper fontSize={'extra'} fontFamily={'title'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
+          <TextWrapper fontSize={'extra'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
             {'for crypto trading.'}
           </TextWrapper>
         </FlexColumn>
         <FlexRow rowWidth={isMobile ? '100%' : '60%'} margin={isMobile ? '24px' : '64px 0'}>
           <TextWrapper
             fontSize={isMobile ? 'xl' : 'sm'}
-            fontFamily={'title'}
             fontWeight={'medium'}
             lineHeight={isMobile ? 42 : 24}
             letterSpacing={'0.02em'}

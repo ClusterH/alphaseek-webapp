@@ -25,13 +25,7 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
     <FlexColumn onClick={() => handleOpenItemID(item)}>
       <ItemWrapper style={{ flexGrow: 1 }}>
         <FlexRow rowWidth={'calc(100% - 24px)'}>
-          <TextWrapper
-            fontFamily={'title'}
-            fontSize={isMobile ? 'xxl' : 'base'}
-            fontWeight={'bold'}
-            lineHeight={isMobile ? 42 : 22}
-            textAlign={'start'}
-          >
+          <TextWrapper fontSize={isMobile ? 'xxl' : 'base'} fontWeight={'bold'} lineHeight={isMobile ? 42 : 22} textAlign={'start'}>
             {item.title}
           </TextWrapper>
         </FlexRow>
@@ -40,7 +34,6 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
       {openedItemID === item.id && (
         <DetailWrapper
           opacity={0.75}
-          fontFamily={'title'}
           fontSize={isMobile ? 'xl' : 'sm'}
           fontWeight={'medium'}
           lineHeight={isMobile ? 42 : 24}

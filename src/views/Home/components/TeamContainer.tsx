@@ -9,11 +9,10 @@ import TeamItem from './TeamItem.tsx'
 const TeamContainer: React.FC = () => {
   return (
     <FlexColumn padding={isMobile ? '10% 6%' : '6% 18%'}>
-      <GradientTextWrapper fontFamily={'title'} fontSize={'extra'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
+      <GradientTextWrapper fontSize={'extra'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
         {'Meet the Team.'}
       </GradientTextWrapper>
       <GradientTextWrapper
-        fontFamily={'title'}
         fontSize={'xxl'}
         fontWeight={'bold'}
         lineHeight={isMobile ? 42 : 24}
@@ -28,7 +27,6 @@ const TeamContainer: React.FC = () => {
         ))}
       </FlexRow>
       <GradientTextWrapper
-        fontFamily={'title'}
         fontSize={'xxl'}
         fontWeight={'bold'}
         lineHeight={isMobile ? 42 : 24}
@@ -43,7 +41,6 @@ const TeamContainer: React.FC = () => {
         ))}
       </FlexRow>
       <GradientTextWrapper
-        fontFamily={'title'}
         fontSize={'xxl'}
         fontWeight={'bold'}
         lineHeight={isMobile ? 42 : 24}
@@ -58,7 +55,6 @@ const TeamContainer: React.FC = () => {
         ))}
       </FlexRow>
       <GradientTextWrapper
-        fontFamily={'title'}
         fontSize={'xxl'}
         fontWeight={'bold'}
         lineHeight={isMobile ? 42 : 24}

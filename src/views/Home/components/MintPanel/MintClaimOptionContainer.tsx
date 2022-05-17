@@ -21,13 +21,13 @@ const MintClaimOptionContainer: React.FC = () => {
   return (
     <FlexRow justifyContent={'flex-start'}>
       <OptionWrapper backgroundColor={themeColor.background5} isActive={option === 'mint'} onClick={() => handleSwitchOption('mint')}>
-        <HoverTextWrapper fontFamily={'title'} fontWeight={'bold'} letterSpacing={'-0.02em'}>
+        <HoverTextWrapper fontWeight={'bold'} letterSpacing={'-0.02em'}>
           {'Mint'}
         </HoverTextWrapper>
       </OptionWrapper>
       {account && (
         <OptionWrapper backgroundColor={themeColor.background5} isActive={option === 'claim'} onClick={() => handleSwitchOption('claim')}>
-          <HoverTextWrapper fontFamily={'title'} fontWeight={'bold'} letterSpacing={'-0.02em'}>
+          <HoverTextWrapper fontWeight={'bold'} letterSpacing={'-0.02em'}>
             {'Claim'}
           </HoverTextWrapper>
         </OptionWrapper>

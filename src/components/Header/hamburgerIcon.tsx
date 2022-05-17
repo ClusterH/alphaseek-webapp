@@ -36,7 +36,7 @@ const HamburgerMenuItem: React.FC<{ label: string; navLink: string; disabled?: b
   const { handleNavigate } = useAppNavigate()
   return (
     <FlexRow margin={'24px 0 0 0'} justifyContent={'center'}>
-      <TextWrapper fontSize={'extra'} fontWeight={'bold'} fontFamily={'title'} onClick={() => handleNavigate(navLink)}>
+      <TextWrapper fontSize={'extra'} fontWeight={'bold'} onClick={() => handleNavigate(navLink)}>
         {label}
       </TextWrapper>
     </FlexRow>

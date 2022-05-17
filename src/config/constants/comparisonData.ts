@@ -102,3 +102,17 @@ export const SWAP_SAVING_DATA: { [key in TComparison]: number | undefined } = {
   crypto: undefined,
   uniswap: 0.3,
 }
+
+export const LOGO_LIST_FEE = {
+  alphaseek: ALPHASEEK_LOGO,
+  binance: BINANCE_LOGO,
+  ftx: FTX_LOGO,
+  bybit: BYBIT_LOGO,
+}
+
+export const FEE_DATA = {
+  alphaseek: { maker: 0.025, taker: 0.025 },
+  binance: { maker: 0.1, taker: 0.1 },
+  ftx: { maker: 0.02, taker: 0.07 },
+  bybit: { maker: 0.1, taker: 0.1 },
+}

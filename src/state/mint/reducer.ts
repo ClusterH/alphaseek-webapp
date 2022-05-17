@@ -11,7 +11,7 @@ interface IState {
 
 export const initialState: IState = {
   mintPhase: 0,
-  mintCount: 0,
+  mintCount: 1,
   mintWallet: { option: 'connected', wallet: '' },
   mintPrice: '0',
 }

@@ -32,8 +32,25 @@ export const getMintPrice = async (minterContract: Contract) => {
   return ethers.utils.formatEther(price)
 }
 
-export const executeMint = async (minterContract: Contract, to: string, nonce: string, signature: string, merkleProof: string[]) => {
-  const txHash = await minterContract.mint(to, nonce, signature, merkleProof, { value: '100000000000000' })
+export const getWalletLimit = async (minterContract: Contract, address: string) => {
+  const limit = await minterContract.getWalletLimit(address)
+  return limit.toNumber()
+}
+
+export const getWalletCount = async (minterContract: Contract, address: string) => {
+  const count = await minterContract.getWalletCount(address)
+  return count.toNumber()
+}
+
+export const executeMint = async (
+  minterContract: Contract,
+  to: string,
+  nonce: string,
+  signature: string,
+  merkleProof: string[],
+  gasLimit: BigNumber
+) => {
+  const txHash = await minterContract.mint(to, nonce, signature, merkleProof, { value: '100000000000000', gasLimit })
   const receipt = await txHash.wait()
   return receipt.status
 }

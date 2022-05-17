@@ -21,16 +21,20 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
       <GoBackButton onClick={() => handlePanelStatus(panelStatus - 1)}>
         <FaArrowLeft size={24} />
       </GoBackButton>
-      <TextWrapper fontFamily={'title'} fontSize={'sm'} fontWeight={'bold'} lineHeight={20} letterSpacing={'-0.02em'} textAlign={'center'}>
+      <TextWrapper fontSize={'sm'} fontWeight={'bold'} lineHeight={20} letterSpacing={'-0.02em'} textAlign={'center'}>
         {'Paste your external mint address'}
       </TextWrapper>
 
       <FlexColumn gap={'8px'} alignItems={'flex-start'}>
-        <InputWrapper placeholder="0x___" onChange={handleChange} border={isValid ? themeColor.border1 : `1px solid ${themeColor.error}`} />
+        <InputWrapper
+          placeholder="0x___"
+          value={coldWallet}
+          onChange={handleChange}
+          border={isValid ? themeColor.border1 : `1px solid ${themeColor.error}`}
+        />
         {isValid === false && (
           <TextWrapper
             color={'error'}
-            fontFamily={'title'}
             fontSize={'xs'}
             fontWeight={'bold'}
             lineHeight={20}
@@ -44,19 +48,11 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
       </FlexColumn>
 
       <FlexRow rowWidth={'80%'}>
-        <TextWrapper
-          color={'text2'}
-          fontFamily={'title'}
-          fontSize={'sm'}
-          fontWeight={'semiBold'}
-          lineHeight={24}
-          letterSpacing={'-0.02em'}
-          textAlign={'center'}
-        >
+        <TextWrapper color={'text2'} fontSize={'sm'} fontWeight={'semiBold'} lineHeight={24} letterSpacing={'-0.02em'} textAlign={'center'}>
           {'Please double-check your pasted address before confirming.'}
         </TextWrapper>
       </FlexRow>
-      <MainButton width={'100%'} disabled={isValid === false || coldWallet === ''} onClick={() => handlePanelStatus(3)}>
+      <MainButton width={'100%'} disabled={isValid === false || coldWallet === ''} onClick={() => handlePanelStatus(2)}>
         {'Confirm Address'}
       </MainButton>
     </FlexColumn>

@@ -8,7 +8,7 @@ import { themeColor } from 'styles/theme'
 import { isMobile } from 'utils'
 import { TPeriod, TComparison, TFeeTypes } from 'views/Home/types'
 
-import { calcSpotSavings } from './utils'
+import { calcSpotSavings } from '../utils'
 
 const TableWrapper = styled(FlexRow)`
   overflow-x: auto;
@@ -27,7 +27,7 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
 
   return (
     <FlexColumn alignItems={'flex-start'}>
-      <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'medium'} fontSize={isMobile ? 'xxl' : 'xl'} letterSpacing={'-0.02em'}>
+      <TextWrapper color={'text2'} fontWeight={'medium'} fontSize={isMobile ? 'xxl' : 'xl'} letterSpacing={'-0.02em'}>
         {`${period} savings versus...`}
       </TextWrapper>
       <TableWrapper>
@@ -48,7 +48,6 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
                   <TableItemWrapper key={type} isBorder={index !== 0}>
                     <TextWrapper
                       margin={'32px 0'}
-                      fontFamily={'title'}
                       color={
                         comparison === 'alphaseek' || feeAmounts[comparison as TComparison][type as TFeeTypes] === undefined
                           ? 'text3'

@@ -56,7 +56,7 @@ const ConnectWalletPanel: React.FC = () => {
         )}
       </FlexColumn>
       <FlexColumn gap={'32px'}>
-        <TextWrapper fontFamily={'title'} fontWeight={'medium'} letterSpacing={'-0.02em'}>
+        <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
           {'Please connect your wallet to proceed'}
         </TextWrapper>
         <MainButton borderRadius={themeBorderRadius.small} width={'100%'} onClick={() => handleOpenModal()}>

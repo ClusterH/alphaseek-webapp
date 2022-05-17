@@ -5,7 +5,7 @@ import { FlexColumn, FlexRow, MainButton, TextWrapper, TransparentButton } from 
 import { isMobile } from 'utils'
 import { TPeriod } from 'views/Home/types'
 
-import { TRADE_AMOUNT_MIN, TRADE_AMOUNT_MAX, TRADE_AMOUNT_STEP } from './utils'
+import { TRADE_AMOUNT_MIN, TRADE_AMOUNT_MAX, TRADE_AMOUNT_STEP } from '../utils'
 
 const SliderContainer: React.FC<{
   period: TPeriod
@@ -21,36 +21,22 @@ const SliderContainer: React.FC<{
   return (
     <FlexColumn padding={isMobile ? '6% 0' : '6% 12%'}>
       <FlexRow margin={'0 0 20px 0'}>
-        <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xl'} letterSpacing={'-0.02em'}>
+        <TextWrapper fontWeight={'bold'} fontSize={'xl'} letterSpacing={'-0.02em'}>
           {'If you traded'}
         </TextWrapper>
-        <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xl'} letterSpacing={'-0.02em'}>{`${Number(val).toLocaleString(
-          'en-US',
-          { style: 'currency', currency: 'USD' }
-        )}`}</TextWrapper>
+        <TextWrapper fontWeight={'bold'} fontSize={'xl'} letterSpacing={'-0.02em'}>{`${Number(val).toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        })}`}</TextWrapper>
       </FlexRow>
 
       <RangeInput onChange={setVal} defaultValue={val} min={TRADE_AMOUNT_MIN} max={TRADE_AMOUNT_MAX} step={TRADE_AMOUNT_STEP} />
 
       <FlexRow margin={'16px 0 0'}>
-        <TextWrapper
-          color={'text6'}
-          fontFamily={'title'}
-          fontWeight={'bold'}
-          fontSize={isMobile ? 'base' : 'xs'}
-          lineHeight={14}
-          letterSpacing={'-0.02em'}
-        >
+        <TextWrapper color={'text6'} fontWeight={'bold'} fontSize={isMobile ? 'base' : 'xs'} lineHeight={14} letterSpacing={'-0.02em'}>
           {TRADE_AMOUNT_MIN.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
         </TextWrapper>
-        <TextWrapper
-          color={'text6'}
-          fontFamily={'title'}
-          fontWeight={'bold'}
-          fontSize={isMobile ? 'base' : 'xs'}
-          lineHeight={14}
-          letterSpacing={'-0.02em'}
-        >
+        <TextWrapper color={'text6'} fontWeight={'bold'} fontSize={isMobile ? 'base' : 'xs'} lineHeight={14} letterSpacing={'-0.02em'}>
           {TRADE_AMOUNT_MAX.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
         </TextWrapper>
       </FlexRow>

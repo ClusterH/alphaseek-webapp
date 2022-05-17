@@ -29,11 +29,11 @@ const FAQContainer: React.FC = () => {
   return (
     <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '6% 18%'} gap={'0px'}>
       {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'16%'} />}
-      <GradientTextWrapper fontFamily={'title'} fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
+      <GradientTextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
         {'Frequently Asked'}
       </GradientTextWrapper>
       <FlexRow rowWidth={'fit-content'} justifyContent={'flex-start'}>
-        <TextWrapper fontFamily={'title'} fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
+        <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
           {'Questions'}
         </TextWrapper>
         <ImageContainer src={QUESTION_MARK_IMG} width={'28px'} />

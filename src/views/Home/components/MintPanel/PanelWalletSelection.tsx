@@ -21,17 +21,13 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
   const dispatch = useAppDispatch()
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
-      <GoBackButton onClick={() => handlePanelStatus(panelStatus - 1)}>
-        <FaArrowLeft size={24} />
-      </GoBackButton>
-
       {account && (
-        <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'semiBold'} letterSpacing={'-0.02em'}>{`Connected to ${shortenAddress(
+        <TextWrapper color={'text2'} fontWeight={'semiBold'} letterSpacing={'-0.02em'}>{`Connected to ${shortenAddress(
           account
         )}`}</TextWrapper>
       )}
       <FlexRow rowWidth={'80%'}>
-        <TextWrapper fontFamily={'title'} fontSize={'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} textAlign={'center'}>
+        <TextWrapper fontSize={'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} textAlign={'center'}>
           {'Do you want to mint to the currently connected wallet or a cold wallet?'}
         </TextWrapper>
       </FlexRow>
@@ -39,20 +35,24 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
         <TransparentButton
           width={'42%'}
           onClick={() => {
-            dispatch(setMintWallet({ option: 'connected', wallet: account }))
-            handlePanelStatus(3)
+            dispatch(setMintWallet({ option: 'connected', wallet: '' }))
+            handlePanelStatus(2)
           }}
         >
-          {'Connected Wallet'}
+          <TextWrapper fontSize={'sm'} fontWeight={'semiBold'} lineHeight={24}>
+            {'Connected Wallet'}
+          </TextWrapper>
         </TransparentButton>
         <TransparentButton
           width={'42%'}
           onClick={() => {
-            dispatch(setMintWallet({ option: 'cold' }))
-            handlePanelStatus(2)
+            dispatch(setMintWallet({ option: 'cold', wallet: '' }))
+            handlePanelStatus(1)
           }}
         >
-          {'Cold Wallet'}
+          <TextWrapper fontSize={'sm'} fontWeight={'semiBold'} lineHeight={24}>
+            {'Cold Wallet'}
+          </TextWrapper>
         </TransparentButton>
       </FlexRow>
     </FlexColumn>
