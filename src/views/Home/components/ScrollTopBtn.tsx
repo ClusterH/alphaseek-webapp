@@ -5,25 +5,26 @@ import styled from 'styled-components'
 
 import { MainButton } from 'styles/components'
 import { themeBorderRadius } from 'styles/theme'
+import { isMobile } from 'utils'
 
 const BtnWrapper = styled(MainButton)`
   position: fixed;
   bottom: 12px;
-  right: 24px;
+  right: ${isMobile ? '12px' : '24px'};
   z-index: 1;
 `
 const ScrollTopBtn: React.FC = () => {
   return (
     <BtnWrapper
-      width={'50px'}
-      height={'50px'}
+      width={isMobile ? '32px' : '50px'}
+      height={isMobile ? '32px' : '50px'}
       padding={'0px'}
       borderRadius={themeBorderRadius.circle}
       onClick={() => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }}
     >
-      <IoMdArrowUp size={30} />
+      <IoMdArrowUp size={isMobile ? 24 : 30} />
     </BtnWrapper>
   )
 }

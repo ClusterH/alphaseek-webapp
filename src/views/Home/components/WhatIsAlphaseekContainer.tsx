@@ -6,6 +6,7 @@ import BLUR_IMG from 'assets/images/blur_bg2.svg'
 import TRADING_IMG from 'assets/images/trading_img.png'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor, themeGradient } from 'styles/theme'
+import { isMobile } from 'utils'
 
 const MainWrapper = styled(FlexColumn)`
   background: linear-gradient(180deg, #1e1e1e 0%, rgba(51, 51, 51, 0) 100%);
@@ -19,13 +20,20 @@ const BlurImgWrapper = styled(ImageContainer)`
 
 const WhatIsAlphaseekContainer: React.FC = () => {
   return (
-    <FlexColumn padding={'0 12%'}>
-      <MainWrapper padding={'6%'} gap={'24px'} borderRadius={themeBorderRadius.regular}>
-        <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'bold'} lineHeight={25} letterSpacing={'-0.045em'}>
+    <FlexColumn padding={isMobile ? '2% 6%' : '0 18%'}>
+      <MainWrapper padding={isMobile ? '10% 6%' : '6%'} gap={'24px'} borderRadius={themeBorderRadius.regular}>
+        <TextWrapper
+          color={'text2'}
+          fontFamily={'title'}
+          fontSize={isMobile ? 'xl' : 'base'}
+          fontWeight={'bold'}
+          lineHeight={25}
+          letterSpacing={'-0.045em'}
+        >
           {'What is Alphaseek'}
         </TextWrapper>
         <FlexColumn gap={'0px'} colWidth={'fit-content'}>
-          <BlurImgWrapper src={BLUR_IMG} width={'56%'} />
+          {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'56%'} />}
           <TextWrapper fontSize={'extra'} fontFamily={'title'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
             {'A new standard'}
           </TextWrapper>
@@ -33,12 +41,12 @@ const WhatIsAlphaseekContainer: React.FC = () => {
             {'for crypto trading.'}
           </TextWrapper>
         </FlexColumn>
-        <FlexRow rowWidth={'60%'} margin={'64px 0'}>
+        <FlexRow rowWidth={isMobile ? '100%' : '60%'} margin={isMobile ? '24px' : '64px 0'}>
           <TextWrapper
-            fontSize={'sm'}
+            fontSize={isMobile ? 'xl' : 'sm'}
             fontFamily={'title'}
             fontWeight={'medium'}
-            lineHeight={24}
+            lineHeight={isMobile ? 42 : 24}
             letterSpacing={'0.02em'}
             textAlign={'center'}
           >

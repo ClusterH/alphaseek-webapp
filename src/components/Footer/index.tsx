@@ -1,28 +1,36 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 
-import LOGO from 'assets/images/main_logo_black.svg'
-import { useAppNavigate } from 'hooks'
+import { BsDiscord, BsTwitter } from 'react-icons/bs'
+import styled from 'styled-components'
+
+import LOGO from 'assets/images/main_logo_white.png'
 import { FlexColumn, FlexRow, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
-import { themeBorderRadius, themeColor } from 'styles/theme'
+import { themeColor } from 'styles/theme'
 import { isMobile } from 'utils'
 
+const FooterWrapper = styled(FlexRow)`
+  border-top: ${themeColor.border1};
+  padding: 34px 0;
+`
 const Footer: React.FC = () => {
-  const { handleNavigate } = useAppNavigate()
-  const currentYear = useMemo(() => new Date().getFullYear(), [])
-
   return (
-    <FlexColumn>
-      <FlexRow padding={'6%'} backgroundColor={themeColor.background1} isWrap={isMobile}>
-        <FlexRow justifyContent={isMobile ? 'center' : 'flex-start'} rowWidth={'fit-content'} gap={'24px'} margin={'24px 0'}>
-          <HoverTextWrapper lineHeight={20} onClick={() => handleNavigate('/')}>
-            {'Home'}
-          </HoverTextWrapper>
-        </FlexRow>
-        <FlexColumn alignItems={isMobile ? 'center' : 'flex-start'} colWidth={'fit-content'} gap={'0px'}>
-          <ImageContainer src={LOGO} height={isMobile ? '20px' : '27px'} borderRadius={themeBorderRadius.none} />
-          <TextWrapper fontSize={'lg'}>{`©${currentYear}. All Rights Reserved`}</TextWrapper>
+    <FlexColumn padding={isMobile ? '6%' : '6% 18%'}>
+      <FooterWrapper alignItems={'flex-start'}>
+        <ImageContainer src={LOGO} height={isMobile ? '32px' : '53px'} width={'auto'} />
+        <FlexColumn alignItems={'flex-end'} colWidth={'fit-content'}>
+          <TextWrapper fontFamily={'title'} fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={16} letterSpacing={'-0.05em'}>
+            {'Come Join Us'}
+          </TextWrapper>
+          <FlexRow rowWidth={'fit-content'}>
+            <HoverTextWrapper>
+              <BsDiscord size={20} />
+            </HoverTextWrapper>
+            <HoverTextWrapper>
+              <BsTwitter size={20} />
+            </HoverTextWrapper>
+          </FlexRow>
         </FlexColumn>
-      </FlexRow>
+      </FooterWrapper>
     </FlexColumn>
   )
 }

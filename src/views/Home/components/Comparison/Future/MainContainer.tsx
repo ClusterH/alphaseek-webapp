@@ -2,35 +2,24 @@ import React, { useCallback, useState } from 'react'
 
 import { FlexColumn, TextWrapper } from 'styles/components'
 import { isMobile } from 'utils'
-import { usePeriodSelect } from 'views/Home/hooks'
 
-import SavingTable from './SavingTable'
-import SliderContainer from './SliderContainer'
-import { TRADE_AMOUNT_MIN } from './utils'
+import FutureTable from './FutureTable'
 
-const SavingComparison: React.FC = () => {
-  const { period, handlePeriod } = usePeriodSelect()
-  const [tradeAmount, setTradeAmount] = useState<number>(TRADE_AMOUNT_MIN)
-
-  const handleTradeAmount = useCallback((amount: number) => {
-    setTradeAmount(amount)
-  }, [])
-
+const FutureComparison: React.FC = () => {
   return (
     <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '6% 18%'} gap={isMobile ? '12px' : '0px'}>
       <TextWrapper color={'text2'} fontFamily={'title'} fontWeight={'bold'} lineHeight={42} letterSpacing={'0.1em'}>
         {'COMPARISON'}
       </TextWrapper>
       <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
-        {'How much you could be saving with the'}
+        {'See how our futures stack'}
       </TextWrapper>
       <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
-        {'Alphaseek Founder’s pass.'}
+        {'up against the competition.'}
       </TextWrapper>
-      <SliderContainer period={period} handlePeriod={handlePeriod} handleTradeAmount={handleTradeAmount} />
-      <SavingTable period={period} tradeAmount={tradeAmount} />
+      <FutureTable />
     </FlexColumn>
   )
 }
 
-export default SavingComparison
+export default FutureComparison

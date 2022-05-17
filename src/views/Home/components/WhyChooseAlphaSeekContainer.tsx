@@ -3,12 +3,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { FlexColumn, TextWrapper } from 'styles/components'
+import { isMobile } from 'utils'
 
 const AngleContainer = styled.div`
   background: linear-gradient(to right, #a6afc0 2px, transparent 2px) 0 0, linear-gradient(to bottom, #a6afc0 2px, transparent 2px) 0 0,
     linear-gradient(to left, #a6afc0 2px, transparent 2px) 100% 100%, linear-gradient(to top, #a6afc0 2px, transparent 2px) 100% 100%;
   background-repeat: no-repeat;
-  background-size: 30% 30%;
+  background-size: ${isMobile ? '16% 16%' : '16% 16%'};
   position: absolute;
   top: 0;
   right: 0;
@@ -20,17 +21,24 @@ const AngleContainer = styled.div`
 const WhyChooseAlphaSeekContainer: React.FC = () => {
   return (
     <FlexColumn>
-      <FlexColumn padding={'0% 6% 4%'} colWidth={'50%'}>
+      <FlexColumn padding={'0% 6% 4%'} colWidth={isMobile ? '90%' : '50%'}>
         <AngleContainer />
-        <FlexColumn padding={'8% 0'} gap={'32px'}>
-          <TextWrapper fontFamily={'title'} fontWeight={'bold'} fontSize={'xxxl'} lineHeight={62} letterSpacing={'-0.02em'}>
+        <FlexColumn padding={isMobile ? '10% 4%' : '8% 0'} gap={'32px'}>
+          <TextWrapper
+            fontFamily={'title'}
+            fontWeight={'bold'}
+            fontSize={'xxxl'}
+            lineHeight={62}
+            letterSpacing={'-0.02em'}
+            textAlign={'center'}
+          >
             {'Why choose AlphaSeek'}
           </TextWrapper>
           <TextWrapper
             fontFamily={'title'}
             fontWeight={'medium'}
-            fontSize={'sm'}
-            lineHeight={24}
+            fontSize={isMobile ? 'xl' : 'sm'}
+            lineHeight={isMobile ? 42 : 24}
             letterSpacing={'0.02em'}
             textAlign={'center'}
           >
@@ -41,8 +49,8 @@ const WhyChooseAlphaSeekContainer: React.FC = () => {
           <TextWrapper
             fontFamily={'title'}
             fontWeight={'medium'}
-            fontSize={'sm'}
-            lineHeight={24}
+            fontSize={isMobile ? 'xl' : 'sm'}
+            lineHeight={isMobile ? 42 : 24}
             letterSpacing={'0.02em'}
             textAlign={'center'}
           >

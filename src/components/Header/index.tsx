@@ -8,6 +8,7 @@ import { themeColor } from 'styles/theme'
 import Logo from '../Logo'
 
 import Hamburger from './hamburgerIcon'
+import Menu from './Menu'
 
 const HeaderContainer = styled(FlexRow)`
   z-index: 9;
@@ -21,14 +22,14 @@ const HeaderContainer = styled(FlexRow)`
 const Header: React.FC = () => {
   return (
     <HeaderContainer>
-      <FlexColumn colWidth={'fit-content'}>
+      {/* <FlexColumn colWidth={'fit-content'}>
         <FlexRow justifyContent={'flex-start'} gap={'24px'}>
           <Logo />
         </FlexRow>
-      </FlexColumn>
+      </FlexColumn> */}
       <FlexColumn colWidth={'fit-content'}>
         <FlexRow justifyContent={'flex-end'}>
-          {/* <Menu /> */}
+          <Menu />
           {/* <GasPriceContainer />
           <WalletConnectionContainer /> */}
           <Hamburger />

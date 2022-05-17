@@ -102,27 +102,3 @@ export const SWAP_SAVING_DATA: { [key in TComparison]: number | undefined } = {
   crypto: undefined,
   uniswap: 0.3,
 }
-
-// coinbase: [
-//   { min: 0, max: 10000, maker: 0.4, taker: 0.6 },
-//   { min: 10000, max: 50000, maker: 0.25, taker: 0.4 },
-//   { min: 50000, max: 100000, maker: 0.15, taker: 0.25 },
-//   { min: 100000, max: 1000000, maker: 0.1, taker: 0.2 },
-//   { min: 1000000, max: 20000000, maker: 0.08, taker: 0.18 },
-//   { min: 20000000, max: 100000000, maker: 0.05, taker: 0.15 },
-//   { min: 100000000, max: 300000000, maker: 0.02, taker: 0.1 },
-//   { min: 300000000, max: 500000000, maker: 0, taker: 0.08 },
-//   { min: 500000000, max: undefined, maker: 0, taker: 0.05 },
-// ],
-
-// bitmart: [
-//   { min: 0, max: 2500, maker: 0.25, taker: 0.25 },
-//   { min: 2500, max: 10000, maker: 0.2, taker: 0.2 },
-//   { min: 10000, max: 25000, maker: 0.18, taker: 0.2 },
-//   { min: 25000, max: 50000, maker: 0.16, taker: 0.18 },
-//   { min: 50000, max: 100000, maker: 0.14, taker: 0.16 },
-//   { min: 100000, max: 200000, maker: 0.12, taker: 0.14 },
-//   { min: 200000, max: 500000, maker: 0.1, taker: 0.12 },
-//   { min: 500000, max: 1000000, maker: 0.08, taker: 0.1 },
-//   { min: 1000000, max: undefined, maker: 0.06, taker: 0.08 },
-// ],

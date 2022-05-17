@@ -8,66 +8,66 @@ import TeamItem from './TeamItem.tsx'
 
 const TeamContainer: React.FC = () => {
   return (
-    <FlexColumn padding={'6% 12%'}>
+    <FlexColumn padding={isMobile ? '10% 6%' : '6% 18%'}>
       <GradientTextWrapper fontFamily={'title'} fontSize={'extra'} fontWeight={'bold'} lineHeight={80} letterSpacing={'-0.05em'}>
         {'Meet the Team.'}
       </GradientTextWrapper>
       <GradientTextWrapper
         fontFamily={'title'}
-        fontSize={'xl'}
+        fontSize={'xxl'}
         fontWeight={'bold'}
-        lineHeight={24}
+        lineHeight={isMobile ? 42 : 24}
         letterSpacing={'-0.05em'}
-        margin={'80px 0 180px'}
+        margin={isMobile ? '40px 0 140px' : '80px 0 180px'}
       >
         {'AlphaSeek Core'}
       </GradientTextWrapper>
-      <FlexRow alignItems={'stretch'} gap={'20px'} isWrap={isMobile}>
+      <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} isWrap={isMobile}>
         {TEAM_LIST['core'].map((item) => (
           <TeamItem key={item.id} item={item} isCoreTeam />
         ))}
       </FlexRow>
       <GradientTextWrapper
         fontFamily={'title'}
-        fontSize={'xl'}
+        fontSize={'xxl'}
         fontWeight={'bold'}
-        lineHeight={24}
+        lineHeight={isMobile ? 42 : 24}
         letterSpacing={'-0.05em'}
-        margin={'80px 0 180px'}
+        margin={isMobile ? '40px 0 140px' : '80px 0 180px'}
       >
         {'UnREAL Accelerator'}
       </GradientTextWrapper>
-      <FlexRow alignItems={'stretch'} gap={'20px'} isWrap={isMobile}>
+      <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} isWrap={isMobile}>
         {TEAM_LIST['accelerator'].map((item) => (
           <TeamItem key={item.id} item={item} />
         ))}
       </FlexRow>
       <GradientTextWrapper
         fontFamily={'title'}
-        fontSize={'xl'}
+        fontSize={'xxl'}
         fontWeight={'bold'}
-        lineHeight={24}
+        lineHeight={isMobile ? 42 : 24}
         letterSpacing={'-0.05em'}
-        margin={'80px 0 180px'}
+        margin={isMobile ? '40px 0 140px' : '80px 0 180px'}
       >
         {'Advisory'}
       </GradientTextWrapper>
-      <FlexRow alignItems={'stretch'} gap={'20px'} isWrap={isMobile}>
+      <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} isWrap={isMobile}>
         {TEAM_LIST['advisory'].map((item) => (
           <TeamItem key={item.id} item={item} isCoreTeam />
         ))}
       </FlexRow>
       <GradientTextWrapper
         fontFamily={'title'}
-        fontSize={'xl'}
+        fontSize={'xxl'}
         fontWeight={'bold'}
-        lineHeight={24}
+        lineHeight={isMobile ? 42 : 24}
         letterSpacing={'-0.05em'}
-        margin={'80px 0 180px'}
+        margin={isMobile ? '40px 0 140px' : '80px 0 180px'}
       >
         {'Counsel'}
       </GradientTextWrapper>
-      <FlexRow alignItems={'stretch'} gap={'20px'} isWrap={isMobile} rowWidth={'30%'}>
+      <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} isWrap={isMobile} rowWidth={isMobile ? '100%' : '30%'}>
         {TEAM_LIST['counsel'].map((item) => (
           <TeamItem key={item.id} item={item} />
         ))}

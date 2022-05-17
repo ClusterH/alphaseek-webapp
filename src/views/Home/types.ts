@@ -46,3 +46,9 @@ export interface IComparisonData {
   maker: number
   taker: number
 }
+
+export interface IFAQItem {
+  id: number
+  title: string
+  description: string
+}
