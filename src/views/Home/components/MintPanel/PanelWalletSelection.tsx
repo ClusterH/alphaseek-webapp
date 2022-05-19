@@ -21,6 +21,9 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
   const dispatch = useAppDispatch()
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
+      <GoBackButton onClick={() => handlePanelStatus(0)}>
+        <FaArrowLeft size={24} />
+      </GoBackButton>
       {account && (
         <TextWrapper color={'text2'} fontWeight={'semiBold'} letterSpacing={'-0.02em'}>{`Connected to ${shortenAddress(
           account
@@ -36,7 +39,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           width={'42%'}
           onClick={() => {
             dispatch(setMintWallet({ option: 'connected', wallet: '' }))
-            handlePanelStatus(2)
+            handlePanelStatus(3)
           }}
         >
           <TextWrapper fontSize={'sm'} fontWeight={'semiBold'} lineHeight={24}>
@@ -47,7 +50,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           width={'42%'}
           onClick={() => {
             dispatch(setMintWallet({ option: 'cold', wallet: '' }))
-            handlePanelStatus(1)
+            handlePanelStatus(2)
           }}
         >
           <TextWrapper fontSize={'sm'} fontWeight={'semiBold'} lineHeight={24}>

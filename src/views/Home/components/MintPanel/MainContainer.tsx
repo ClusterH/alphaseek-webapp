@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import styled from 'styled-components'
 
-import { useActiveWeb3React } from 'hooks'
 import { FlexColumn } from 'styles/components'
 import { themeBorderRadius, themeGradient } from 'styles/theme'
 import { isMobile } from 'utils'
-import { useGetMintPrice } from 'views/Home/hooks'
+import { useMintPanelStatus } from 'views/Home/hooks'
 
-import MintProcessContainer from './MintProcessContainer'
+import ColdWalletInputPanel from './PanelColdWalletInput'
 import ConnectWalletPanel from './PanelConnectWallet'
+import MintPanel from './PanelMint'
+import WalletSelectionPanel from './PanelWalletSelection'
 
 const MainWrapper = styled(FlexColumn)`
   background: ${themeGradient.bgGradient1};
@@ -18,14 +19,18 @@ const MainWrapper = styled(FlexColumn)`
 `
 
 const MintContainer: React.FC = () => {
-  const { account } = useActiveWeb3React()
-  useGetMintPrice()
+  const { panelStatus, handlePanelStatus } = useMintPanelStatus()
+
+  const getPanelContent = useCallback(() => {
+    if (panelStatus === 0) return <ConnectWalletPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />
+    if (panelStatus === 1) return <WalletSelectionPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />
+    else if (panelStatus === 2) return <ColdWalletInputPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />
+    else if (panelStatus === 3) return <MintPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />
+  }, [handlePanelStatus, panelStatus])
 
   return (
     <FlexColumn gap={'0px'} colWidth={isMobile ? '100%' : '50%'}>
-      {/* Need not Claim option? */}
-      {/* <MintClaimOptionContainer /> */}
-      <MainWrapper colHeight={isMobile ? '40vh' : '50vh'}>{account ? <MintProcessContainer /> : <ConnectWalletPanel />}</MainWrapper>
+      <MainWrapper colHeight={isMobile ? '40vh' : '50vh'}>{getPanelContent()}</MainWrapper>
     </FlexColumn>
   )
 }

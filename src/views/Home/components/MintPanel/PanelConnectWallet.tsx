@@ -1,15 +1,18 @@
 import React from 'react'
 
+import { ethers } from 'ethers'
 import { FaCircle } from 'react-icons/fa'
 import styled from 'styled-components'
 
 import Modal from 'components/Modal/ModalWrapper'
 import { WalletConnectionModal } from 'components/WalletConnection'
-import { useModal } from 'hooks'
-import { useMintPhase } from 'state/mint/hooks'
+import { useActiveWeb3React, useGetTotalSupply, useModal, useTotalSupply } from 'hooks'
+import { useMintPhase, useMintPrice } from 'state/mint/hooks'
 import { Divider, FlexColumn, FlexRow, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor, themeFontFamily, themeFontWeight, themeTypography } from 'styles/theme'
-import { isMobile } from 'utils'
+import { isMobile, shortenAddress } from 'utils'
+import { useGetMintPrice } from 'views/Home/hooks'
+import { IMintPanelProps } from 'views/Home/types'
 
 const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean }>`
   font-weight: ${themeFontWeight.bold};
@@ -29,17 +32,31 @@ const RoadMapIndicator: React.FC = () => {
   )
 }
 
-const ConnectWalletPanel: React.FC = () => {
+const TotalSupplyCostWrapper = styled(PhaseTextWrapper)`
+  position: absolute;
+  right: 0;
+  top: 12px;
+`
+
+const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
+  useGetMintPrice()
+  useGetTotalSupply()
+
+  const { account } = useActiveWeb3React()
   const { isOpen, handleOpenModal } = useModal()
   const mintPhase = useMintPhase()
+  const mintPrice = useMintPrice()
+  const totalSupply = useTotalSupply()
 
   return (
     <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
       <FlexColumn gap={'0px'}>
+        <TotalSupplyCostWrapper isActived={false}>{`${totalSupply} Passes | ${ethers.utils.formatEther(
+          mintPrice
+        )} ETH Cost`}</TotalSupplyCostWrapper>
         {mintPhase === 1 && (
           <FlexRow>
             <PhaseTextWrapper isActived>{'Private mint'}</PhaseTextWrapper>
-            <PhaseTextWrapper isActived={false}>{'1000 Passes | 3 ETH Cost'}</PhaseTextWrapper>
           </FlexRow>
         )}
         {mintPhase > 0 && mintPhase < 3 && (
@@ -55,14 +72,31 @@ const ConnectWalletPanel: React.FC = () => {
           </FlexRow>
         )}
       </FlexColumn>
-      <FlexColumn gap={'32px'}>
-        <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
-          {'Please connect your wallet to proceed'}
-        </TextWrapper>
-        <MainButton borderRadius={themeBorderRadius.small} width={'100%'} onClick={() => handleOpenModal()}>
-          {'Connect Wallet'}
-        </MainButton>
-      </FlexColumn>
+      {account ? (
+        <FlexColumn gap={'32px'}>
+          <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
+            {`Connected to ${shortenAddress(account)}`}
+          </TextWrapper>
+          <MainButton
+            borderRadius={themeBorderRadius.small}
+            width={'100%'}
+            disabled={mintPhase === 0 || !account}
+            onClick={() => handlePanelStatus(1)}
+          >
+            {mintPhase === 0 ? 'The mint has not started' : 'Continue to Mint'}
+          </MainButton>
+        </FlexColumn>
+      ) : (
+        <FlexColumn gap={'32px'}>
+          <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
+            {'Please connect your wallet to proceed'}
+          </TextWrapper>
+          <MainButton borderRadius={themeBorderRadius.small} width={'100%'} onClick={() => handleOpenModal()}>
+            {'Connect Wallet'}
+          </MainButton>
+        </FlexColumn>
+      )}
+
       <Modal isOpen={isOpen} handleOpenModal={handleOpenModal} width={isMobile ? '90%' : '24%'}>
         <WalletConnectionModal />
       </Modal>

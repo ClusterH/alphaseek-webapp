@@ -52,7 +52,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           {'Please double-check your pasted address before confirming.'}
         </TextWrapper>
       </FlexRow>
-      <MainButton width={'100%'} disabled={isValid === false || coldWallet === ''} onClick={() => handlePanelStatus(2)}>
+      <MainButton width={'100%'} disabled={isValid === false || coldWallet === ''} onClick={() => handlePanelStatus(3)}>
         {'Confirm Address'}
       </MainButton>
     </FlexColumn>

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { BigNumber, ethers } from 'ethers'
 
 import { MintPhaseStatus } from 'views/Home/types'
 
@@ -6,14 +7,14 @@ interface IState {
   mintPhase: MintPhaseStatus
   mintCount: number
   mintWallet: { option: 'connected' | 'cold'; wallet: string }
-  mintPrice: string
+  mintPrice: BigNumber
 }
 
 export const initialState: IState = {
   mintPhase: 0,
   mintCount: 1,
   mintWallet: { option: 'connected', wallet: '' },
-  mintPrice: '0',
+  mintPrice: ethers.constants.Zero,
 }
 
 const mintSlice = createSlice({

@@ -1,4 +1,6 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
+
+import { ethers } from 'ethers'
 
 import { useAppDispatch } from 'state/hooks'
 import { useMintCount, useMintPrice } from 'state/mint/hooks'
@@ -7,7 +9,9 @@ import { useWalletBalance } from 'state/web3/hooks'
 
 export const useAmountCounter = () => {
   const mintCount = useMintCount()
-  const mintPrice = useMintPrice()
+  const price = useMintPrice()
+
+  const mintPrice = useMemo(() => ethers.utils.formatEther(price), [price])
 
   const { ethBalance } = useWalletBalance()
 
