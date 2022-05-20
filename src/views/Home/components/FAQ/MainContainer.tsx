@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import BLUR_IMG from 'assets/images/blur_bg2.svg'
 import QUESTION_MARK_IMG from 'assets/images/questionMark.svg'
 import { FAQList } from 'config/constants/faqList'
+import { useAppNavigate } from 'hooks'
 import { FlexColumn, FlexRow, GradientTextWrapper, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
 import { isMobile } from 'utils'
@@ -25,6 +26,7 @@ const MoreFAQWrapper = styled(FlexRow)`
 
 const FAQContainer: React.FC = () => {
   const { openedItemID, handleOpenItemID } = useFAQ()
+  const { handleNavigate } = useAppNavigate()
 
   return (
     <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '6% 18%'} gap={'0px'}>
@@ -43,7 +45,7 @@ const FAQContainer: React.FC = () => {
           <FaqItem key={faq.id} item={faq} openedItemID={openedItemID} handleOpenItemID={handleOpenItemID} />
         ))}
       </FlexColumn>
-      <MoreFAQWrapper justifyContent={'flex-start'} rowWidth={'fit-content'}>
+      <MoreFAQWrapper justifyContent={'flex-start'} rowWidth={'fit-content'} onClick={() => handleNavigate('/faq')}>
         <HoverTextWrapper>{'More FAQ'}&nbsp;</HoverTextWrapper>
         <FaArrowRight size={18} />
       </MoreFAQWrapper>

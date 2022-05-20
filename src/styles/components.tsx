@@ -87,7 +87,7 @@ export const FlexColumn = styled.div<{
 `
 export const PageWrapper = styled.div`
   width: 100%;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 160px);
   margin: 0 auto;
   padding: 0;
 `

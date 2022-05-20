@@ -8,14 +8,14 @@ import { useActiveWeb3React } from 'hooks'
 import { useMintWallet } from 'state/mint/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, MainButton, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { ExplorerDataType, getExplorerLink, isSupportedNetwork, shortenAddress } from 'utils'
+import { ExplorerDataType, getExplorerLink, isMobile, isSupportedNetwork, shortenAddress } from 'utils'
 import { useIsAllowedToMint, useMint } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
 const GoBackButton = styled(HoverTextWrapper)`
   position: absolute;
-  top: -4px;
-  left: -16px;
+  top: ${isMobile ? '8px' : '-4px'};
+  left: ${isMobile ? '0px' : '-16px'};
 `
 
 const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
@@ -25,7 +25,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
   const { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint } = useMint()
 
   return (
-    <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} padding={'2% 6%'}>
+    <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} padding={'6% 6%'}>
       {isLoading === false && isMintSuccess && txHash !== '' ? (
         <FlexColumn>
           <TextWrapper fontWeight={'bold'} lineHeight={48}>
@@ -52,7 +52,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
       ) : (
         <>
           <GoBackButton onClick={() => handlePanelStatus(option === 'connected' ? panelStatus - 2 : panelStatus - 1)}>
-            <FaArrowLeft size={24} />
+            <FaArrowLeft size={isMobile ? 20 : 24} />
           </GoBackButton>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
             <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
@@ -92,6 +92,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
           )} (${option})`}</TextWrapper>
           <MainButton
             width={'100%'}
+            height={isMobile ? '40px' : '50px'}
             disabled={
               mintPhase === 0 ||
               mintCount === 0 ||

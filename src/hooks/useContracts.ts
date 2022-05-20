@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { Contract } from 'ethers'
 
-import { MINTER_CONTRACT_ADDRESSES, CONTRACT_ABIS, PASS_CONTRACT_ADDRESSES } from 'config/constants'
+import { MINTER_CONTRACT_ADDRESSES, CONTRACT_ABIS, PASS_CONTRACT_ADDRESSES, DEFAULT_CHAIN_ID } from 'config/constants'
 import { getContract, getContractWithSimpleProvider, isSupportedNetwork } from 'utils'
 
 import { useActiveWeb3React } from './useActiveWeb3React'
@@ -24,8 +24,7 @@ export function useContract<T extends Contract = Contract>(
     if (!address) return null
     try {
       if (withSimpleProvider) {
-        if (!chainId) return null
-        return getContractWithSimpleProvider(address, ABI, chainId)
+        return getContractWithSimpleProvider(address, ABI, chainId ?? DEFAULT_CHAIN_ID)
       }
       return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
     } catch (error: any) {

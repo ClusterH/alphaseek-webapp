@@ -22,10 +22,10 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
   handleOpenItemID,
 }) => {
   return (
-    <FlexColumn onClick={() => handleOpenItemID(item)}>
+    <FlexColumn onClick={() => handleOpenItemID(item)} alignItems={'flex-start'}>
       <ItemWrapper style={{ flexGrow: 1 }}>
         <FlexRow rowWidth={'calc(100% - 24px)'}>
-          <TextWrapper fontSize={isMobile ? 'xxl' : 'base'} fontWeight={'bold'} lineHeight={isMobile ? 42 : 22} textAlign={'start'}>
+          <TextWrapper fontSize={isMobile ? 'xl' : 'base'} fontWeight={'bold'} lineHeight={isMobile ? 42 : 22} textAlign={'start'}>
             {item.title}
           </TextWrapper>
         </FlexRow>

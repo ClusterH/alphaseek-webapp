@@ -4,6 +4,8 @@ import { BsDiscord, BsTwitter } from 'react-icons/bs'
 import styled from 'styled-components'
 
 import LOGO from 'assets/images/main_logo_white.png'
+import { ALPHA_SEEK_TWITTER } from 'config/constants'
+import { useAppNavigate, useHandleExternalLink } from 'hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
 import { isMobile } from 'utils'
@@ -13,19 +15,22 @@ const FooterWrapper = styled(FlexRow)`
   padding: 34px 0;
 `
 const Footer: React.FC = () => {
+  const { handleNavigate } = useAppNavigate()
+  const { handleOpenExternalLink } = useHandleExternalLink()
+
   return (
     <FlexColumn padding={isMobile ? '6%' : '6% 18%'}>
       <FooterWrapper alignItems={'flex-start'}>
-        <ImageContainer src={LOGO} height={isMobile ? '32px' : '53px'} width={'auto'} />
+        <ImageContainer src={LOGO} height={isMobile ? '32px' : '53px'} width={'auto'} onClick={() => handleNavigate('/')} />
         <FlexColumn alignItems={'flex-end'} colWidth={'fit-content'}>
           <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={16} letterSpacing={'-0.05em'}>
             {'Come Join Us'}
           </TextWrapper>
-          <FlexRow rowWidth={'fit-content'}>
+          <FlexRow rowWidth={'fit-content'} gap={'24px'}>
             <HoverTextWrapper>
               <BsDiscord size={20} />
             </HoverTextWrapper>
-            <HoverTextWrapper>
+            <HoverTextWrapper onClick={() => handleOpenExternalLink(ALPHA_SEEK_TWITTER)}>
               <BsTwitter size={20} />
             </HoverTextWrapper>
           </FlexRow>

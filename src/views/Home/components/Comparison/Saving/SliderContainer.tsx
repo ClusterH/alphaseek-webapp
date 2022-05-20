@@ -27,6 +27,7 @@ const SliderContainer: React.FC<{
         <TextWrapper fontWeight={'bold'} fontSize={'xl'} letterSpacing={'-0.02em'}>{`${Number(val).toLocaleString('en-US', {
           style: 'currency',
           currency: 'USD',
+          maximumFractionDigits: 0,
         })}`}</TextWrapper>
       </FlexRow>
 
@@ -34,10 +35,10 @@ const SliderContainer: React.FC<{
 
       <FlexRow margin={'16px 0 0'}>
         <TextWrapper color={'text6'} fontWeight={'bold'} fontSize={isMobile ? 'base' : 'xs'} lineHeight={14} letterSpacing={'-0.02em'}>
-          {TRADE_AMOUNT_MIN.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+          {TRADE_AMOUNT_MIN.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}
         </TextWrapper>
         <TextWrapper color={'text6'} fontWeight={'bold'} fontSize={isMobile ? 'base' : 'xs'} lineHeight={14} letterSpacing={'-0.02em'}>
-          {TRADE_AMOUNT_MAX.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+          {TRADE_AMOUNT_MAX.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}
         </TextWrapper>
       </FlexRow>
       <FlexRow justifyContent={isMobile ? 'center' : 'flex-start'} gap={'24px'} margin={'22px 0'}>

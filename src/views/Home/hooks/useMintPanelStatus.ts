@@ -14,9 +14,9 @@ export const useMintPhaseStatus = () => {
 
   const handleCheckMintPhaseStatus = useCallback(async () => {
     const minterContract = getContractWithSimpleProvider(
-      getMinterAddress(chainId && account ? chainId : parseInt(DEFAULT_CHAIN_ID!)),
+      getMinterAddress(chainId && account ? chainId : DEFAULT_CHAIN_ID),
       CONTRACT_ABIS.MINTER,
-      chainId && account ? chainId : parseInt(DEFAULT_CHAIN_ID!)
+      chainId && account ? chainId : DEFAULT_CHAIN_ID
     )
 
     if (!minterContract) return

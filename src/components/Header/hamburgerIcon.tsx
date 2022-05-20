@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import styled from 'styled-components'
 
+import { ALPHA_SEEK_URL } from 'config/constants'
 import { useAppNavigate, useHandleExternalLink } from 'hooks'
 import { CloseButton, FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
 import { themeBreakPoint, themeColor } from 'styles/theme'
@@ -35,7 +36,7 @@ const CloseIconWrapper = styled(CloseButton)`
 const HamburgerMenuItem: React.FC<{ label: string; navLink: string; disabled?: boolean }> = ({ label, navLink, disabled }) => {
   const { handleNavigate } = useAppNavigate()
   return (
-    <FlexRow margin={'24px 0 0 0'} justifyContent={'center'}>
+    <FlexRow margin={'24px 0 0'} justifyContent={'center'}>
       <TextWrapper fontSize={'extra'} fontWeight={'bold'} onClick={() => handleNavigate(navLink)}>
         {label}
       </TextWrapper>
@@ -44,9 +45,14 @@ const HamburgerMenuItem: React.FC<{ label: string; navLink: string; disabled?: b
 }
 
 const HamburgerMenu: React.FC<{ setIsOpen: (isOpen: boolean) => void }> = ({ setIsOpen }) => {
+  const { handleOpenExternalLink } = useHandleExternalLink()
   return (
     <HamburgerMenuWrapper justifyContent={'flex-start'} onClick={() => setIsOpen(false)}>
-      <HamburgerMenuItem label={'Home'} navLink={'/'} />
+      <HamburgerMenuItem label={'Founder Pass'} navLink={'/'} />
+      <TextWrapper fontSize={'extra'} fontWeight={'bold'} margin={'24px 0 0'} onClick={() => handleOpenExternalLink(ALPHA_SEEK_URL)}>
+        {'Alpha Seek'}
+      </TextWrapper>
+      <HamburgerMenuItem label={'Faq'} navLink={'/faq'} />
       <CloseIconWrapper size={30} onClick={() => setIsOpen(false)} />
     </HamburgerMenuWrapper>
   )

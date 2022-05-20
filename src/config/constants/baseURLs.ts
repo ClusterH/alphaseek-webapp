@@ -6,3 +6,6 @@ export const ALLOW_LIST_API = {
 }
 
 export const SIGNATURE_RELAY_API = 'https://us-central1-alphaseek-signature-relay.cloudfunctions.net/app/signature'
+
+export const ALPHA_SEEK_URL = 'https://alphaseek.io'
+export const ALPHA_SEEK_TWITTER = 'https://twitter.com/Alphaseek_io'

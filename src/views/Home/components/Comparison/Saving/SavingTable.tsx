@@ -64,6 +64,7 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
                         ? (feeAmounts[comparison as TComparison][type as TFeeTypes]! * per).toLocaleString('en-US', {
                             style: 'currency',
                             currency: 'USD',
+                            maximumFractionDigits: 0,
                           })
                         : '_ _'}
                     </TextWrapper>

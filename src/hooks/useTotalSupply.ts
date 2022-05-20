@@ -1,12 +1,12 @@
 import { useCallback, useEffect } from 'react'
 
-import { CONTRACT_ABIS } from 'config/constants'
+import { CONTRACT_ABIS, DEFAULT_CHAIN_ID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { AppState } from 'state'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { setTotalSupply } from 'state/web3/reducer'
 import { getFounderPassAddress } from 'utils/addressHelper'
-import { getTotalSupply } from 'utils/web3CallHelpers'
+import { getTokenSupply, getTotalSupply } from 'utils/web3CallHelpers'
 import { getContractWithSimpleProvider } from 'utils/web3Helpers'
 
 export const useTotalSupply = () => {
@@ -20,11 +20,16 @@ export const useGetTotalSupply = () => {
 
   const handleFetchTotalSupply = useCallback(async () => {
     try {
-      const founderPassContract = getContractWithSimpleProvider(getFounderPassAddress(chainId ?? 1), CONTRACT_ABIS.PASS, chainId ?? 1)
+      const founderPassContract = getContractWithSimpleProvider(
+        getFounderPassAddress(chainId ?? DEFAULT_CHAIN_ID),
+        CONTRACT_ABIS.PASS,
+        chainId ?? DEFAULT_CHAIN_ID
+      )
       if (!founderPassContract) return
       const totalSupply = await getTotalSupply(founderPassContract)
+      const tokenSupply = await getTokenSupply(founderPassContract)
 
-      dispatch(setTotalSupply(totalSupply))
+      dispatch(setTotalSupply({ totalSupply, tokenSupply }))
     } catch (e) {
       console.log(e)
     }

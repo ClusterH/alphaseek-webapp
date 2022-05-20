@@ -60,3 +60,10 @@ export const calcFuturesFee = (tradeAmount: number) => {
 
   return { none: undefined, alphaseek, binance, ftx, bybit }
 }
+
+export const convertCurrency2Number = (str: string) => {
+  const v = str.replace(/,/g, '')
+  const num = parseInt(v.slice(1), 10)
+
+  return !isNaN(num) ? num : 0
+}

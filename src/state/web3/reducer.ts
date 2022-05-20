@@ -3,13 +3,13 @@ import { createSlice } from '@reduxjs/toolkit'
 interface IState {
   gasPrice: string
   walletBalance: { ethBalance: string }
-  totalSupply: number
+  totalSupply: { totalSupply: number; tokenSupply: number }
 }
 
 export const initialState: IState = {
   gasPrice: '',
   walletBalance: { ethBalance: '0.00' },
-  totalSupply: 0,
+  totalSupply: { totalSupply: 0, tokenSupply: 0 },
 }
 
 const web3Slice = createSlice({
@@ -23,7 +23,7 @@ const web3Slice = createSlice({
       if (action.payload) state.walletBalance = { ...action.payload }
     },
     setTotalSupply(state, action) {
-      if (action.payload) state.totalSupply = action.payload
+      if (action.payload) state.totalSupply = { ...action.payload }
     },
   },
 })

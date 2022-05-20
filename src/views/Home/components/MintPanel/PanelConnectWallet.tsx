@@ -32,10 +32,12 @@ const RoadMapIndicator: React.FC = () => {
   )
 }
 
-const TotalSupplyCostWrapper = styled(PhaseTextWrapper)`
+const TotalSupplyCostWrapper = styled(FlexColumn)`
   position: absolute;
   right: 0;
   top: 12px;
+  align-items: flex-end;
+  width: fit-content;
 `
 
 const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
@@ -46,14 +48,16 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   const { isOpen, handleOpenModal } = useModal()
   const mintPhase = useMintPhase()
   const mintPrice = useMintPrice()
-  const totalSupply = useTotalSupply()
+  const { totalSupply, tokenSupply } = useTotalSupply()
 
   return (
-    <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
+    <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} gap={'0px'}>
       <FlexColumn gap={'0px'}>
-        <TotalSupplyCostWrapper isActived={false}>{`${totalSupply} Passes | ${ethers.utils.formatEther(
-          mintPrice
-        )} ETH Cost`}</TotalSupplyCostWrapper>
+        <TotalSupplyCostWrapper>
+          <PhaseTextWrapper isActived={false}>{`${totalSupply} / ${tokenSupply} Minted`}</PhaseTextWrapper>
+          <PhaseTextWrapper isActived={false}>{`${ethers.utils.formatEther(mintPrice)} ETH Cost`}</PhaseTextWrapper>
+        </TotalSupplyCostWrapper>
+
         {mintPhase === 1 && (
           <FlexRow>
             <PhaseTextWrapper isActived>{'Private mint'}</PhaseTextWrapper>
@@ -80,6 +84,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
           <MainButton
             borderRadius={themeBorderRadius.small}
             width={'100%'}
+            height={isMobile ? '40px' : '50px'}
             disabled={mintPhase === 0 || !account}
             onClick={() => handlePanelStatus(1)}
           >
@@ -91,7 +96,12 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
           <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
             {'Please connect your wallet to proceed'}
           </TextWrapper>
-          <MainButton borderRadius={themeBorderRadius.small} width={'100%'} onClick={() => handleOpenModal()}>
+          <MainButton
+            borderRadius={themeBorderRadius.small}
+            width={'100%'}
+            height={isMobile ? '40px' : '50px'}
+            onClick={() => handleOpenModal()}
+          >
             {'Connect Wallet'}
           </MainButton>
         </FlexColumn>

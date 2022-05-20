@@ -25,13 +25,9 @@ const SeekImgWrapper = styled(ImageContainer)`
 
 const WelcomeContainer: React.FC = () => {
   return (
-    <FlexColumn colHeight={isMobile ? 'auto' : 'calc(100vh)'} padding={isMobile ? '2%' : '2% 18% 0'}>
+    <FlexColumn colHeight={isMobile ? 'auto' : 'calc(100vh)'} padding={isMobile ? '8% 6%' : '2% 18% 0'}>
       {isMobile === false && <ImgWrapper src={BG_IMG} height={'auto'} width={'auto'} />}
-      <FlexRow margin={'2% 0 10%'}>
-        <Logo />
-        <Menu />
-      </FlexRow>
-      <FlexRow isWrap={isMobile}>
+      <FlexRow isWrap={isMobile} margin={'16% 0 0'}>
         <MintContainer />
         {isMobile === false && <SeekImgWrapper src={SEEK_IMG} width={'40%'} />}
       </FlexRow>

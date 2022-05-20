@@ -19,8 +19,11 @@ export const getNFTBalance = async (contract: Contract, account: string) => {
 }
 
 export const getTotalSupply = async (contract: Contract) => {
-  const totalSupply = await contract.totalSupply()
-  return totalSupply
+  return (await contract.totalSupply()).toNumber()
+}
+
+export const getTokenSupply = async (contract: Contract) => {
+  return (await contract.TOKEN_SUPPLY()).toNumber()
 }
 
 export const checkMintPhaseStatus = async (minterContract: Contract) => {

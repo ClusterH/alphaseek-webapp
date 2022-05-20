@@ -5,13 +5,14 @@ import styled from 'styled-components'
 
 import { FlexColumn, FlexRow, HoverTextWrapper, InputWrapper, MainButton, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
+import { isMobile } from 'utils'
 import { useColdWalletInput } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
 const GoBackButton = styled(HoverTextWrapper)`
   position: absolute;
-  top: -4px;
-  left: -16px;
+  top: ${isMobile ? '8px' : '-4px'};
+  left: ${isMobile ? '0px' : '-16px'};
 `
 
 const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
@@ -19,9 +20,9 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
       <GoBackButton onClick={() => handlePanelStatus(panelStatus - 1)}>
-        <FaArrowLeft size={24} />
+        <FaArrowLeft size={isMobile ? 20 : 24} />
       </GoBackButton>
-      <TextWrapper fontSize={'sm'} fontWeight={'bold'} lineHeight={20} letterSpacing={'-0.02em'} textAlign={'center'}>
+      <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={20} letterSpacing={'-0.02em'} textAlign={'center'}>
         {'Paste your external mint address'}
       </TextWrapper>
 
@@ -31,11 +32,12 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           value={coldWallet}
           onChange={handleChange}
           border={isValid ? themeColor.border1 : `1px solid ${themeColor.error}`}
+          height={isMobile ? '40px' : '50px'}
         />
         {isValid === false && (
           <TextWrapper
             color={'error'}
-            fontSize={'xs'}
+            fontSize={isMobile ? 'base' : 'xs'}
             fontWeight={'bold'}
             lineHeight={20}
             letterSpacing={'-0.02em'}
@@ -48,11 +50,23 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
       </FlexColumn>
 
       <FlexRow rowWidth={'80%'}>
-        <TextWrapper color={'text2'} fontSize={'sm'} fontWeight={'semiBold'} lineHeight={24} letterSpacing={'-0.02em'} textAlign={'center'}>
+        <TextWrapper
+          color={'text2'}
+          fontSize={isMobile ? 'xl' : 'sm'}
+          fontWeight={'semiBold'}
+          lineHeight={isMobile ? 42 : 24}
+          letterSpacing={'-0.02em'}
+          textAlign={'center'}
+        >
           {'Please double-check your pasted address before confirming.'}
         </TextWrapper>
       </FlexRow>
-      <MainButton width={'100%'} disabled={isValid === false || coldWallet === ''} onClick={() => handlePanelStatus(3)}>
+      <MainButton
+        width={'100%'}
+        height={isMobile ? '40px' : '50px'}
+        disabled={isValid === false || coldWallet === ''}
+        onClick={() => handlePanelStatus(3)}
+      >
         {'Confirm Address'}
       </MainButton>
     </FlexColumn>
