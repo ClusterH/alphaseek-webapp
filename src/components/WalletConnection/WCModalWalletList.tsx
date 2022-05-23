@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 import { SUPPORTED_WALLETS } from 'config/constants'
 import { connectorsByName } from 'config/constants/web3Connectors'
-import { useActiveWeb3React } from 'hooks'
-import { FlexColumn, FlexRow, TextWrapper } from 'styles/components'
-import { isMobile } from 'utils'
+import { useActiveWeb3React, useWalletConnect } from 'hooks'
+import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
+import { isMobile, isSupportedNetwork } from 'utils'
 
 import { useWalletConnectionModal } from '../Header/hook'
 
 import { OptionItem } from '.'
 
 const WalletConnectionOptionList: React.FC = () => {
-  const { connector } = useActiveWeb3React()
+  const { account, connector } = useActiveWeb3React()
   const { connect, handleChangeWalletView } = useWalletConnectionModal()
+  const { disconnect } = useWalletConnect()
+
+  const handleSwitch = useCallback(async () => {
+    const provider = window.ethereum
+
+    if (provider) {
+      console.log(provider)
+
+      try {
+        await provider.request!({
+          method: 'eth_requestAccounts',
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }, [])
 
   function getOptions() {
     const isMetaMask = window.ethereum && window.ethereum.isMetaMask
@@ -85,6 +102,11 @@ const WalletConnectionOptionList: React.FC = () => {
         </TextWrapper>
       </FlexRow>
       <FlexColumn gap={'24px'}>{getOptions()}</FlexColumn>
+      {/* {account && (
+        <FlexRow justifyContent={'flex-end'}>
+          <HoverTextWrapper onClick={disconnect}>{'Disconnect'}</HoverTextWrapper>
+        </FlexRow>
+      )} */}
     </FlexColumn>
   )
 }

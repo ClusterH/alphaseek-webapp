@@ -10,28 +10,22 @@ import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper, TransparentButton }
 import { isMobile, shortenAddress } from 'utils'
 import { IMintPanelProps } from 'views/Home/types'
 
+import ConenctedWalletAddrWrapper from './ConenctedAddress'
+
 const GoBackButton = styled(HoverTextWrapper)`
   position: absolute;
   top: ${isMobile ? '8px' : '-4px'};
   left: ${isMobile ? '0px' : '-16px'};
 `
 
-const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
-  const { account } = useActiveWeb3React()
+const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
   const dispatch = useAppDispatch()
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
       <GoBackButton onClick={() => handlePanelStatus(0)}>
         <FaArrowLeft size={isMobile ? 20 : 24} />
       </GoBackButton>
-      {account && (
-        <TextWrapper
-          color={'text2'}
-          fontWeight={'semiBold'}
-          fontSize={isMobile ? 'xl' : 'base'}
-          letterSpacing={'-0.02em'}
-        >{`Connected to ${shortenAddress(account)}`}</TextWrapper>
-      )}
+      <ConenctedWalletAddrWrapper />
       <FlexRow rowWidth={'80%'}>
         <TextWrapper fontSize={isMobile ? 'xxl' : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} textAlign={'center'}>
           {'Do you want to mint to the currently connected wallet or a cold wallet?'}

@@ -14,7 +14,7 @@ import { Providers } from './Providers'
 import reportWebVitals from './reportWebVitals'
 
 const GlobalHooks = () => {
-  useEagerConnect()
+  // useEagerConnect()
   useInactiveListener()
   useMintPhaseStatus()
   useGetWalletBalance() // We need to check wallet eth balance real-time?

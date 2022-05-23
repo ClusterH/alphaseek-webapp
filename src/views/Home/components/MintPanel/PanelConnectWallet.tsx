@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { ethers } from 'ethers'
 import { FaCircle } from 'react-icons/fa'
@@ -13,6 +13,8 @@ import { themeBorderRadius, themeColor, themeFontFamily, themeFontWeight, themeT
 import { isMobile, shortenAddress } from 'utils'
 import { useGetMintPrice } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
+
+import ConenctedWalletAddrWrapper from './ConenctedAddress'
 
 const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean }>`
   font-weight: ${themeFontWeight.bold};
@@ -50,6 +52,10 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   const mintPrice = useMintPrice()
   const { totalSupply, tokenSupply } = useTotalSupply()
 
+  useEffect(() => {
+    if (account && isOpen) handleOpenModal()
+  }, [account, handleOpenModal, isOpen])
+
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} gap={'0px'}>
       <FlexColumn gap={'0px'}>
@@ -78,9 +84,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
       </FlexColumn>
       {account ? (
         <FlexColumn gap={'32px'}>
-          <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
-            {`Connected to ${shortenAddress(account)}`}
-          </TextWrapper>
+          <ConenctedWalletAddrWrapper />
           <MainButton
             borderRadius={themeBorderRadius.small}
             width={'100%'}

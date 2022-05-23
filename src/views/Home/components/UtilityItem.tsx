@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import { FlexColumn, FlexRow, GradientTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
+import { FlexColumn, GradientTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeGradient } from 'styles/theme'
 import { isMobile } from 'utils'
 
@@ -10,6 +10,10 @@ import { IUtility } from '../types'
 
 const ItemWrapper = styled(FlexColumn)`
   background: ${themeGradient.bgGradient2};
+  transition: transform 500ms ease-in-out 25ms;
+  &:hover {
+    transform: translateX(0px) translateY(-8px);
+  }
 `
 const IconWrapper = styled(FlexColumn)`
   background: ${themeGradient.bgGradient3};

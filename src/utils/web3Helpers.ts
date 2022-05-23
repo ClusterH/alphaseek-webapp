@@ -13,6 +13,7 @@ export const getLibrary = (provider: any): Web3Provider => {
 }
 
 export const isSupportedNetwork = (chainId: number | undefined) => {
+  console.log(chainId)
   if (chainId === undefined) return false
   if (Object.values(SupportedChainId).includes(chainId)) return true
   return false

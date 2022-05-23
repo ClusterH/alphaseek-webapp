@@ -29,7 +29,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
       {isLoading === false && isMintSuccess && txHash !== '' ? (
         <FlexColumn>
           <TextWrapper fontWeight={'bold'} lineHeight={48}>
-            {'SUCCESS'}
+            {''}
           </TextWrapper>
           <TextWrapper fontSize={'xxl'} fontWeight={'bold'} lineHeight={78} fontFamily={'title'}>
             {'Founders Pass Minted!'}

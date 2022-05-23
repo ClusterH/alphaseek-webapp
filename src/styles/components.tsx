@@ -238,7 +238,6 @@ export const ImageContainer = styled.img<{
   max-height: ${({ maxHeight }) => (maxHeight ? maxHeight : 'auto')};
   margin: ${({ margin }) => (margin ? margin : '0')};
   object-fit: ${({ objectFit }) => (objectFit ? objectFit : 'cover')};
-  cursor: pointer;
   position: ${({ position }) => (position ? position : 'unset')};
   top: ${({ top }) => (top ? top : 'unset')};
   left: ${({ left }) => (left ? left : 'unset')};
