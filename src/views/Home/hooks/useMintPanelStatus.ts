@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { CONTRACT_ABIS, DEFAULT_CHAIN_ID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
-import { setMintPhase } from 'state/mint/reducer'
+import { useMintPhase, usePanelStatus } from 'state/mint/hooks'
+import { setMintPhase, setPanelStatus } from 'state/mint/reducer'
 import { checkMintPhaseStatus, getContractWithSimpleProvider, getMinterAddress, isSupportedNetwork } from 'utils'
 
 import { MintPanelStatus } from '../types'
@@ -34,16 +35,16 @@ export const useMintPhaseStatus = () => {
 }
 
 export const useMintPanelStatus = () => {
-  const { account, chainId } = useActiveWeb3React()
-  const [panelStatus, setPanelStatus] = useState<MintPanelStatus>(0)
+  const panelStatus = usePanelStatus()
 
-  const handlePanelStatus = useCallback((status: MintPanelStatus) => {
-    setPanelStatus(status)
-  }, [])
+  const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    if (!account || isSupportedNetwork(chainId) === false) setPanelStatus(0)
-  }, [account, chainId])
+  const handlePanelStatus = useCallback(
+    (status: MintPanelStatus) => {
+      dispatch(setPanelStatus(status))
+    },
+    [dispatch]
+  )
 
   return { panelStatus, handlePanelStatus }
 }

@@ -23,7 +23,12 @@ const WalletConnectionOptionList: React.FC = () => {
 
       try {
         await provider.request!({
-          method: 'eth_requestAccounts',
+          method: 'wallet_requestPermissions',
+          params: [
+            {
+              eth_accounts: {},
+            },
+          ],
         })
       } catch (error) {
         console.log(error)
@@ -102,11 +107,16 @@ const WalletConnectionOptionList: React.FC = () => {
         </TextWrapper>
       </FlexRow>
       <FlexColumn gap={'24px'}>{getOptions()}</FlexColumn>
-      {/* {account && (
-        <FlexRow justifyContent={'flex-end'}>
-          <HoverTextWrapper onClick={disconnect}>{'Disconnect'}</HoverTextWrapper>
+      {account && (
+        <FlexRow justifyContent={'flex-end'} margin={'12px 0 0'} gap={'24px'}>
+          <HoverTextWrapper onClick={handleSwitch} fontSize={'sm'}>
+            {'Switch account'}
+          </HoverTextWrapper>
+          <HoverTextWrapper onClick={disconnect} fontSize={'sm'}>
+            {'Disconnect'}
+          </HoverTextWrapper>
         </FlexRow>
-      )} */}
+      )}
     </FlexColumn>
   )
 }

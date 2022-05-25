@@ -8,7 +8,7 @@ export enum SupportedChainId {
   RINKEBY_TESTNET = 4,
 }
 
-export const DEFAULT_CHAIN_ID = Number(process.env.REACT_APP_CHAIN_ID ?? 1)
+export const DEFAULT_CHAIN_ID = Number(process.env.REACT_APP_CHAIN_ID ?? '1')
 
 export const NETWORK_INDICATOR: { [chainId: number]: { name: 'Ethereum' | 'Rinkeby'; icon: string } } = {
   [SupportedChainId.MAIN]: { name: 'Ethereum', icon: ETHEREUM_ICON },
@@ -27,17 +27,17 @@ type AddressMap = { [chainId: number]: string }
 
 export const MINTER_CONTRACT_ADDRESSES: AddressMap = {
   [SupportedChainId.MAIN]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x0160b7AA8897782643765a40a25013A83CB344cE',
 }
 
 export const PASS_CONTRACT_ADDRESSES: AddressMap = {
   [SupportedChainId.MAIN]: '0xCECa344cCa67170D1b224b91fa57Ce9eA0C05f5C',
-  [SupportedChainId.RINKEBY_TESTNET]: '0xCECa344cCa67170D1b224b91fa57Ce9eA0C05f5C',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x768eBd460a7f1521d92a6083045518BC65Fe050c',
 }
 
 export const CLAIMS_CONTRACT_ADDRESSES: AddressMap = {
   [SupportedChainId.MAIN]: '0x23E25fD67092A04a261667F5EA9Cc00734B14585',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x23E25fD67092A04a261667F5EA9Cc00734B14585',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x5f2a82530c57aAc9CB2766528Eed9fe436cc90D2',
 }
 
 export const CONTRACT_ABIS = {

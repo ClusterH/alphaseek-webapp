@@ -24,6 +24,12 @@ const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean }>`
   color: ${(props) => (props.isActived ? themeColor.text1 : themeColor.text2)};
   letter-spacing: -0.02em;
 `
+const MintingSoonWrapper = styled(PhaseTextWrapper)`
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+`
 
 const RoadMapIndicator: React.FC = () => {
   return (
@@ -57,7 +63,9 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   }, [account, handleOpenModal, isOpen])
 
   return (
-    <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} gap={'0px'}>
+    <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
+      {mintPhase === 0 && <MintingSoonWrapper isActived>{'Minting Soon'}</MintingSoonWrapper>}
+
       <FlexColumn gap={'0px'}>
         <TotalSupplyCostWrapper>
           <PhaseTextWrapper isActived={false}>{`${totalSupply} / ${tokenSupply} Minted`}</PhaseTextWrapper>
@@ -111,7 +119,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
         </FlexColumn>
       )}
 
-      <Modal isOpen={isOpen} handleOpenModal={handleOpenModal} width={isMobile ? '90%' : '24%'}>
+      <Modal isOpen={isOpen} handleOpenModal={handleOpenModal} width={isMobile ? '90%' : '30%'}>
         <WalletConnectionModal />
       </Modal>
     </FlexColumn>

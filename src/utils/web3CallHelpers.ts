@@ -23,7 +23,7 @@ export const getTotalSupply = async (contract: Contract) => {
 }
 
 export const getTokenSupply = async (contract: Contract) => {
-  return (await contract.TOKEN_SUPPLY()).toNumber()
+  return (await contract.MINTABLE_TOKENS()).toNumber()
 }
 
 export const checkMintPhaseStatus = async (minterContract: Contract) => {

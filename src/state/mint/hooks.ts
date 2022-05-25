@@ -16,3 +16,7 @@ export const useMintWallet = () => {
 export const useMintPrice = () => {
   return useAppSelector((state: AppState) => state.mintReducer.mintPrice)
 }
+
+export const usePanelStatus = () => {
+  return useAppSelector((state: AppState) => state.mintReducer.panelStatus)
+}

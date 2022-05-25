@@ -4,7 +4,7 @@ import { Contract } from '@ethersproject/contracts'
 import { JsonRpcSigner, StaticJsonRpcProvider, Web3Provider } from '@ethersproject/providers'
 import { ethers } from 'ethers'
 
-import { NETWORK_URLS, POLLING_INTERVAL, SupportedChainId } from 'config/constants'
+import { DEFAULT_CHAIN_ID, NETWORK_URLS, POLLING_INTERVAL, SupportedChainId } from 'config/constants'
 
 export const getLibrary = (provider: any): Web3Provider => {
   const library = new Web3Provider(provider)
@@ -47,8 +47,7 @@ export const getProviderOrSigner = (library: Web3Provider, account?: string): We
 }
 
 export const getSimpleRPCProvider = (chainId: number | undefined) => {
-  if (chainId === undefined) return null
-  return new StaticJsonRpcProvider(NETWORK_URLS[chainId])
+  return new StaticJsonRpcProvider(NETWORK_URLS[chainId ?? DEFAULT_CHAIN_ID])
 }
 
 // account is optional

@@ -5,7 +5,7 @@ import { useActiveWeb3React } from 'hooks'
 import { AppState } from 'state'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { setTotalSupply } from 'state/web3/reducer'
-import { getFounderPassAddress } from 'utils/addressHelper'
+import { getFounderPassAddress, getMinterAddress } from 'utils/addressHelper'
 import { getTokenSupply, getTotalSupply } from 'utils/web3CallHelpers'
 import { getContractWithSimpleProvider } from 'utils/web3Helpers'
 
@@ -25,9 +25,14 @@ export const useGetTotalSupply = () => {
         CONTRACT_ABIS.PASS,
         chainId ?? DEFAULT_CHAIN_ID
       )
+      const minterContract = getContractWithSimpleProvider(
+        getMinterAddress(chainId ?? DEFAULT_CHAIN_ID),
+        CONTRACT_ABIS.MINTER,
+        chainId ?? DEFAULT_CHAIN_ID
+      )
       if (!founderPassContract) return
       const totalSupply = await getTotalSupply(founderPassContract)
-      const tokenSupply = await getTokenSupply(founderPassContract)
+      const tokenSupply = await getTokenSupply(minterContract)
 
       dispatch(setTotalSupply({ totalSupply, tokenSupply }))
     } catch (e) {
