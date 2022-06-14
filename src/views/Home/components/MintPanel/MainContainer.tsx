@@ -36,7 +36,6 @@ const MintContainer: React.FC = () => {
         name: 'MintPhaseSet',
         topics: [null],
         on: (data: any, phase: any, event: number) => {
-          console.log('receive', data, phase, event)
           dispatch(setMintPhase(phase))
         },
       },
@@ -44,7 +43,6 @@ const MintContainer: React.FC = () => {
   })
 
   const getPanelContent = useCallback(() => {
-    console.log(panelStatus)
     if (panelStatus === 0) return <ConnectWalletPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />
     if (panelStatus === 1) return <WalletSelectionPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />
     else if (panelStatus === 2) return <ColdWalletInputPanel panelStatus={panelStatus} handlePanelStatus={handlePanelStatus} />

@@ -19,8 +19,6 @@ const WalletConnectionOptionList: React.FC = () => {
     const provider = window.ethereum
 
     if (provider) {
-      console.log(provider)
-
       try {
         await provider.request!({
           method: 'wallet_requestPermissions',

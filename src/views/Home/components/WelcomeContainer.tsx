@@ -39,7 +39,6 @@ const WelcomeContainer: React.FC = () => {
   }, [chainId])
 
   useEffect(() => {
-    console.log(mintPhase)
     if (!account || isSupportedNetwork(chainId) === false || mintPhase === 0) dispatch(setPanelStatus(0))
   }, [account, chainId, dispatch, mintPhase])
 
