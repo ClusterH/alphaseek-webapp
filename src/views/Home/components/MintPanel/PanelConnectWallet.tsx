@@ -40,11 +40,11 @@ const RoadMapIndicator: React.FC = () => {
   )
 }
 
-const TotalSupplyCostWrapper = styled(FlexColumn)`
+const TotalSupplyCostWrapper = styled(FlexColumn)<{ isMintStarted: boolean }>`
   position: absolute;
   right: 0;
   top: 12px;
-  align-items: flex-end;
+  align-items: ${({ isMintStarted }) => (isMintStarted ? 'flex-start' : 'flex-end')};
   width: fit-content;
 `
 
@@ -67,7 +67,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
       {mintPhase === 0 && <MintingSoonWrapper isActived>{'Minting Soon'}</MintingSoonWrapper>}
 
       <FlexColumn gap={'0px'}>
-        <TotalSupplyCostWrapper>
+        <TotalSupplyCostWrapper isMintStarted={mintPhase !== 0}>
           <PhaseTextWrapper isActived={false}>{`${totalSupply} / ${tokenSupply} Minted`}</PhaseTextWrapper>
           <PhaseTextWrapper isActived={false}>{`${ethers.utils.formatEther(mintPrice)} ETH Cost`}</PhaseTextWrapper>
         </TotalSupplyCostWrapper>
