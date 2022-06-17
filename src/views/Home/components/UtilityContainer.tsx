@@ -23,10 +23,10 @@ const UtilityContainer: React.FC = () => {
         {'UTILITY'}
       </TextWrapper>
       <FlexColumn alignItems={'flex-start'} gap={isMobile ? '12px' : '0px'}>
-        <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={42} letterSpacing={'-0.02em'}>
+        <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.02em'}>
           {'Utility built solely'}
         </TextWrapper>
-        <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={42} letterSpacing={'-0.02em'}>
+        <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.02em'}>
           {'for traders.'}
         </TextWrapper>
       </FlexColumn>

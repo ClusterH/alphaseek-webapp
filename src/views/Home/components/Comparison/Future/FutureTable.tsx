@@ -42,7 +42,7 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
   )
 
   return (
-    <FlexColumn alignItems={'flex-start'}>
+    <FlexColumn alignItems={'flex-start'} margin={'8% 0 0'}>
       <TableWrapper>
         <TableHeaderWrapper gap={'0px'}>
           <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={'42px 0 0'}>
@@ -62,7 +62,7 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
                       margin={'32px 0'}
                       color={comparison === 'none' ? 'text3' : comparison === 'alphaseek' ? 'text1' : 'text4'}
                       fontSize={comparison === 'none' ? 'sm' : 'base'}
-                      fontWeight={comparison === 'none' ? 'medium' : 'bold'}
+                      fontWeight={comparison === 'none' ? 'medium' : 'semiBold'}
                       lineHeight={20}
                       letterSpacing={'-0.02em'}
                     >

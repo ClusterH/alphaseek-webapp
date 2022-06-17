@@ -51,7 +51,7 @@ const TeamContainer: React.FC = () => {
       </GradientTextWrapper>
       <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} isWrap={isMobile}>
         {TEAM_LIST['advisory'].map((item) => (
-          <TeamItem key={item.id} item={item} isCoreTeam />
+          <TeamItem key={item.id} item={item} isAdvisory />
         ))}
       </FlexRow>
       <GradientTextWrapper

@@ -21,7 +21,7 @@ import WalletSelectionPanel from './PanelWalletSelection'
 const MainWrapper = styled(FlexColumn)`
   background: ${themeGradient.bgGradient1};
   border-radius: ${isMobile ? themeBorderRadius.small : themeBorderRadius.regular};
-  padding: ${isMobile ? '2% 4%' : '6% 8%'};
+  padding: ${isMobile ? '4%' : '6% 8%'};
 `
 
 const MintContainer: React.FC = () => {

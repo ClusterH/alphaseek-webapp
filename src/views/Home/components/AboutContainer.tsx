@@ -13,17 +13,17 @@ const SeekImgWrapper = styled(ImageContainer)`
 
 const AboutContainer: React.FC = () => {
   return (
-    <FlexRow padding={isMobile ? '2% 6%' : '12% 18%'} isWrap={isMobile}>
+    <FlexRow padding={isMobile ? '2% 6%' : '6% 18%'} isWrap={isMobile}>
       <SeekImgWrapper src={SEEK_IMG} />
       <FlexColumn alignItems={'flex-start'} gap={'24px'}>
         <TextWrapper color={'text2'} fontWeight={'bold'} lineHeight={25} letterSpacing={'0.1em'}>
           {'ABOUT'}
         </TextWrapper>
         <FlexColumn alignItems={'flex-start'} gap={isMobile ? '12px' : '0px'}>
-          <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={42} letterSpacing={'-0.02em'}>
+          <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.02em'}>
             {'Alphaseek'}
           </TextWrapper>
-          <GradientTextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={42} letterSpacing={'-0.02em'}>
+          <GradientTextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.02em'}>
             {'Founders Pass.'}
           </GradientTextWrapper>
         </FlexColumn>

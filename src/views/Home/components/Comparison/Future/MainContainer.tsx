@@ -47,14 +47,14 @@ const FutureComparison: React.FC = () => {
   }, [])
 
   return (
-    <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '2% 18% 6%'} gap={isMobile ? '12px' : '0px'}>
-      <TextWrapper color={'text2'} fontWeight={'bold'} lineHeight={42} letterSpacing={'0.1em'}>
+    <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '2% 18% 8%'} gap={isMobile ? '12px' : '0px'}>
+      <TextWrapper color={'text2'} fontWeight={'bold'} lineHeight={62} letterSpacing={'0.1em'}>
         {'COMPARISON'}
       </TextWrapper>
-      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
+      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 62} letterSpacing={'-0.02em'}>
         {'See how our fees stack'}
       </TextWrapper>
-      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 42} letterSpacing={'-0.02em'}>
+      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 62} letterSpacing={'-0.02em'}>
         {'up against the competition.'}
       </TextWrapper>
       <FutureTable tradeAmount={convertCurrency2Number(val)} />

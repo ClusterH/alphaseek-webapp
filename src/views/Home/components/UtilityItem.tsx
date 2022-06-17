@@ -35,7 +35,12 @@ const UtilityItem: React.FC<{ item: IUtility }> = ({ item }) => {
       <IconWrapper padding={isMobile ? '12px' : '16px'} borderRadius={themeBorderRadius.small} colWidth={'fit-content'}>
         <ImageContainer src={item.iconUrl} width={isMobile ? '16px' : '24px'} />
       </IconWrapper>
-      <TitleWrapper fontSize={isMobile ? 'xxl' : 'sm'} lineHeight={isMobile ? 42 : 24} margin={isMobile ? '34px 0 12px' : '48px 0 12px'}>
+      <TitleWrapper
+        fontSize={isMobile ? 'xxl' : 'sm'}
+        fontWeight={'bold'}
+        lineHeight={isMobile ? 42 : 24}
+        margin={isMobile ? '34px 0 12px' : '48px 0 12px'}
+      >
         {item.title}
       </TitleWrapper>
       <TextWrapper fontSize={isMobile ? 'xl' : 'xs'} fontWeight={'medium'} lineHeight={isMobile ? 42 : 20} margin={'0 0 6px'}>

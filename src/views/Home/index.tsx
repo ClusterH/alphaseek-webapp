@@ -17,7 +17,7 @@ import {
 const Home: React.FC = () => {
   return (
     <PageWrapper>
-      {/* <WelcomeContainer /> */}
+      <WelcomeContainer />
       <AboutContainer />
       <UtilityContainer />
       <WhatIsAlphaseekContainer />
