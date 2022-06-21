@@ -7,6 +7,7 @@ import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
 import { setMintWallet } from 'state/mint/reducer'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper, TransparentButton } from 'styles/components'
+import { themeBorderRadius } from 'styles/theme'
 import { isMobile, shortenAddress } from 'utils'
 import { IMintPanelProps } from 'views/Home/types'
 
@@ -14,8 +15,8 @@ import ConenctedWalletAddrWrapper from './ConenctedAddress'
 
 const GoBackButton = styled(HoverTextWrapper)`
   position: absolute;
-  top: ${isMobile ? '8px' : '-4px'};
-  left: ${isMobile ? '0px' : '-16px'};
+  top: ${isMobile ? '-10px' : '-4px'};
+  left: ${isMobile ? '-14px' : '-16px'};
 `
 
 const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
@@ -26,15 +27,16 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
         <FaArrowLeft size={isMobile ? 20 : 24} />
       </GoBackButton>
       <ConenctedWalletAddrWrapper />
-      <FlexRow rowWidth={'80%'}>
-        <TextWrapper fontSize={isMobile ? 'xxl' : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} textAlign={'center'}>
+      <FlexRow rowWidth={isMobile ? '100%' : '80%'}>
+        <TextWrapper fontSize={isMobile ? 'xl' : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} textAlign={'center'}>
           {'Do you want to mint to the currently connected wallet or a cold wallet?'}
         </TextWrapper>
       </FlexRow>
-      <FlexRow justifyContent={'center'} gap={'24px'} isWrap={isMobile}>
+      <FlexRow justifyContent={'center'} gap={isMobile ? '12px' : '24px'} isWrap={isMobile}>
         <TransparentButton
           width={isMobile ? '100%' : '42%'}
           height={isMobile ? '40px' : '50px'}
+          borderRadius={isMobile ? '8px' : themeBorderRadius.small}
           onClick={() => {
             dispatch(setMintWallet({ option: 'connected', wallet: '' }))
             handlePanelStatus(3)
@@ -47,6 +49,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
         <TransparentButton
           width={isMobile ? '100%' : '42%'}
           height={isMobile ? '40px' : '50px'}
+          borderRadius={isMobile ? '8px' : themeBorderRadius.small}
           onClick={() => {
             dispatch(setMintWallet({ option: 'cold', wallet: '' }))
             handlePanelStatus(2)

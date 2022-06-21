@@ -151,14 +151,14 @@ export const MainButton = styled.button<{
   position: relative;
   transition: 0.3s;
   color: ${({ color, theme }) => (color ? color : theme.text1)};
-  font-size: ${themeTypography.base};
-  font-weight: ${themeFontWeight.bold};
-  font-family: ${themeFontFamily.title};
-  line-height: 30px;
-  padding: ${({ padding }) => (padding ? padding : '10px 24px')};
+  font-size: ${isMobile ? themeTypography.base : themeTypography.sm};
+  font-weight: ${themeFontWeight.semiBold};
+  font-family: 'Poppins';
+  line-height: 24px;
+  padding: ${({ padding }) => padding ?? '0 24px'};
   margin: ${({ margin }) => (margin ? margin : '0')};
   width: ${({ width }) => (width ? width : 'fit-content')};
-  height: ${({ height }) => (height ? height : '50px')};
+  height: ${({ height }) => (height ? height : '54px')};
   background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : themeColor.button1)};
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : themeBorderRadius.small)};
 

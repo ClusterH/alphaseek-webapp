@@ -15,10 +15,16 @@ const ConenctedWalletAddrWrapper: React.FC = () => {
     <>
       {account ? (
         <FlexRow rowWidth={'fit-content'} onClick={handleOpenModal}>
-          <HoverTextWrapper color={'text2'} fontWeight={'semiBold'} fontSize={isMobile ? 'xl' : 'base'} letterSpacing={'-0.02em'}>
+          <HoverTextWrapper
+            color={'text2'}
+            fontWeight={'medium'}
+            fontSize={isMobile ? 'base' : 'sm'}
+            lineHeight={19}
+            letterSpacing={'-0.02em'}
+          >
             {`Connected to ${shortenAddress(account)}`}&nbsp;
           </HoverTextWrapper>
-          <IoIosCloseCircleOutline size={24} />
+          <IoIosCloseCircleOutline size={18} />
         </FlexRow>
       ) : (
         <></>

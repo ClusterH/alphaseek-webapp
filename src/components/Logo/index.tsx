@@ -3,21 +3,27 @@ import React from 'react'
 import styled from 'styled-components'
 
 import LOGO from 'assets/images/main_logo.png'
-import { useAppNavigate } from 'hooks'
+import { useAppNavigate, useScroll } from 'hooks'
 import { ImageContainer } from 'styles/components'
-import { isMobile } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 
-const LogoWrapper = styled(ImageContainer)`
+const LogoWrapper = styled(ImageContainer)<{ isScroll: boolean }>`
   z-index: 1;
   cursor: pointer;
+  height: ${({ isScroll }) => (isMobile ? '54px' : isScroll ? '72px' : isLargeScreen ? '109px' : '7.57vw')};
+
+  -webkit-transition: height 500ms linear;
+  -ms-transition: height 500ms linear;
+  transition: height 500ms linear;
 `
 const Logo: React.FC = () => {
+  const { isScroll } = useScroll()
   const { handleNavigate } = useAppNavigate()
   return (
     <LogoWrapper
       src={LOGO}
       borderRadius={'0'}
-      height={isMobile ? '62px' : '80px'}
+      isScroll={isScroll}
       width={'auto'}
       alt="AlphaSeek Logo"
       onClick={() => {

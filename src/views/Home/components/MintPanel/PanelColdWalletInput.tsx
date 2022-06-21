@@ -4,15 +4,15 @@ import { FaArrowLeft } from 'react-icons/fa'
 import styled from 'styled-components'
 
 import { FlexColumn, FlexRow, HoverTextWrapper, InputWrapper, MainButton, TextWrapper } from 'styles/components'
-import { themeColor } from 'styles/theme'
+import { themeBorderRadius, themeColor } from 'styles/theme'
 import { isMobile } from 'utils'
 import { useColdWalletInput } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
 const GoBackButton = styled(HoverTextWrapper)`
   position: absolute;
-  top: ${isMobile ? '8px' : '-4px'};
-  left: ${isMobile ? '0px' : '-16px'};
+  top: ${isMobile ? '-10px' : '-4px'};
+  left: ${isMobile ? '-14px' : '-16px'};
 `
 
 const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
@@ -49,7 +49,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
         )}
       </FlexColumn>
 
-      <FlexRow rowWidth={'80%'}>
+      <FlexRow rowWidth={isMobile ? '100%' : '80%'}>
         <TextWrapper
           color={'text2'}
           fontSize={isMobile ? 'xl' : 'sm'}
@@ -64,6 +64,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
       <MainButton
         width={'100%'}
         height={isMobile ? '40px' : '50px'}
+        borderRadius={isMobile ? '8px' : themeBorderRadius.small}
         disabled={isValid === false || coldWallet === ''}
         onClick={() => handlePanelStatus(3)}
       >

@@ -19,12 +19,12 @@ import ConenctedWalletAddrWrapper from './ConenctedAddress'
 const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean }>`
   font-weight: ${themeFontWeight.bold};
   font-family: ${themeFontFamily.title};
-  font-size: ${(props) => (props.isActived ? themeTypography.xxl : themeTypography.base)};
-  line-height: ${(props) => (props.isActived ? '38px' : '20px')};
+  font-size: ${(props) => (props.isActived ? themeTypography.xxl : themeTypography.sm)};
+  line-height: ${(props) => (props.isActived ? (isMobile ? '25px' : '38px') : isMobile ? '13px' : '20px')};
   color: ${(props) => (props.isActived ? themeColor.text1 : themeColor.text2)};
   letter-spacing: -0.02em;
 `
-const MintingSoonWrapper = styled(PhaseTextWrapper)`
+const MintingSoonWrapper = styled(TextWrapper)`
   position: absolute;
   top: 40%;
   left: 50%;
@@ -34,8 +34,8 @@ const MintingSoonWrapper = styled(PhaseTextWrapper)`
 const RoadMapIndicator: React.FC = () => {
   return (
     <FlexColumn gap={'0px'} colWidth={'fit-content'}>
-      <Divider width={'1px'} height={'40px'} margin={'0px'} backColor={themeColor.text1} />
-      <FaCircle size={'14px'} color={'#c4c4c4'} />
+      <Divider width={'1px'} height={isMobile ? '25.71px' : '40px'} margin={'0px'} backColor={themeColor.text1} />
+      <FaCircle size={isMobile ? '8px' : '14px'} color={'#c4c4c4'} />
     </FlexColumn>
   )
 }
@@ -64,12 +64,26 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
 
   return (
     <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
-      {mintPhase === 0 && <MintingSoonWrapper isActived>{'Minting Soon'}</MintingSoonWrapper>}
+      {mintPhase === 0 && (
+        <MintingSoonWrapper fontSize={isMobile ? 'xxl' : 'xl'} fontWeight={'semiBold'}>
+          {'Minting Soon'}
+        </MintingSoonWrapper>
+      )}
 
       <FlexColumn gap={'0px'}>
         <TotalSupplyCostWrapper isMintStarted={mintPhase !== 0}>
-          <PhaseTextWrapper isActived={false}>{`${totalSupply} / ${tokenSupply} Minted`}</PhaseTextWrapper>
-          <PhaseTextWrapper isActived={false}>{`${ethers.utils.formatEther(mintPrice)} ETH Cost`}</PhaseTextWrapper>
+          <TextWrapper
+            color={'text2'}
+            fontSize={isMobile ? 'base' : 'sm'}
+            fontWeight={'semiBold'}
+            lineHeight={isMobile ? 25 : 20}
+          >{`${totalSupply} / ${tokenSupply} Minted`}</TextWrapper>
+          <TextWrapper
+            color={'text2'}
+            fontSize={isMobile ? 'base' : 'sm'}
+            fontWeight={'semiBold'}
+            lineHeight={isMobile ? 25 : 20}
+          >{`${ethers.utils.formatEther(mintPrice)} ETH Cost`}</TextWrapper>
         </TotalSupplyCostWrapper>
 
         {mintPhase === 1 && (
@@ -96,7 +110,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
           <MainButton
             borderRadius={themeBorderRadius.small}
             width={'100%'}
-            height={isMobile ? '40px' : '50px'}
+            height={isMobile ? '40px' : '54px'}
             disabled={mintPhase === 0 || !account}
             onClick={() => handlePanelStatus(1)}
           >
@@ -104,14 +118,14 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
           </MainButton>
         </FlexColumn>
       ) : (
-        <FlexColumn gap={'32px'}>
-          <TextWrapper fontWeight={'medium'} letterSpacing={'-0.02em'}>
-            {'Please connect your wallet to proceed'}
+        <FlexColumn gap={isMobile ? '20.62px' : '32px'}>
+          <TextWrapper fontSize={isMobile ? 'base' : 'sm'} fontWeight={'medium'} lineHeight={isMobile ? 25 : 19} letterSpacing={'-0.02em'}>
+            {'Please connect your wallet to proceed.'}
           </TextWrapper>
           <MainButton
-            borderRadius={themeBorderRadius.small}
+            borderRadius={isMobile ? '8px' : themeBorderRadius.small}
             width={'100%'}
-            height={isMobile ? '40px' : '50px'}
+            height={isMobile ? '40px' : '54px'}
             onClick={() => handleOpenModal()}
           >
             {'Connect Wallet'}

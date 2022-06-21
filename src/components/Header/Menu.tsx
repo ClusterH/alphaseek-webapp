@@ -12,7 +12,7 @@ export const MenuWrapper = styled(FlexRow)`
 
   @media ${themeBreakPoint.md} {
     display: flex;
-    margin: 36px -50% 0 0;
+    margin: 36px 0 0 0;
     gap: 5em;
   }
 `

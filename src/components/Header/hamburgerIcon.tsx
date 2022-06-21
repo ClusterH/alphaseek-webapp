@@ -69,7 +69,7 @@ const Hamburger: React.FC = () => {
   return (
     <>
       <HamburgerContainer rowWidth={'fit-content'} onClick={() => setIsOpen(!isOpen)}>
-        <GiHamburgerMenu size={24} color={themeColor.text1} />
+        <GiHamburgerMenu size={64} color={themeColor.text1} />
       </HamburgerContainer>
 
       {isOpen && (

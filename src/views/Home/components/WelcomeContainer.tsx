@@ -3,30 +3,33 @@ import React, { useEffect, useMemo } from 'react'
 import { EtherSWRConfig } from 'ether-swr'
 import styled from 'styled-components'
 
-import BG_IMG from 'assets/images/blur1_img.png'
-import SEEK_IMG from 'assets/images/seek_img1.png'
-import Menu from 'components/Header/Menu'
-import Logo from 'components/Logo'
+import BG_IMG from 'assets/images/blur_img.png'
+import BG_IMG_MOBILE from 'assets/images/blur_img_mobile.png'
+import SEEK_IMG from 'assets/images/seek_img3.png'
+import SEEK_IMG_MOBILE from 'assets/images/seek_img_mobile.png'
 import { CONTRACT_ABIS } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
 import { useMintPhase } from 'state/mint/hooks'
 import { setPanelStatus } from 'state/mint/reducer'
-import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
+import { FlexColumn, FlexRow, ImageContainer } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { getMinterAddress, isMobile, isSupportedNetwork } from 'utils'
+import { getMinterAddress, isLargeScreen, isMobile, isSupportedNetwork } from 'utils'
 
 import { MintContainer } from './MintPanel'
 
 const ImgWrapper = styled(ImageContainer)`
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: ${isMobile ? 'unset' : '0px'};
+  bottom: ${isMobile ? 'unset' : '0px'};
+  left: ${isMobile ? '0px' : 'unset'};
+  top: ${isMobile ? '0px' : 'unset'};
   z-index: 0;
 `
 
 const SeekImgWrapper = styled(ImageContainer)`
   filter: ${themeColor.dropShadow2};
+  transform: scale(1.1);
 `
 
 const WelcomeContainer: React.FC = () => {
@@ -43,13 +46,25 @@ const WelcomeContainer: React.FC = () => {
   }, [account, chainId, dispatch, mintPhase])
 
   return (
-    <FlexColumn colHeight={isMobile ? 'auto' : 'calc(100vh)'} padding={isMobile ? '8% 6%' : '2% 18% 0'}>
-      {isMobile === false && <ImgWrapper src={BG_IMG} height={'auto'} width={'auto'} />}
-      <FlexRow isWrap={isMobile} margin={'16% 0 0'}>
+    <FlexColumn
+      colHeight={isMobile ? 'auto' : 'calc(100vh)'}
+      padding={isMobile ? '0% 30px' : isLargeScreen ? '0% 178px 0' : '0% 12.3611111% 0'}
+      justifyContent={'flex-start'}
+    >
+      <ImgWrapper src={isMobile ? BG_IMG_MOBILE : BG_IMG} width={'auto'} height={'auto'} />
+      <FlexRow
+        isWrap={isMobile}
+        margin={isMobile ? 'calc(80px + 54px)' : isLargeScreen ? 'calc(194px + 7.3vw)' : 'calc(16.72vh + 7.3vw)'}
+        alignItems={'flex-start'}
+      >
         <EtherSWRConfig value={{ web3Provider: library!, ABIs: new Map(ABIs) }}>
           <MintContainer />
         </EtherSWRConfig>
-        {isMobile === false && <SeekImgWrapper src={SEEK_IMG} width={'40%'} />}
+        <SeekImgWrapper
+          src={isMobile ? SEEK_IMG_MOBILE : SEEK_IMG}
+          width={isMobile ? '100%' : '50%'}
+          margin={isMobile ? '-18.3vw 0 0' : '-7.3vw 0 0'}
+        />
       </FlexRow>
     </FlexColumn>
   )

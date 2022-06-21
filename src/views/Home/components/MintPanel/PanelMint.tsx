@@ -7,15 +7,15 @@ import styled from 'styled-components'
 import { useActiveWeb3React } from 'hooks'
 import { useMintWallet } from 'state/mint/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, MainButton, TextWrapper } from 'styles/components'
-import { themeColor } from 'styles/theme'
+import { themeBorderRadius, themeColor } from 'styles/theme'
 import { ExplorerDataType, getExplorerLink, isMobile, isSupportedNetwork, shortenAddress } from 'utils'
 import { useIsAllowedToMint, useMint } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
 const GoBackButton = styled(HoverTextWrapper)`
   position: absolute;
-  top: ${isMobile ? '8px' : '-4px'};
-  left: ${isMobile ? '0px' : '-16px'};
+  top: ${isMobile ? '-10px' : '-4px'};
+  left: ${isMobile ? '-14px' : '-16px'};
 `
 
 const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
@@ -25,7 +25,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
   const { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint } = useMint()
 
   return (
-    <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} padding={'6% 6%'}>
+    <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'} gap={'0px'}>
       {isLoading === false && isMintSuccess && txHash !== '' ? (
         <FlexColumn>
           <TextWrapper fontWeight={'bold'} lineHeight={48}>
@@ -45,7 +45,12 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
             {'View on Etherscan'}&nbsp;
             <FaExternalLinkAlt size={16} />
           </HoverTextWrapper>
-          <MainButton width={'100%'} onClick={() => handlePanelStatus(0)}>
+          <MainButton
+            width={'100%'}
+            borderRadius={isMobile ? '8px' : themeBorderRadius.small}
+            height={isMobile ? '40px' : '54px'}
+            onClick={() => handlePanelStatus(0)}
+          >
             {'Back to Mint Start'}
           </MainButton>
         </FlexColumn>
@@ -86,13 +91,19 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
               {`${mintCount * Number(mintPrice)} ETH`}
             </TextWrapper>
           </FlexRow>
-          <TextWrapper fontSize={'sm'}>{`Mint Limit: ${walletLimit}, Minted Count: ${walletCount}`}</TextWrapper>
-          <TextWrapper fontSize={'sm'}>{`Mint Address: ${shortenAddress(
-            option === 'connected' ? account! : wallet
-          )} (${option})`}</TextWrapper>
+          <FlexColumn gap={isMobile ? '8px' : '12px'}>
+            <TextWrapper fontSize={'sm'} letterSpacing={'0.1em'} lineHeight={19}>
+              {`Mint Limit: ${walletLimit}, Minted Count: ${walletCount}`}
+            </TextWrapper>
+            <TextWrapper fontSize={'sm'} letterSpacing={'0.1em'} lineHeight={19}>
+              {`Mint Address: ${shortenAddress(option === 'connected' ? account! : wallet)} (${option})`}
+            </TextWrapper>
+          </FlexColumn>
+
           <MainButton
             width={'100%'}
             height={isMobile ? '40px' : '50px'}
+            borderRadius={isMobile ? '8px' : themeBorderRadius.small}
             disabled={
               mintPhase === 0 ||
               mintCount === 0 ||

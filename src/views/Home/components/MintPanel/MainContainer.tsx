@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback } from 'react'
 
 import useEtherSWR from 'ether-swr'
-import { BigNumber } from 'ethers'
 import styled from 'styled-components'
 
 import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
-import { useMintPhase } from 'state/mint/hooks'
-import { setMintPhase, setPanelStatus } from 'state/mint/reducer'
+import { setMintPhase } from 'state/mint/reducer'
 import { FlexColumn } from 'styles/components'
 import { themeBorderRadius, themeGradient } from 'styles/theme'
-import { getMinterAddress, isMobile, isSupportedNetwork } from 'utils'
+import { getMinterAddress, isLargeScreen, isMobile } from 'utils'
 import { useMintPanelStatus } from 'views/Home/hooks'
 
 import ColdWalletInputPanel from './PanelColdWalletInput'
@@ -21,7 +19,8 @@ import WalletSelectionPanel from './PanelWalletSelection'
 const MainWrapper = styled(FlexColumn)`
   background: ${themeGradient.bgGradient1};
   border-radius: ${isMobile ? themeBorderRadius.small : themeBorderRadius.regular};
-  padding: ${isMobile ? '4%' : '6% 8%'};
+  padding: ${isMobile ? '7.304% 9.926%' : isLargeScreen ? '40px 55px' : '10.3% 7.49%'};
+  z-index: 1;
 `
 
 const MintContainer: React.FC = () => {
@@ -50,9 +49,13 @@ const MintContainer: React.FC = () => {
   }, [handlePanelStatus, panelStatus])
 
   return (
-    <FlexColumn gap={'0px'} colWidth={isMobile ? '100%' : '50%'}>
-      <MainWrapper colHeight={isMobile ? '40vh' : '50vh'}>{getPanelContent()}</MainWrapper>
-    </FlexColumn>
+    <MainWrapper
+      gap={'0px'}
+      colWidth={isMobile ? '100%' : isLargeScreen ? '534px' : '37.083%'}
+      colHeight={isMobile ? '69.614vw' : isLargeScreen ? '452px' : '31.39vw'}
+    >
+      {getPanelContent()}
+    </MainWrapper>
   )
 }
 
