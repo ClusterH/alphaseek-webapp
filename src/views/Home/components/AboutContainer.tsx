@@ -5,36 +5,54 @@ import styled from 'styled-components'
 import SEEK_IMG from 'assets/images/seek_img_blur2.png'
 import { FlexColumn, FlexRow, GradientTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isMobile } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 
+const MainWrapper = styled(FlexRow)`
+  flex-direction: ${isMobile ? 'row' : 'row-reverse'};
+`
 const SeekImgWrapper = styled(ImageContainer)`
   filter: ${themeColor.dropShadow2};
 `
 
 const AboutContainer: React.FC = () => {
   return (
-    <FlexRow padding={isMobile ? '2% 6%' : '6% 18%'} isWrap={isMobile}>
-      <SeekImgWrapper src={SEEK_IMG} />
-      <FlexColumn alignItems={'flex-start'} gap={'24px'}>
-        <TextWrapper color={'text2'} fontWeight={'bold'} lineHeight={25} letterSpacing={'0.1em'}>
+    <MainWrapper padding={isMobile ? '0% 30px' : isLargeScreen ? '0% 178px 0' : '0% 12.3611111% 0'} isWrap={isMobile}>
+      <FlexColumn alignItems={isMobile ? 'center' : 'flex-start'} gap={'0px'}>
+        <TextWrapper fontSize={isMobile ? 16 : 'base'} color={'text2'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
           {'ABOUT'}
         </TextWrapper>
-        <FlexColumn alignItems={'flex-start'} gap={isMobile ? '12px' : '0px'}>
-          <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.02em'}>
+        <FlexColumn alignItems={isMobile ? 'center' : 'flex-start'} gap={'0px'} margin={'16px 0 32px'}>
+          <TextWrapper
+            fontSize={isMobile ? 32 : 'xxxl'}
+            fontWeight={'bold'}
+            lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+            letterSpacing={'-0.02em'}
+          >
             {'Alphaseek'}
           </TextWrapper>
-          <GradientTextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.02em'}>
+          <GradientTextWrapper
+            fontSize={isMobile ? 32 : 'xxxl'}
+            fontWeight={'bold'}
+            lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+            letterSpacing={'-0.02em'}
+          >
             {'Founders Pass.'}
           </GradientTextWrapper>
         </FlexColumn>
 
-        <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'medium'} lineHeight={isMobile ? 42 : 24}>
+        <TextWrapper
+          fontSize={isMobile ? 14 : 'sm'}
+          fontWeight={'medium'}
+          lineHeight={isMobile ? '21px' : isLargeScreen ? '24px' : 24}
+          textAlign={isMobile ? 'center' : 'start'}
+        >
           {
             'The Alphaseek Founders Pass is about handing the power to the holders. Founders Passes will be an exclusive group of knowledgeable traders and investors with a shared goal. Be rewarded with never before seen industry fees, ranging from Free Swaps and Spot trades to 50% off all fees, everywhere. Enjoy industry high referral bonuses, and the ability to vote on the next Spot token for holders to trade with 0 fees!'
           }
         </TextWrapper>
       </FlexColumn>
-    </FlexRow>
+      <SeekImgWrapper src={SEEK_IMG} />
+    </MainWrapper>
   )
 }
 

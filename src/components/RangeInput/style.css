@@ -98,3 +98,42 @@
   background-color: var(--progressBg);
   border-radius: calc(var(--trackSize) / 2) 0 0 calc(var(--trackSize) / 2);
 }
+
+@media (max-width: 990px) {
+  .range {
+    --thumbSize: 8px;
+    --trackSize: 8px;
+    --thumbBg: #EC854A;
+    --trackBg: #3B3B3B;
+    --progressBg: #EC854A;
+
+    /* webkit progress workaround */
+    --webkitProgressPercent: 0%;
+  }
+
+  .range {
+    border-radius: 6.1124px;
+  }
+
+  /* Thumb */
+  .range::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-top: -4px;
+  }
+
+  .range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-top: -4px;
+  }
+
+  .range::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-top: -4px;
+  }
+}

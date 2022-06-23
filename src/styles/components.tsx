@@ -95,21 +95,26 @@ export const PageWrapper = styled.div`
 `
 export const TextWrapper = styled.span<{
   color?: keyof ThemeProps
-  fontSize?: keyof typeof themeTypography
+  fontSize?: keyof typeof themeTypography | number
   fontWeight?: keyof typeof themeFontWeight
   fontFamily?: keyof typeof themeFontFamily
-  lineHeight?: number
+  lineHeight?: number | string
   opacity?: number
   textAlign?: string
   margin?: string
   letterSpacing?: string
 }>`
   color: ${({ color, theme }) => (color ? (theme as any)[color] : theme.text1)};
-  font-size: ${({ fontSize }) => (fontSize ? themeTypography[fontSize] : themeTypography.base)};
+  font-size: ${({ fontSize }) =>
+    fontSize ? (typeof fontSize === 'number' ? `${fontSize}px` : themeTypography[fontSize]) : themeTypography.base};
   font-weight: ${({ fontWeight }) => (fontWeight ? themeFontWeight[fontWeight] : themeFontWeight.medium)};
   font-family: ${({ fontFamily }) => (fontFamily ? themeFontFamily[fontFamily] : themeFontFamily.main)};
   line-height: ${({ lineHeight }) =>
-    lineHeight ? `${((isMobile ? 0.5 : 1) * (100 * lineHeight)) / Math.max(screenWidth, screenHeight)}vmax` : '30px'};
+    lineHeight
+      ? typeof lineHeight === 'number'
+        ? `${((isMobile ? 0.5 : 1) * (100 * lineHeight)) / Math.max(screenWidth, screenHeight)}vmax`
+        : lineHeight
+      : '30px'};
   opacity: ${({ opacity }) => (opacity ? opacity : 1)};
   text-align: ${({ textAlign }) => (textAlign ? textAlign : 'start')};
   transition: ease-in-out 0.3s;

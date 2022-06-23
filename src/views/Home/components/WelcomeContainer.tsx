@@ -54,7 +54,7 @@ const WelcomeContainer: React.FC = () => {
       <ImgWrapper src={isMobile ? BG_IMG_MOBILE : BG_IMG} width={'auto'} height={'auto'} />
       <FlexRow
         isWrap={isMobile}
-        margin={isMobile ? 'calc(80px + 54px)' : isLargeScreen ? 'calc(194px + 7.3vw)' : 'calc(16.72vh + 7.3vw)'}
+        margin={isMobile ? 'calc(80px + 54px) 0 0' : isLargeScreen ? 'calc(194px + 7.3vw) 0 0' : 'calc(16.72vh + 7.3vw) 0 0'}
         alignItems={'flex-start'}
       >
         <EtherSWRConfig value={{ web3Provider: library!, ABIs: new Map(ABIs) }}>

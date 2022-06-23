@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { InputWrapper } from 'styles/components'
+import { isMobile } from 'utils'
 import './style.css'
 
 const RangeInput: React.FC<{ min?: number; max?: number; step?: number; defaultValue?: number; onChange: any }> = ({
@@ -26,15 +27,15 @@ const RangeInput: React.FC<{ min?: number; max?: number; step?: number; defaultV
     const handleUpAndLeave = () => setIsChanging(false)
     const handleDown = () => setIsChanging(true)
 
-    inputElement.addEventListener('mousemove', changeInputProgressPercentStyle)
-    inputElement.addEventListener('mousedown', handleDown)
-    inputElement.addEventListener('mouseup', handleUpAndLeave)
-    inputElement.addEventListener('mouseleave', handleUpAndLeave)
+    inputElement.addEventListener(isMobile ? 'touchmove' : 'mousemove', changeInputProgressPercentStyle)
+    inputElement.addEventListener(isMobile ? 'touchstart' : 'mousedown', handleDown)
+    inputElement.addEventListener(isMobile ? 'touchend' : 'mouseup', handleUpAndLeave)
+    inputElement.addEventListener(isMobile ? 'touchcancel' : 'mouseleave', handleUpAndLeave)
     return () => {
-      inputElement.removeEventListener('mousemove', changeInputProgressPercentStyle)
-      inputElement.removeEventListener('mousedown', handleDown)
-      inputElement.removeEventListener('mouseup', handleUpAndLeave)
-      inputElement.removeEventListener('mouseleave', handleUpAndLeave)
+      inputElement.removeEventListener(isMobile ? 'touchmove' : 'mousemove', changeInputProgressPercentStyle)
+      inputElement.removeEventListener(isMobile ? 'touchstart' : 'mousedown', handleDown)
+      inputElement.removeEventListener(isMobile ? 'touchend' : 'mouseup', handleUpAndLeave)
+      inputElement.removeEventListener(isMobile ? 'touchcancel' : 'mouseleave', handleUpAndLeave)
     }
   }, [isChanging, changeInputProgressPercentStyle])
 
@@ -51,7 +52,7 @@ const RangeInput: React.FC<{ min?: number; max?: number; step?: number; defaultV
       min={min}
       max={max}
       step={step}
-      value={defaultValue}
+      defaultValue={defaultValue}
       onChange={(e) => onChange(e.currentTarget.value)}
     />
   )

@@ -1,12 +1,19 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
 
-import { FlexColumn, InputWrapper, TextWrapper } from 'styles/components'
-import { themeBorderRadius } from 'styles/theme'
-import { isMobile } from 'utils'
+import styled from 'styled-components'
+
+import { FlexColumn, FlexRow, InputWrapper, TextWrapper } from 'styles/components'
+import { themeBorderRadius, themeColor } from 'styles/theme'
+import { isLargeScreen, isMobile } from 'utils'
 
 import { convertCurrency2Number } from '../utils'
 
 import FutureTable from './FutureTable'
+
+const AmountInputWrapper = styled(InputWrapper)`
+  letter-spacing: -0.02em;
+  line-height: 19px';
+`
 
 const FutureComparison: React.FC = () => {
   const [val, setVal] = useState<string>('$500000')
@@ -47,19 +54,41 @@ const FutureComparison: React.FC = () => {
   }, [])
 
   return (
-    <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '2% 18% 8%'} gap={isMobile ? '12px' : '0px'}>
-      <TextWrapper color={'text2'} fontWeight={'bold'} lineHeight={62} letterSpacing={'0.1em'}>
+    <FlexColumn
+      alignItems={'flex-start'}
+      padding={isMobile ? '65px 30px 47px' : isLargeScreen ? '213px 178px 120px' : '14.791% 12.3611111% 8.33%'}
+      gap={'0px'}
+    >
+      <TextWrapper
+        color={'text2'}
+        fontSize={isMobile ? 16 : isLargeScreen ? 21 : 'base'}
+        fontWeight={'bold'}
+        lineHeight={'120%'}
+        letterSpacing={'0.1em'}
+        margin={isMobile ? '0 0 13px 0' : '0 0 16px 0'}
+      >
         {'COMPARISON'}
       </TextWrapper>
-      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 62} letterSpacing={'-0.02em'}>
-        {'See how our fees stack'}
-      </TextWrapper>
-      <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={isMobile ? 64 : 62} letterSpacing={'-0.02em'}>
-        {'up against the competition.'}
-      </TextWrapper>
+      <FlexRow gap={'0px'} rowWidth={isMobile ? '100%' : isLargeScreen ? '636px' : '44.17%'}>
+        <TextWrapper
+          fontSize={isMobile ? 32 : 'xxxl'}
+          fontWeight={'bold'}
+          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+          letterSpacing={'-0.02em'}
+        >
+          {'See how our fees stack up against the competition.'}
+        </TextWrapper>
+      </FlexRow>
+
       <FutureTable tradeAmount={convertCurrency2Number(val)} />
-      <InputWrapper
-        width={isMobile ? '100%' : '20%'}
+      <AmountInputWrapper
+        width={'159px'}
+        height={'40px'}
+        color={'text4'}
+        fontSize={'16px'}
+        fontWeight={500}
+        backgroundColor={themeColor.text6}
+        border={'none'}
         borderRadius={themeBorderRadius.small}
         value={Number(val.slice(1)).toLocaleString('en-US', {
           style: 'currency',

@@ -1,12 +1,11 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 import styled from 'styled-components'
 
-import { LOGO_LIST, LOGO_LIST_FEE } from 'config/constants'
+import { LOGO_LIST_FEE } from 'config/constants'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isMobile } from 'utils'
-import { TComparison, TFeeTypes } from 'views/Home/types'
+import { isLargeScreen, isMobile } from 'utils'
 
 import { calcFuturesFee } from '../utils'
 
@@ -14,8 +13,8 @@ const TableWrapper = styled(FlexRow)`
   overflow-x: auto;
 `
 const TableHeaderWrapper = styled(FlexColumn)`
-  width: ${isMobile ? '340%' : '100%'};
-  min-width: ${isMobile ? '340%' : '100%'};
+  width: ${isMobile ? '240%' : '100%'};
+  min-width: ${isMobile ? '240%' : '100%'};
 `
 const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
   border-top: ${({ isBorder }) => (isBorder ? themeColor.border1 : 'none')};
@@ -42,14 +41,18 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
   )
 
   return (
-    <FlexColumn alignItems={'flex-start'} margin={'8% 0 0'}>
+    <FlexColumn alignItems={'flex-start'} margin={isMobile ? '47px 0 0' : isLargeScreen ? '120px 0 0' : '8.33% 0 0'}>
       <TableWrapper>
         <TableHeaderWrapper gap={'0px'}>
-          <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={'42px 0 0'}>
+          <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={isMobile ? '0 0 8.66px' : '0 0 15px'}>
             <FlexColumn alignItems={'flex-start'} colWidth={'calc(100% / 5)'} />
             {Object.keys(LOGO_LIST_FEE).map((comparison) => (
               <FlexColumn key={comparison} alignItems={'flex-start'} colWidth={'calc(100% / 5)'}>
-                <ImageContainer src={LOGO_LIST_FEE[comparison as keyof typeof LOGO_LIST_FEE]} maxHeight={'40px'} width={'auto'} />
+                <ImageContainer
+                  src={LOGO_LIST_FEE[comparison as keyof typeof LOGO_LIST_FEE]}
+                  maxHeight={isMobile ? '16px' : '40px'}
+                  width={'auto'}
+                />
               </FlexColumn>
             ))}
           </FlexRow>
@@ -59,11 +62,11 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
                 {['maker', 'taker', 'feeAmount'].map((type, index) => (
                   <TableItemWrapper key={type} isBorder={index !== 0}>
                     <TextWrapper
-                      margin={'32px 0'}
+                      margin={isMobile ? '24px 0' : '32px 0'}
                       color={comparison === 'none' ? 'text3' : comparison === 'alphaseek' ? 'text1' : 'text4'}
-                      fontSize={comparison === 'none' ? 'sm' : 'base'}
-                      fontWeight={comparison === 'none' ? 'medium' : 'semiBold'}
-                      lineHeight={20}
+                      fontSize={isMobile ? 12 : isLargeScreen ? 16 : 'sm'}
+                      fontWeight={comparison === 'none' ? 'medium' : comparison === 'alphaseek' ? 'bold' : 'regular'}
+                      lineHeight={isMobile ? '14px' : isLargeScreen ? '19px' : 19}
                       letterSpacing={'-0.02em'}
                     >
                       {handleGetFee(comparison, type as 'maker' | 'taker' | 'feeAmount')}

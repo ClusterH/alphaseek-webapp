@@ -6,23 +6,25 @@ import { FlexColumn, TextWrapper } from 'styles/components'
 import { isMobile } from 'utils'
 
 const AngleContainer = styled.div`
-  background: linear-gradient(to right, #a6afc0 2px, transparent 2px) 0 0, linear-gradient(to bottom, #a6afc0 2px, transparent 2px) 0 0,
-    linear-gradient(to left, #a6afc0 2px, transparent 2px) 100% 100%, linear-gradient(to top, #a6afc0 2px, transparent 2px) 100% 100%;
-  background-repeat: no-repeat;
-  background-size: ${isMobile ? '16% 16%' : '16% 16%'};
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  transition: background-size 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  background: linear-gradient(to right, #a6afc0 2px, transparent 2px) 0 0, linear-gradient(to bottom, #a6afc0 2px, transparent 2px) 0 0,
+    linear-gradient(to left, #a6afc0 2px, transparent 2px) 100% 100%, linear-gradient(to top, #a6afc0 2px, transparent 2px) 100% 100% !important;
+  background-repeat: no-repeat;
+  background-size: ${isMobile ? '16% 16%' : '16% 16%'};
+
+  // transition: background-size 0.2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 `
 
 const WhyChooseAlphaSeekContainer: React.FC = () => {
   return (
     <FlexColumn>
+      <AngleContainer />
+
       <FlexColumn padding={'0% 6% 4%'} colWidth={isMobile ? '90%' : '50%'}>
-        <AngleContainer />
         <FlexColumn padding={isMobile ? '10% 4%' : '8% 0'} gap={'32px'}>
           <TextWrapper fontWeight={'bold'} fontSize={'xxxl'} lineHeight={62} letterSpacing={'-0.02em'} textAlign={'center'}>
             {'Why choose AlphaSeek'}

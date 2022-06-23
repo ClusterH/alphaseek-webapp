@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { LOGO_LIST } from 'config/constants'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isMobile } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 import { TPeriod, TComparison, TFeeTypes } from 'views/Home/types'
 
 import { calcSpotSavings } from '../utils'
@@ -14,8 +14,8 @@ const TableWrapper = styled(FlexRow)`
   overflow-x: auto;
 `
 const TableHeaderWrapper = styled(FlexColumn)`
-  width: ${isMobile ? '340%' : '100%'};
-  min-width: ${isMobile ? '340%' : '100%'};
+  width: ${isMobile ? '240%' : '100%'};
+  min-width: ${isMobile ? '240%' : '100%'};
 `
 const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
   border-top: ${({ isBorder }) => (isBorder ? themeColor.border1 : 'none')};
@@ -26,17 +26,23 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
   const per = useMemo(() => (period === 'Monthly' ? 1 : 12), [period])
 
   return (
-    <FlexColumn alignItems={'flex-start'}>
-      <TextWrapper color={'text2'} fontWeight={'medium'} fontSize={isMobile ? 'xxl' : 'xl'} letterSpacing={'-0.02em'}>
+    <FlexColumn alignItems={'flex-start'} gap={'0px'}>
+      <TextWrapper
+        color={'text2'}
+        fontWeight={'medium'}
+        fontSize={isMobile ? 16 : isLargeScreen ? 24 : 'xl'}
+        lineHeight={isMobile ? '19px' : isLargeScreen ? '29px' : 29}
+        letterSpacing={'-0.02em'}
+      >
         {`${period} savings versus...`}
       </TextWrapper>
       <TableWrapper>
         <TableHeaderWrapper gap={'0px'}>
-          <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={'42px 0 0'}>
+          <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={isMobile ? '42px 0 0' : '47px 0 22px'}>
             {Object.keys(LOGO_LIST).map((comparison) => (
               <FlexColumn key={comparison} alignItems={'flex-start'} colWidth={'calc(100% / 6)'}>
                 {comparison !== 'alphaseek' && (
-                  <ImageContainer src={LOGO_LIST[comparison as TComparison]} maxHeight={'40px'} width={'auto'} />
+                  <ImageContainer src={LOGO_LIST[comparison as TComparison]} maxHeight={isMobile ? '16px' : '40px'} width={'auto'} />
                 )}
               </FlexColumn>
             ))}
@@ -47,15 +53,15 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
                 {['spot', 'future', 'swap'].map((type, index) => (
                   <TableItemWrapper key={type} isBorder={index !== 0}>
                     <TextWrapper
-                      margin={'32px 0'}
+                      margin={isMobile ? '24px 0' : '32px 0'}
                       color={
                         comparison === 'alphaseek' || feeAmounts[comparison as TComparison][type as TFeeTypes] === undefined
                           ? 'text3'
                           : 'text1'
                       }
-                      fontSize={comparison === 'alphaseek' ? 'sm' : 'base'}
-                      fontWeight={comparison === 'alphaseek' ? 'medium' : 'semiBold'}
-                      lineHeight={20}
+                      fontSize={comparison === 'alphaseek' ? (isMobile ? 12 : isLargeScreen ? 16 : 'sm') : isMobile ? 13 : 18}
+                      fontWeight={comparison === 'alphaseek' ? 'medium' : 'bold'}
+                      lineHeight={isMobile ? '16px' : isLargeScreen ? '21px' : 21}
                       letterSpacing={'-0.02em'}
                     >
                       {comparison === 'alphaseek'
