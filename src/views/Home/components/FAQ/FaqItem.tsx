@@ -4,12 +4,12 @@ import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai'
 import styled from 'styled-components'
 
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
-import { isMobile } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 import { IFAQItem } from 'views/Home/types'
 
 const ItemWrapper = styled(FlexRow)`
   cursor: pointer;
-  padding: 18px 0;
+  padding: 16px 0;
   border-top: 1px solid #a5a5ff26;
   border-bottom: 1px solid #a5a5ff26;
 `
@@ -28,7 +28,7 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
     <FlexColumn onClick={() => handleOpenItemID(item)} alignItems={'flex-start'} gap={'0px'}>
       <ItemWrapper style={{ flexGrow: 1 }}>
         <FlexRow rowWidth={'calc(100% - 24px)'}>
-          <TextWrapper fontSize={isMobile ? 'xl' : 'base'} fontWeight={'semiBold'} lineHeight={isMobile ? 42 : 22} textAlign={'start'}>
+          <TextWrapper fontSize={isMobile ? 16 : 18} fontWeight={'bold'} lineHeight={'120%'} textAlign={'start'}>
             {item.title}
           </TextWrapper>
         </FlexRow>
@@ -37,11 +37,11 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
       <DetailWrapper isOpen={openedItemID === item.id}>
         <TextWrapper
           opacity={0.75}
-          fontSize={isMobile ? 'xl' : 'sm'}
+          fontSize={isMobile || isLargeScreen ? 16 : 'sm'}
           fontWeight={'medium'}
-          lineHeight={isMobile ? 42 : 24}
+          lineHeight={'150%'}
           textAlign={'start'}
-          margin={'16px'}
+          margin={'16px 24px'}
         >
           {item.description}
         </TextWrapper>

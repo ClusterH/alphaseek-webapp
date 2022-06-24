@@ -10,15 +10,15 @@ import BACK_IMG4 from 'assets/images/faq_img4.png'
 import QUESTION_MARK_IMG from 'assets/images/questionMark.svg'
 import { FAQList } from 'config/constants/faqList'
 import { FlexColumn, FlexRow, GradientTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
-import { isMobile } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 import { useFAQ } from 'views/Home/hooks'
 
 import FaqItem from './FaqItem'
 
 const BlurImgWrapper = styled(ImageContainer)`
   position: absolute;
-  left: 160px;
-  top: 160px;
+  left: -170px;
+  top: -80px;
 `
 const BackImgWrapper = styled(ImageContainer)<{ top?: string; left?: string; bottom?: string; right?: string }>`
   position: absolute;
@@ -32,7 +32,7 @@ const FAQPage: React.FC = () => {
   const { openedItemID, handleOpenItemID } = useFAQ()
 
   return (
-    <FlexColumn>
+    <FlexColumn padding={isMobile ? '133px 30px 47.6px' : isLargeScreen ? '342px 300px 164px' : '23.75% 20.833% 11.389%'}>
       {isMobile === false && (
         <>
           <BackImgWrapper src={BACK_IMG1} top={'10%'} left={'0px'} width={'20%'} />
@@ -41,17 +41,14 @@ const FAQPage: React.FC = () => {
           <BackImgWrapper src={BACK_IMG4} top={'52%'} right={'0px'} width={'20%'} />
         </>
       )}
-      <FlexColumn alignItems={'flex-start'} padding={isMobile ? '24% 6% 8%' : '240px 18%'} gap={'0px'}>
-        {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'16%'} />}
-        <GradientTextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
+      <FlexColumn alignItems={'flex-start'} gap={'0px'}>
+        {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={isLargeScreen ? '300px' : '20.96%'} />}
+        <GradientTextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
           {'Frequently Asked'}
         </GradientTextWrapper>
-        <FlexRow rowWidth={'fit-content'} justifyContent={'flex-start'}>
-          <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
-            {'Questions'}
-          </TextWrapper>
-          <ImageContainer src={QUESTION_MARK_IMG} width={'28px'} />
-        </FlexRow>
+        <TextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
+          {'Questions'}
+        </TextWrapper>
         <FlexColumn gap={'0px'} padding={'4% 0'}>
           {FAQList.map((faq) => (
             <FaqItem key={faq.id} item={faq} openedItemID={openedItemID} handleOpenItemID={handleOpenItemID} />

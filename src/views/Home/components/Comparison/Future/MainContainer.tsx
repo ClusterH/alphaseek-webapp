@@ -12,7 +12,7 @@ import FutureTable from './FutureTable'
 
 const AmountInputWrapper = styled(InputWrapper)`
   letter-spacing: -0.02em;
-  line-height: 19px';
+  line-height: 19px;
 `
 
 const FutureComparison: React.FC = () => {
@@ -56,7 +56,7 @@ const FutureComparison: React.FC = () => {
   return (
     <FlexColumn
       alignItems={'flex-start'}
-      padding={isMobile ? '65px 30px 47px' : isLargeScreen ? '213px 178px 120px' : '14.791% 12.3611111% 8.33%'}
+      padding={isMobile ? '65px 30px 144.55px' : isLargeScreen ? '213px 178px 306px' : '14.791% 12.3611111% 21.25%'}
       gap={'0px'}
     >
       <TextWrapper

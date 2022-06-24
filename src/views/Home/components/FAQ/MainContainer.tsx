@@ -9,7 +9,7 @@ import { FAQList } from 'config/constants/faqList'
 import { useAppNavigate } from 'hooks'
 import { FlexColumn, FlexRow, GradientTextWrapper, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isMobile } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 import { useFAQ } from 'views/Home/hooks'
 
 import FaqItem from './FaqItem'
@@ -29,13 +29,17 @@ const FAQContainer: React.FC = () => {
   const { handleNavigate } = useAppNavigate()
 
   return (
-    <FlexColumn alignItems={'flex-start'} padding={isMobile ? '6%' : '6% 18%'} gap={'0px'}>
+    <FlexColumn
+      alignItems={'flex-start'}
+      padding={isMobile ? '52.25px 30px' : isLargeScreen ? '181px 362px' : '12.569% 25.1389%'}
+      gap={'0px'}
+    >
       {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'16%'} />}
-      <GradientTextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
+      <GradientTextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
         {'Frequently Asked'}
       </GradientTextWrapper>
       <FlexRow rowWidth={'fit-content'} justifyContent={'flex-start'}>
-        <TextWrapper fontSize={'xxxl'} fontWeight={'bold'} lineHeight={52} letterSpacing={'-0.05em'}>
+        <TextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
           {'Questions'}
         </TextWrapper>
         <ImageContainer src={QUESTION_MARK_IMG} width={'28px'} />
@@ -46,8 +50,9 @@ const FAQContainer: React.FC = () => {
         ))}
       </FlexColumn>
       <MoreFAQWrapper justifyContent={'flex-start'} rowWidth={'fit-content'} onClick={() => handleNavigate('/faq')}>
-        <HoverTextWrapper>{'More FAQ'}&nbsp;</HoverTextWrapper>
-        <FaArrowRight size={18} />
+        <HoverTextWrapper color={'text3'} fontSize={16} lineHeight={'120%'} fontWeight={'bold'}>
+          {`More FAQ ${'  '} →`}
+        </HoverTextWrapper>
       </MoreFAQWrapper>
     </FlexColumn>
   )
