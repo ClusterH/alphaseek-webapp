@@ -32,7 +32,8 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           value={coldWallet}
           onChange={handleChange}
           border={isValid ? themeColor.border1 : `1px solid ${themeColor.error}`}
-          height={isMobile ? '40px' : '50px'}
+          height={isMobile ? '40px' : '40px'}
+          borderRadius={themeBorderRadius.small}
         />
         {isValid === false && (
           <TextWrapper

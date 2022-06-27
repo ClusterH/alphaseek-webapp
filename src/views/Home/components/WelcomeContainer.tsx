@@ -15,7 +15,7 @@ import { useMintPhase } from 'state/mint/hooks'
 import { setPanelStatus } from 'state/mint/reducer'
 import { FlexColumn, FlexRow, ImageContainer } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { getMinterAddress, isLargeScreen, isMobile, isSupportedNetwork, screenWidth } from 'utils'
+import { getMinterAddress, isLargeScreen, isMobile, isSupportedNetwork, screenWidth, userAgent } from 'utils'
 
 import { MintContainer } from './MintPanel'
 
@@ -45,7 +45,9 @@ const WelcomeContainer: React.FC = () => {
   useEffect(() => {
     if (!account || isSupportedNetwork(chainId) === false || mintPhase === 0) dispatch(setPanelStatus(0))
   }, [account, chainId, dispatch, mintPhase])
-
+  useEffect(() => {
+    userAgent()
+  }, [])
   return (
     <FlexColumn
       colHeight={isMobile ? 'auto' : 'calc(100vh)'}

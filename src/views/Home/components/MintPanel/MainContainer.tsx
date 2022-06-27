@@ -19,7 +19,7 @@ import WalletSelectionPanel from './PanelWalletSelection'
 const MainWrapper = styled(FlexColumn)`
   background: ${themeGradient.bgGradient1};
   border-radius: ${isMobile ? themeBorderRadius.small : themeBorderRadius.regular};
-  padding: ${isMobile ? '7.304% 9.926%' : isLargeScreen ? '40px 55px' : '10.3% 7.49%'};
+  padding: ${isMobile ? '7.304% 9.926%' : isLargeScreen ? '40px 55px' : '2.778vw 3.8194vw'};
   z-index: 1;
 `
 
@@ -51,7 +51,7 @@ const MintContainer: React.FC = () => {
   return (
     <MainWrapper
       gap={'0px'}
-      colWidth={isMobile ? '100%' : isLargeScreen ? '534px' : '37.083%'}
+      colWidth={isMobile ? '100%' : isLargeScreen ? '534px' : '37.083vw'}
       colHeight={isMobile ? '69.614vw' : isLargeScreen ? '452px' : '31.39vw'}
     >
       {getPanelContent()}

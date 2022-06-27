@@ -160,6 +160,7 @@ export const MainButton = styled.button<{
   font-weight: ${themeFontWeight.semiBold};
   font-family: 'Poppins';
   line-height: 24px;
+  text-align: center;
   padding: ${({ padding }) => padding ?? '0 24px'};
   margin: ${({ margin }) => (margin ? margin : '0')};
   width: ${({ width }) => (width ? width : 'fit-content')};

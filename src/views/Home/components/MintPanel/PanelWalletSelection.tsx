@@ -8,7 +8,7 @@ import { useAppDispatch } from 'state/hooks'
 import { setMintWallet } from 'state/mint/reducer'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper, TransparentButton } from 'styles/components'
 import { themeBorderRadius } from 'styles/theme'
-import { isMobile, shortenAddress } from 'utils'
+import { isLargeScreen, isMobile, shortenAddress } from 'utils'
 import { IMintPanelProps } from 'views/Home/types'
 
 import ConenctedWalletAddrWrapper from './ConenctedAddress'
@@ -34,28 +34,28 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
       </FlexRow>
       <FlexRow justifyContent={'center'} gap={isMobile ? '12px' : '24px'} isWrap={isMobile}>
         <TransparentButton
-          width={isMobile ? '100%' : '42%'}
-          height={isMobile ? '40px' : '50px'}
+          width={isMobile ? '100%' : isLargeScreen ? '183px' : '12.7vw'}
+          height={isMobile ? '40px' : '52px'}
           borderRadius={isMobile ? '8px' : themeBorderRadius.small}
           onClick={() => {
             dispatch(setMintWallet({ option: 'connected', wallet: '' }))
             handlePanelStatus(3)
           }}
         >
-          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'semiBold'} lineHeight={24}>
+          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'semiBold'} lineHeight={24} textAlign={'center'}>
             {'Connected Wallet'}
           </TextWrapper>
         </TransparentButton>
         <TransparentButton
-          width={isMobile ? '100%' : '42%'}
-          height={isMobile ? '40px' : '50px'}
+          width={isMobile ? '100%' : isLargeScreen ? '183px' : '12.7vw'}
+          height={isMobile ? '40px' : '52px'}
           borderRadius={isMobile ? '8px' : themeBorderRadius.small}
           onClick={() => {
             dispatch(setMintWallet({ option: 'cold', wallet: '' }))
             handlePanelStatus(2)
           }}
         >
-          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'semiBold'} lineHeight={24}>
+          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'semiBold'} lineHeight={24} textAlign={'center'}>
             {'Cold Wallet'}
           </TextWrapper>
         </TransparentButton>

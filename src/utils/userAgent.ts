@@ -7,6 +7,6 @@ export const userAgent = parser.getResult()
 
 export const isMobile = type === 'mobile' || type === 'tablet'
 
-export const screenWidth = window.innerWidth
-export const screenHeight = window.innerHeight
-export const isLargeScreen = window.innerWidth >= 1440
+export const screenWidth = window.screen.width
+export const screenHeight = window.screen.height
+export const isLargeScreen = window.screen.width >= 1440
