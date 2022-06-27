@@ -2,8 +2,11 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import { FlexColumn, TextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
+import BLUR_IMG1 from 'assets/images/blur_bg3.png'
+import BLUR_IMG2 from 'assets/images/blur_bg4.png'
+import BLUR_IMG3 from 'assets/images/blur_bg9.svg'
+import { FlexColumn, ImageContainer, TextWrapper } from 'styles/components'
+import { isLargeScreen, isMobile, screenWidth } from 'utils'
 
 const AngleContainer = styled.div`
   position: absolute;
@@ -24,18 +27,46 @@ const AngleContainer = styled.div`
 const WhyChooseAlphaSeekContainer: React.FC = () => {
   return (
     <FlexColumn>
+      {isMobile === false ? (
+        <>
+          <ImageContainer
+            src={BLUR_IMG1}
+            width={'48%'}
+            position={'absolute'}
+            top={'-70%'}
+            left={isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px'}
+          />
+          <ImageContainer
+            src={BLUR_IMG2}
+            width={'48%'}
+            position={'absolute'}
+            top={'-50%'}
+            right={isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px'}
+          />
+        </>
+      ) : (
+        <ImageContainer src={BLUR_IMG3} width={'50%'} position={'absolute'} top={'-10%'} left={'-30px'} />
+      )}
+
       <FlexColumn padding={isMobile ? '0' : '48px 98px'} colWidth={isMobile ? '90%' : isLargeScreen ? '818px' : '56.8%'}>
-        {isMobile === false && <AngleContainer />}
+        {isMobile === false && (
+          <>
+            <AngleContainer />
+          </>
+        )}
         <FlexColumn gap={'32px'}>
-          <TextWrapper
-            fontWeight={'bold'}
-            fontSize={isMobile ? 32 : 'xxxl'}
-            lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
-            letterSpacing={'-0.02em'}
-            textAlign={'center'}
-          >
-            {'Why choose AlphaSeek'}
-          </TextWrapper>
+          <FlexColumn gap={'0px'} padding={isMobile ? '0 32px' : '0'}>
+            <TextWrapper
+              fontWeight={'bold'}
+              fontSize={isMobile ? 32 : 'xxxl'}
+              lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+              letterSpacing={'-0.02em'}
+              textAlign={'center'}
+            >
+              {'Why choose AlphaSeek'}
+            </TextWrapper>
+          </FlexColumn>
+
           <TextWrapper
             fontWeight={'medium'}
             fontSize={isMobile ? 14 : 'sm'}

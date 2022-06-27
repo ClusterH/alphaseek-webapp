@@ -30,7 +30,7 @@ const Menu: React.FC = () => {
         lineHeight={20}
         letterSpacing={'-0.02em'}
         onClick={() => handleNavigate('/')}
-        color={pathName === '/' ? 'text5' : 'text1'}
+        color={pathName === '/' ? 'text7' : 'text1'}
       >
         {'Founders Pass'}
       </HoverTextWrapper>
@@ -40,7 +40,7 @@ const Menu: React.FC = () => {
         lineHeight={20}
         letterSpacing={'-0.02em'}
         onClick={() => handleOpenExternalLink(ALPHA_SEEK_URL)}
-        color={pathName === '/alphaseek' ? 'text5' : 'text1'}
+        color={pathName === '/alphaseek' ? 'text7' : 'text1'}
       >
         {'AlphaSeek'}
       </HoverTextWrapper>
@@ -50,7 +50,7 @@ const Menu: React.FC = () => {
         lineHeight={20}
         letterSpacing={'-0.02em'}
         onClick={() => handleNavigate('/faq')}
-        color={pathName === '/faq' ? 'text5' : 'text1'}
+        color={pathName === '/faq' ? 'text7' : 'text1'}
       >
         {'FAQ'}
       </HoverTextWrapper>

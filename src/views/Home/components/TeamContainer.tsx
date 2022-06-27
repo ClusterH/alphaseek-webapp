@@ -8,7 +8,7 @@ import TeamItem from './TeamItem.tsx'
 
 const TeamContainer: React.FC = () => {
   return (
-    <FlexColumn padding={isMobile ? '112.45px 30px 0' : isLargeScreen ? '114px 178px 0' : '7.917% 12.3611111% 0'} gap={'0px'}>
+    <FlexColumn padding={isMobile ? '112.45px 30px 0' : isLargeScreen ? '194px 178px 0' : '13.472% 12.3611111% 0'} gap={'0px'}>
       <GradientTextWrapper
         fontSize={isMobile ? 48 : isLargeScreen ? 80 : 'extra'}
         fontWeight={'bold'}

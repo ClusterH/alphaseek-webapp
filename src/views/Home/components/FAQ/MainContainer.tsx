@@ -16,8 +16,8 @@ import FaqItem from './FaqItem'
 
 const BlurImgWrapper = styled(ImageContainer)`
   position: absolute;
-  left: 160px;
-  top: 62px;
+  left: -42%;
+  top: -86%;
 `
 const MoreFAQWrapper = styled(FlexRow)`
   cursor: pointer;
@@ -34,16 +34,20 @@ const FAQContainer: React.FC = () => {
       padding={isMobile ? '52.25px 30px' : isLargeScreen ? '181px 362px' : '12.569% 25.1389%'}
       gap={'0px'}
     >
-      {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'16%'} />}
-      <GradientTextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
-        {'Frequently Asked'}
-      </GradientTextWrapper>
-      <FlexRow rowWidth={'fit-content'} justifyContent={'flex-start'}>
-        <TextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
-          {'Questions'}
-        </TextWrapper>
-        <ImageContainer src={QUESTION_MARK_IMG} width={'28px'} />
-      </FlexRow>
+      <FlexColumn gap={'0px'} alignItems={'flex-start'} colWidth={'fit-content'}>
+        {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'80%'} />}
+
+        <GradientTextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
+          {'Frequently Asked'}
+        </GradientTextWrapper>
+        <FlexRow rowWidth={'fit-content'} justifyContent={'flex-start'}>
+          <TextWrapper fontSize={isMobile ? 32 : 'xxxl'} fontWeight={'bold'} lineHeight={'100%'} letterSpacing={'-0.05em'}>
+            {'Questions'}
+          </TextWrapper>
+          <ImageContainer src={QUESTION_MARK_IMG} width={'28px'} />
+        </FlexRow>
+      </FlexColumn>
+
       <FlexColumn gap={'0px'} padding={'4% 0'}>
         {FAQList.slice(0, 5).map((faq) => (
           <FaqItem key={faq.id} item={faq} openedItemID={openedItemID} handleOpenItemID={handleOpenItemID} />

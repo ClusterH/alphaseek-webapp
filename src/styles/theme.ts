@@ -16,6 +16,7 @@ export const themeColor: ThemeProps = {
   text4: 'var(--silver)',
   text5: 'var(--reddishOrange)',
   text6: 'var(--darkGrey2)',
+  text7: 'var(--reddishOrange2)',
 
   //status color
   success: 'var(--success)',

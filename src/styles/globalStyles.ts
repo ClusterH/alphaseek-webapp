@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
     --blue: #4597de;
     --lightBlue: #2081e2;
     --reddishOrange: #f7531d;
+    --reddishOrange2: #ffd7bf;
     --dullOrange: #e07d44;
     --osloGrey: #8a8a8e;
     --dune: #323232;

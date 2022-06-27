@@ -51,7 +51,7 @@ const AboutContainer: React.FC = () => {
           }
         </TextWrapper>
       </FlexColumn>
-      <SeekImgWrapper src={SEEK_IMG} />
+      <ImageContainer src={SEEK_IMG} width={'100%'} />
     </MainWrapper>
   )
 }

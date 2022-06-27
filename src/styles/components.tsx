@@ -2,7 +2,7 @@ import { CgClose } from 'react-icons/cg'
 import { ToastContainer } from 'react-toastify'
 import styled from 'styled-components'
 
-import { isMobile, screenHeight, screenWidth } from 'utils'
+import { isLargeScreen, isMobile, screenHeight, screenWidth } from 'utils'
 
 import { themeBorderRadius, themeBreakPoint, themeColor, themeFontFamily, themeFontWeight, themeGradient, themeTypography } from './theme'
 import { TFlexAlignItems, TFlexJustifyContents, ThemeProps } from './types'
@@ -91,7 +91,7 @@ export const PageWrapper = styled.div`
   width: 100%;
   min-height: calc(100vh - 160px);
   margin: 0 auto;
-  padding: 0;
+  padding: 0 ${isLargeScreen ? `${(screenWidth - 1440) / 2}px` : 'auto'};
 `
 export const TextWrapper = styled.span<{
   color?: keyof ThemeProps

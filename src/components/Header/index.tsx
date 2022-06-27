@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { useScroll } from 'hooks'
 import { FlexColumn, FlexRow } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
+import { isLargeScreen, isMobile, screenWidth } from 'utils'
 
 import Logo from '../Logo'
 
@@ -17,9 +17,8 @@ const HeaderContainer = styled(FlexRow)<{ isScroll: boolean }>`
   position: fixed;
   top: 0;
   height: ${({ isScroll }) => (isMobile ? 'auto' : isScroll ? '80px' : isLargeScreen ? '194px' : '16.72vh')};
-  padding: ${isMobile ? '25px 30px 25px' : isLargeScreen ? '0% 178px 0' : '0% 12.3611111% 0'};
+  padding: ${isMobile ? '25px 30px 25px' : isLargeScreen ? `0% ${178 + (screenWidth - 1440) / 2}px 0` : '0% 12.3611111% 0'};
   background-color: ${({ isScroll }) => (isScroll ? themeColor.background1 : 'transparent')};
-
   -webkit-transition: background-color 500ms linear, height 500ms linear;
   -ms-transition: background-color 500ms linear, height 500ms linear;
   transition: background-color 500ms linear, height 500ms linear;
