@@ -27,7 +27,7 @@ const ImgWrapper = styled(ImageContainer)`
   z-index: 0;
 
   @media only screen and (max-width: 1300px) {
-    height: 86vh;
+    height: ${isMobile ? 'auto' : '86vh'};
   }
   @media only screen and (min-width: 1300px) and (max-width: 1368px) {
     height: 110vh;

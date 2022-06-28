@@ -48,7 +48,7 @@ const WhatIsAlphaseekContainer: React.FC = () => {
             {'for crypto trading.'}
           </TextWrapper>
         </FlexColumn>
-        <FlexRow rowWidth={isMobile ? '100%' : '57.38%'} margin={isMobile ? '16px 0px 35px' : '42px 0 59px'}>
+        <FlexRow rowWidth={isMobile ? '100%' : '62.38%'} margin={isMobile ? '16px 0px 35px' : '42px 0 59px'}>
           <TextWrapper
             fontSize={isMobile ? 13 : isLargeScreen ? 16 : 'sm'}
             fontWeight={'medium'}

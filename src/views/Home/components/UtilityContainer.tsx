@@ -40,7 +40,7 @@ const UtilityContainer: React.FC = () => {
           {'for traders.'}
         </TextWrapper>
       </FlexColumn>
-      <FlexRow rowWidth={isMobile ? '100%' : '40%'}>
+      <FlexRow rowWidth={isMobile ? '100%' : '48%'}>
         <TextWrapper
           fontSize={isMobile ? 14 : 'sm'}
           fontWeight={'medium'}
