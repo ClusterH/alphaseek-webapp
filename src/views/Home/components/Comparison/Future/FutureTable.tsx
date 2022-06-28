@@ -65,7 +65,7 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
                       margin={isMobile ? '24px 0' : '32px 0'}
                       color={comparison === 'none' ? 'text3' : comparison === 'alphaseek' ? 'text1' : 'text4'}
                       fontSize={isMobile ? 12 : isLargeScreen ? 16 : 'sm'}
-                      fontWeight={comparison === 'none' ? 'medium' : comparison === 'alphaseek' ? 'bold' : 'regular'}
+                      fontWeight={comparison === 'none' ? 'medium' : comparison === 'alphaseek' ? 'semiBold' : 'regular'}
                       lineHeight={isMobile ? '14px' : isLargeScreen ? '19px' : 19}
                       letterSpacing={'-0.02em'}
                     >

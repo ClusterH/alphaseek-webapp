@@ -17,7 +17,7 @@ import { IMintPanelProps } from 'views/Home/types'
 import ConenctedWalletAddrWrapper from './ConenctedAddress'
 
 const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean }>`
-  font-weight: ${themeFontWeight.bold};
+  font-weight: ${themeFontWeight.semiBold};
   font-family: ${themeFontFamily.title};
   font-size: ${(props) => (props.isActived ? themeTypography.xxl : themeTypography.sm)};
   line-height: ${(props) => (props.isActived ? (isMobile ? '25px' : '38px') : isMobile ? '13px' : '20px')};
@@ -42,9 +42,10 @@ const RoadMapIndicator: React.FC = () => {
 
 const TotalSupplyCostWrapper = styled(FlexColumn)<{ isMintStarted: boolean }>`
   position: absolute;
-  right: 0;
+  right: ${({ isMintStarted }) => (isMintStarted ? '0' : 'unset')};
+  left: ${({ isMintStarted }) => (isMintStarted ? 'unset' : '0')};
   top: 12px;
-  align-items: ${({ isMintStarted }) => (isMintStarted ? 'flex-start' : 'flex-end')};
+  align-items: ${({ isMintStarted }) => (isMintStarted ? 'flex-end' : 'flex-start')};
   width: fit-content;
 `
 

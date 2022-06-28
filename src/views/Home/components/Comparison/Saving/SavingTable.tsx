@@ -60,7 +60,7 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
                           : 'text1'
                       }
                       fontSize={comparison === 'alphaseek' ? (isMobile ? 12 : isLargeScreen ? 16 : 'sm') : isMobile ? 13 : 18}
-                      fontWeight={comparison === 'alphaseek' ? 'medium' : 'bold'}
+                      fontWeight={comparison === 'alphaseek' ? 'medium' : 'semiBold'}
                       lineHeight={isMobile ? '16px' : isLargeScreen ? '21px' : 21}
                       letterSpacing={'-0.02em'}
                     >
