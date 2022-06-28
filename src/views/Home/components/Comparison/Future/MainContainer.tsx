@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react'
+import React, { ChangeEvent, useCallback, useState } from 'react'
 
 import styled from 'styled-components'
 
@@ -56,7 +56,7 @@ const FutureComparison: React.FC = () => {
   return (
     <FlexColumn
       alignItems={'flex-start'}
-      padding={isMobile ? '65px 30px 144.55px' : isLargeScreen ? '213px 178px 306px' : '14.791% 12.3611111% 21.25%'}
+      padding={isMobile ? '65px 30px 144.55px' : isLargeScreen ? '213px 178px 306px' : '14.791% 12.3611111vw 21.25%'}
       gap={'0px'}
     >
       <TextWrapper

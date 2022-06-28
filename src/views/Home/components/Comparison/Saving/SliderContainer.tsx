@@ -5,7 +5,7 @@ import { FlexColumn, FlexRow, MainButton, TextWrapper, TransparentButton } from 
 import { isLargeScreen, isMobile } from 'utils'
 import { TPeriod } from 'views/Home/types'
 
-import { TRADE_AMOUNT_MIN, TRADE_AMOUNT_MAX, TRADE_AMOUNT_STEP } from '../utils'
+import { TRADE_AMOUNT_MAX, TRADE_AMOUNT_MIN, TRADE_AMOUNT_STEP } from '../utils'
 
 const SliderContainer: React.FC<{
   period: TPeriod

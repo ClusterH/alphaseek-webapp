@@ -83,7 +83,7 @@ export const themeBorderRadius = {
 
 export const themeGradient = {
   buttonGradient: 'linear-gradient(234.14deg, var(--neonBlue) 5.28%, var(--purple) 91.61%)',
-  textGradient1: 'linear-gradient(91.79deg, var(--white) 38.4%, rgba(255, 255, 255, 0) 102.58%);',
+  textGradient1: 'linear-gradient(91.79deg, var(--white) 38.4%, rgba(255, 255, 255, 0.2) 102.58%);',
   textGradient2: 'linear-gradient(90.64deg, #FAE98B -2.3%, #F7A668 117.54%)',
   bgGradient1: 'linear-gradient(180deg, #212121 0%, #232323 100%)',
   bgGradient2: 'linear-gradient(180deg, var(--dune) 0%, var(--cinder) 100%)',

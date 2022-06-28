@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 
 import styled from 'styled-components'
 
@@ -6,7 +6,7 @@ import { LOGO_LIST } from 'config/constants'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
 import { isLargeScreen, isMobile } from 'utils'
-import { TPeriod, TComparison, TFeeTypes } from 'views/Home/types'
+import { TComparison, TFeeTypes, TPeriod } from 'views/Home/types'
 
 import { calcSpotSavings } from '../utils'
 

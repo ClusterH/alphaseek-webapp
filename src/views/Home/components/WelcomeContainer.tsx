@@ -3,9 +3,8 @@ import React, { useEffect, useMemo } from 'react'
 import { EtherSWRConfig } from 'ether-swr'
 import styled from 'styled-components'
 
-import BLUR_BG from 'assets/images/blur_bg8.png'
-import BG_IMG from 'assets/images/blur_img.png'
-import BG_IMG_MOBILE from 'assets/images/blur_img_mobile.png'
+import BLUR_BG from 'assets/images/blur_bg.png'
+import BG_IMG_MOBILE from 'assets/images/blur_bg_mobile.png'
 import SEEK_IMG from 'assets/images/seek_img3.png'
 import SEEK_IMG_MOBILE from 'assets/images/seek_img_mobile.png'
 import { CONTRACT_ABIS } from 'config/constants'
@@ -15,17 +14,27 @@ import { useMintPhase } from 'state/mint/hooks'
 import { setPanelStatus } from 'state/mint/reducer'
 import { FlexColumn, FlexRow, ImageContainer } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { getMinterAddress, isLargeScreen, isMobile, isSupportedNetwork, screenWidth, userAgent } from 'utils'
+import { getMinterAddress, isLargeScreen, isMobile, isSupportedNetwork, screenWidth } from 'utils'
 
 import { MintContainer } from './MintPanel'
 
 const ImgWrapper = styled(ImageContainer)`
   position: absolute;
   right: ${isMobile ? 'unset' : isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px'};
-  bottom: ${isMobile ? 'unset' : '0px'};
+  bottom: ${isMobile || isLargeScreen ? 'unset' : 'unset'};
   left: ${isMobile ? '0px' : 'unset'};
-  top: ${isMobile ? '0px' : 'unset'};
+  top: ${isMobile || isLargeScreen ? '0px' : '0px'};
   z-index: 0;
+
+  @media only screen and (max-width: 1300px) {
+    height: 86vh;
+  }
+  @media only screen and (min-width: 1300px) and (max-width: 1368px) {
+    height: 110vh;
+  }
+  @media only screen and (min-width: 1369px) and (max-width: 1440px) {
+    height: 100vh;
+  }
 `
 
 const SeekImgWrapper = styled(ImageContainer)`
@@ -45,16 +54,14 @@ const WelcomeContainer: React.FC = () => {
   useEffect(() => {
     if (!account || isSupportedNetwork(chainId) === false || mintPhase === 0) dispatch(setPanelStatus(0))
   }, [account, chainId, dispatch, mintPhase])
-  useEffect(() => {
-    userAgent()
-  }, [])
+
   return (
     <FlexColumn
       colHeight={isMobile ? 'auto' : 'calc(100vh)'}
-      padding={isMobile ? '0% 30px' : isLargeScreen ? `0% 178px 0` : '0% 12.3611111% 0'}
+      padding={isMobile ? '0% 30px' : isLargeScreen ? `0% 178px 0` : '0% 12.3611111vw 0'}
       justifyContent={'flex-start'}
     >
-      <ImgWrapper src={isMobile ? BG_IMG_MOBILE : isLargeScreen ? BLUR_BG : BG_IMG} width={'auto'} height={'auto'} />
+      <ImgWrapper src={isMobile ? BG_IMG_MOBILE : BLUR_BG} height={isMobile || isLargeScreen ? 'auto' : '103vh'} width={'auto'} />
       <FlexRow
         isWrap={isMobile}
         margin={isMobile ? 'calc(80px + 54px) 0 0' : isLargeScreen ? 'calc(194px + 7.3vw) 0 0' : 'calc(16.72vh + 7.3vw) 0 0'}
@@ -63,7 +70,7 @@ const WelcomeContainer: React.FC = () => {
         <EtherSWRConfig value={{ web3Provider: library!, ABIs: new Map(ABIs) }}>
           <MintContainer />
         </EtherSWRConfig>
-        {isLargeScreen === false && (
+        {isMobile === true && (
           <SeekImgWrapper
             src={isMobile ? SEEK_IMG_MOBILE : SEEK_IMG}
             width={isMobile ? '100%' : '50%'}

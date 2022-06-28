@@ -1,28 +1,18 @@
 import React from 'react'
 
-import styled from 'styled-components'
-
-import BLUR_IMG from 'assets/images/blur_bg2.svg'
 import { UTILITY_LIST } from 'config/constants'
-import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
+import { FlexColumn, FlexRow, TextWrapper } from 'styles/components'
 import { isLargeScreen, isMobile } from 'utils'
 
 import UtilityItem from './UtilityItem'
-
-const BlurImgWrapper = styled(ImageContainer)`
-  position: absolute;
-  left: 160px;
-  top: 62px;
-`
 
 const UtilityContainer: React.FC = () => {
   return (
     <FlexColumn
       alignItems={isMobile ? 'center' : 'flex-start'}
-      padding={isMobile ? '67.36px 30px 0' : isLargeScreen ? '4% 178px 0' : '4% 12.3611111% 0'}
+      padding={isMobile ? '67.36px 30px 0' : isLargeScreen ? '4% 178px 0' : '4% 12.3611111vw 0'}
       gap={'0px'}
     >
-      {/* {isMobile === false && <BlurImgWrapper src={BLUR_IMG} width={'16%'} />} */}
       <TextWrapper
         fontSize={isMobile ? 16 : isLargeScreen ? 21 : 'base'}
         color={'text2'}

@@ -1,8 +1,7 @@
 import useSWR from 'swr'
 
 import { GAS_PRICE_POLLING_INTERVAL } from 'config/constants'
-import { AppState } from 'state'
-import { useAppDispatch, useAppSelector } from 'state/hooks'
+import { useAppDispatch } from 'state/hooks'
 import { setGasPrice } from 'state/web3/reducer'
 import { getGasPrice, getSimpleRPCProvider } from 'utils'
 

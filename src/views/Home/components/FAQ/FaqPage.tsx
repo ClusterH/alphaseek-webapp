@@ -2,7 +2,7 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import BLUR_IMG from 'assets/images/blur_bg2.svg'
+import BLUR_IMG from 'assets/images/blur_img1.svg'
 import BACK_IMG1 from 'assets/images/faq_img1.png'
 import BACK_IMG2 from 'assets/images/faq_img2.png'
 import BACK_IMG3 from 'assets/images/faq_img3.png'

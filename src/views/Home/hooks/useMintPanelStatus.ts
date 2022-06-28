@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import { CONTRACT_ABIS, DEFAULT_CHAIN_ID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
-import { useMintPhase, usePanelStatus } from 'state/mint/hooks'
+import { usePanelStatus } from 'state/mint/hooks'
 import { setMintPhase, setPanelStatus } from 'state/mint/reducer'
-import { checkMintPhaseStatus, getContractWithSimpleProvider, getMinterAddress, isSupportedNetwork } from 'utils'
+import { checkMintPhaseStatus, getContractWithSimpleProvider, getMinterAddress } from 'utils'
 
 import { MintPanelStatus } from '../types'
 

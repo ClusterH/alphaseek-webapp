@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { ALPHA_SEEK_URL } from 'config/constants'
 import { useAppNavigate, useHandleExternalLink } from 'hooks'
-import { CloseButton, FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
+import { CloseButton, FlexColumn, FlexRow, TextWrapper } from 'styles/components'
 import { themeBreakPoint, themeColor } from 'styles/theme'
 
 const HamburgerContainer = styled(FlexRow)`

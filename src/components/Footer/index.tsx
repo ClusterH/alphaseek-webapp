@@ -8,7 +8,7 @@ import { ALPHA_SEEK_TWITTER } from 'config/constants'
 import { useAppNavigate, useHandleExternalLink } from 'hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
+import { isLargeScreen, isMobile, screenWidth } from 'utils'
 
 const FooterWrapper = styled(FlexRow)`
   border-top: ${themeColor.border1};
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
 
   return (
     <FlexColumn
-      padding={isMobile ? '0 30px 30px' : isLargeScreen ? '0 178px' : '0 12.3611111%'}
+      padding={isMobile ? '0 30px 30px' : isLargeScreen ? `0 ${178 + (screenWidth - 1440) / 2}px` : '0% 12.3611111vw'}
       colHeight={isMobile ? 'auto' : isLargeScreen ? '282px' : '19.583%'}
     >
       <FooterWrapper alignItems={'flex-start'}>

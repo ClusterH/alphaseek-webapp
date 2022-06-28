@@ -28,7 +28,7 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
     <FlexColumn onClick={() => handleOpenItemID(item)} alignItems={'flex-start'} gap={'0px'}>
       <ItemWrapper style={{ flexGrow: 1 }}>
         <FlexRow rowWidth={'calc(100% - 24px)'}>
-          <TextWrapper fontSize={isMobile ? 16 : 18} fontWeight={'bold'} lineHeight={'120%'} textAlign={'start'}>
+          <TextWrapper fontSize={isMobile ? 16 : 18} fontWeight={'semiBold'} lineHeight={'120%'} textAlign={'start'}>
             {item.title}
           </TextWrapper>
         </FlexRow>

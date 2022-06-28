@@ -5,7 +5,7 @@ import { IoIosCloseCircleOutline } from 'react-icons/io'
 import Modal from 'components/Modal/ModalWrapper'
 import { WalletConnectionModal } from 'components/WalletConnection'
 import { useActiveWeb3React, useModal } from 'hooks'
-import { FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
+import { FlexRow, HoverTextWrapper } from 'styles/components'
 import { isMobile, shortenAddress } from 'utils'
 
 const ConenctedWalletAddrWrapper: React.FC = () => {

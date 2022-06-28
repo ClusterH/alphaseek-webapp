@@ -1,5 +1,5 @@
 import { FEE_DATA, FUTURE_SAVING_DATA, LOGO_LIST_FEE, SPOT_SAVING_DATA, SWAP_SAVING_DATA } from 'config/constants'
-import { IComparisonData, TComparison, TFeeTypes, TPeriod } from 'views/Home/types'
+import { IComparisonData, TComparison, TFeeTypes } from 'views/Home/types'
 
 export const TRADE_AMOUNT_MIN = 100000
 export const TRADE_AMOUNT_MAX = 50000000

@@ -16,7 +16,7 @@ const SeekImgWrapper = styled(ImageContainer)`
 
 const AboutContainer: React.FC = () => {
   return (
-    <MainWrapper padding={isMobile ? '0% 30px' : isLargeScreen ? '0% 178px 0' : '0% 12.3611111% 0'} isWrap={isMobile}>
+    <MainWrapper padding={isMobile ? '0% 30px' : isLargeScreen ? '60px 178px 0' : '4.177vw 12.3611111vw 0'} isWrap={isMobile}>
       <FlexColumn alignItems={isMobile ? 'center' : 'flex-start'} gap={'0px'}>
         <TextWrapper fontSize={isMobile ? 16 : 'base'} color={'text2'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
           {'ABOUT'}
@@ -51,7 +51,7 @@ const AboutContainer: React.FC = () => {
           }
         </TextWrapper>
       </FlexColumn>
-      <ImageContainer src={SEEK_IMG} width={'100%'} />
+      <ImageContainer src={SEEK_IMG} width={isLargeScreen ? '534px' : '37.083vw'} />
     </MainWrapper>
   )
 }

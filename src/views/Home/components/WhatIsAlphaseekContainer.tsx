@@ -2,10 +2,10 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import BLUR_IMG from 'assets/images/blur_bg2.svg'
+import BLUR_IMG from 'assets/images/blur_img1.svg'
 import TRADING_IMG from 'assets/images/trading_img.png'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
-import { themeBorderRadius, themeColor, themeGradient } from 'styles/theme'
+import { themeBorderRadius, themeColor } from 'styles/theme'
 import { isLargeScreen, isMobile } from 'utils'
 
 const MainWrapper = styled(FlexColumn)`
@@ -20,7 +20,7 @@ const BlurImgWrapper = styled(ImageContainer)`
 
 const WhatIsAlphaseekContainer: React.FC = () => {
   return (
-    <FlexColumn padding={isMobile ? '34px 0px 0px' : isLargeScreen ? '104px 178px 0' : '7.22% 12.3611111% 0'}>
+    <FlexColumn padding={isMobile ? '34px 0px 0px' : isLargeScreen ? '104px 178px 0' : '7.22% 12.3611111vw 0'}>
       <MainWrapper
         padding={isMobile ? '51px 0px 0' : isLargeScreen ? '71px 75px 0' : '4.93% 5.2% 0'}
         gap={isMobile ? '16px' : '22px'}

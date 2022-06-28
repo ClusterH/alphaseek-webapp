@@ -3,12 +3,11 @@ import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import styled from 'styled-components'
 
-import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
 import { setMintWallet } from 'state/mint/reducer'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper, TransparentButton } from 'styles/components'
 import { themeBorderRadius } from 'styles/theme'
-import { isLargeScreen, isMobile, shortenAddress } from 'utils'
+import { isLargeScreen, isMobile } from 'utils'
 import { IMintPanelProps } from 'views/Home/types'
 
 import ConenctedWalletAddrWrapper from './ConenctedAddress'

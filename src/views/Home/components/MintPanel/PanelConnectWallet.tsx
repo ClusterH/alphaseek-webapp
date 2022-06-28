@@ -10,7 +10,7 @@ import { useActiveWeb3React, useGetTotalSupply, useModal, useTotalSupply } from 
 import { useMintPhase, useMintPrice } from 'state/mint/hooks'
 import { Divider, FlexColumn, FlexRow, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor, themeFontFamily, themeFontWeight, themeTypography } from 'styles/theme'
-import { isMobile, shortenAddress } from 'utils'
+import { isMobile } from 'utils'
 import { useGetMintPrice } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 

@@ -2,9 +2,9 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-import BLUR_IMG1 from 'assets/images/blur_bg3.png'
-import BLUR_IMG2 from 'assets/images/blur_bg4.png'
-import BLUR_IMG3 from 'assets/images/blur_bg9.svg'
+import BLUR_IMG1 from 'assets/images/blur_img2.png'
+import BLUR_IMG2 from 'assets/images/blur_img3.png'
+import BLUR_IMG3 from 'assets/images/blur_img4.svg'
 import { FlexColumn, ImageContainer, TextWrapper } from 'styles/components'
 import { isLargeScreen, isMobile, screenWidth } from 'utils'
 

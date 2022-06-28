@@ -20,7 +20,7 @@ const SavingComparison: React.FC = () => {
   return (
     <FlexColumn
       alignItems={'flex-start'}
-      padding={isMobile ? '113px 30px 0' : isLargeScreen ? '234px 178px 0' : '16.25% 12.3611111% 0'}
+      padding={isMobile ? '113px 30px 0' : isLargeScreen ? '234px 178px 0' : '16.25% 12.3611111vw 0'}
       gap={'0px'}
     >
       <TextWrapper

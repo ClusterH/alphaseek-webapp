@@ -1,9 +1,8 @@
 import React from 'react'
 
-import { FaArrowRight } from 'react-icons/fa'
 import styled from 'styled-components'
 
-import BLUR_IMG from 'assets/images/blur_bg2.svg'
+import BLUR_IMG from 'assets/images/blur_img1.svg'
 import QUESTION_MARK_IMG from 'assets/images/questionMark.svg'
 import { FAQList } from 'config/constants/faqList'
 import { useAppNavigate } from 'hooks'

@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { AppState } from 'state'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 import { setWalletBalance } from 'state/web3/reducer'
-import { getEthBalanace, getNFTBalance } from 'utils/web3CallHelpers'
+import { getEthBalanace } from 'utils/web3CallHelpers'
 import { getSimpleRPCProvider } from 'utils/web3Helpers'
 
 import { useActiveWeb3React } from './useActiveWeb3React'

@@ -4,7 +4,7 @@ import { SUPPORTED_WALLETS } from 'config/constants'
 import { connectorsByName } from 'config/constants/web3Connectors'
 import { useActiveWeb3React, useWalletConnect } from 'hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
-import { isMobile, isSupportedNetwork } from 'utils'
+import { isMobile } from 'utils'
 
 import { useWalletConnectionModal } from '../Header/hook'
 
