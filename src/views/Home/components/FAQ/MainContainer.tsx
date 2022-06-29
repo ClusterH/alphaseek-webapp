@@ -6,9 +6,9 @@ import BLUR_IMG from 'assets/images/blur_img1.svg'
 import QUESTION_MARK_IMG from 'assets/images/questionMark.svg'
 import { FAQList } from 'config/constants/faqList'
 import { useAppNavigate } from 'hooks'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, GradientTextWrapper, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 import { useFAQ } from 'views/Home/hooks'
 
 import FaqItem from './FaqItem'
@@ -26,6 +26,7 @@ const MoreFAQWrapper = styled(FlexRow)`
 const FAQContainer: React.FC = () => {
   const { openedItemID, handleOpenItemID } = useFAQ()
   const { handleNavigate } = useAppNavigate()
+  const { isLargeScreen, isMobile } = useScreenSize()
 
   return (
     <FlexColumn

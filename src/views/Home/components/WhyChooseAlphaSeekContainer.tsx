@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import BLUR_IMG1 from 'assets/images/blur_img2.png'
 import BLUR_IMG2 from 'assets/images/blur_img3.png'
 import BLUR_IMG3 from 'assets/images/blur_img4.svg'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, ImageContainer, TextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile, screenWidth } from 'utils'
 
 const AngleContainer = styled.div`
   position: absolute;
@@ -25,6 +25,8 @@ const AngleContainer = styled.div`
 `
 
 const WhyChooseAlphaSeekContainer: React.FC = () => {
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
+
   return (
     <FlexColumn>
       {isMobile === false ? (
@@ -41,7 +43,7 @@ const WhyChooseAlphaSeekContainer: React.FC = () => {
             width={'48%'}
             position={'absolute'}
             top={'-50%'}
-            right={isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px'}
+            right={isLargeScreen ? `-${(screenWidth - 1440 - 4) / 2}px` : '0px'}
           />
         </>
       ) : (
@@ -59,7 +61,7 @@ const WhyChooseAlphaSeekContainer: React.FC = () => {
             <TextWrapper
               fontWeight={'bold'}
               fontSize={isMobile ? 32 : 'xxxl'}
-              lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+              lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : `${(100 * 62) / screenWidth}vmax`}
               letterSpacing={'-0.02em'}
               textAlign={'center'}
             >
@@ -81,7 +83,7 @@ const WhyChooseAlphaSeekContainer: React.FC = () => {
           <TextWrapper
             fontWeight={'medium'}
             fontSize={isMobile ? 'xl' : 'sm'}
-            lineHeight={isMobile ? 42 : 24}
+            lineHeight={'150%'}
             letterSpacing={'0.02em'}
             textAlign={'center'}
           >

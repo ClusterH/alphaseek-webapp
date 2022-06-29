@@ -11,7 +11,7 @@ import { themeBreakPoint, themeColor } from 'styles/theme'
 const HamburgerContainer = styled(FlexRow)`
   display: fixed;
 
-  @media ${themeBreakPoint.md} {
+  @media (min-width: 900px) {
     display: none;
   }
 `

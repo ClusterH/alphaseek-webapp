@@ -6,19 +6,22 @@ import styled from 'styled-components'
 
 import { useActiveWeb3React } from 'hooks'
 import { useMintWallet } from 'state/mint/hooks'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
-import { ExplorerDataType, getExplorerLink, isMobile, isSupportedNetwork, shortenAddress } from 'utils'
+import { ExplorerDataType, getExplorerLink, isSupportedNetwork, shortenAddress } from 'utils'
 import { useIsAllowedToMint, useMint } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
-const GoBackButton = styled(HoverTextWrapper)`
+const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
   position: absolute;
-  top: ${isMobile ? '-10px' : '-4px'};
-  left: ${isMobile ? '-14px' : '-16px'};
+  top: ${(props) => (props.isMobile ? '-10px' : '-4px')};
+  left: ${(props) => (props.isMobile ? '-14px' : '-16px')};
 `
 
 const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
+  const { isMobile, isLargeScreen, screenWidth } = useScreenSize()
+
   const { account, chainId } = useActiveWeb3React()
   const { option, wallet } = useMintWallet()
   const { isAllowed, walletLimit, walletCount } = useIsAllowedToMint()
@@ -31,11 +34,18 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
           <TextWrapper fontWeight={'bold'} lineHeight={48}>
             {''}
           </TextWrapper>
-          <TextWrapper fontSize={'xxl'} fontWeight={'bold'} lineHeight={78} fontFamily={'title'}>
+          <TextWrapper
+            fontSize={isMobile ? 32 : 'xxl'}
+            fontWeight={'bold'}
+            lineHeight={isMobile ? '32px' : isLargeScreen ? '78px' : `${(100 * 78) / screenWidth}vmax`}
+            fontFamily={'title'}
+          >
             {'Founders Pass Minted!'}
           </TextWrapper>
           <HoverTextWrapper
             color={'text2'}
+            fontSize={isMobile ? 16 : 'sm'}
+            lineHeight={'120%'}
             margin={'24px 0'}
             onClick={() => {
               if (!chainId || !isSupportedNetwork(chainId) || !txHash) return
@@ -56,46 +66,46 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
         </FlexColumn>
       ) : (
         <>
-          <GoBackButton onClick={() => handlePanelStatus(option === 'connected' ? panelStatus - 2 : panelStatus - 1)}>
+          <GoBackButton onClick={() => handlePanelStatus(option === 'connected' ? panelStatus - 2 : panelStatus - 1)} isMobile={isMobile}>
             <FaArrowLeft size={isMobile ? 20 : 24} />
           </GoBackButton>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
             <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
-              <TextWrapper color={'text2'} fontSize={'sm'} fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={19}>
+              <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
                 {'BALANCE'}
               </TextWrapper>
             </FlexColumn>
-            <TextWrapper fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={19}>
+            <TextWrapper fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={'120%'}>
               {`${ethBalance} ETH`}
             </TextWrapper>
           </FlexRow>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
             <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
-              <TextWrapper color={'text2'} fontSize={'sm'} fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={19}>
+              <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
                 {'AMOUNT'}
               </TextWrapper>
             </FlexColumn>
             <FlexRow rowWidth={'fit-content'} gap={'32px'}>
-              <TextWrapper fontSize={'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} lineHeight={24}>
+              <TextWrapper fontSize={isMobile ? 24 : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} lineHeight={'100%'}>
                 {mintCount}
               </TextWrapper>
             </FlexRow>
           </FlexRow>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
             <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
-              <TextWrapper color={'text2'} fontSize={'sm'} fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={19}>
+              <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
                 {'TOTAL'}
               </TextWrapper>
             </FlexColumn>
-            <TextWrapper fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={19}>
+            <TextWrapper fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={'120%'}>
               {`${mintCount * Number(mintPrice)} ETH`}
             </TextWrapper>
           </FlexRow>
           <FlexColumn gap={isMobile ? '8px' : '12px'}>
-            <TextWrapper fontSize={'sm'} letterSpacing={'0.1em'} lineHeight={19}>
+            <TextWrapper fontSize={isMobile ? 16 : 'sm'} letterSpacing={'0.1em'} lineHeight={'120%'}>
               {`Mint Limit: ${walletLimit}, Minted Count: ${walletCount}`}
             </TextWrapper>
-            <TextWrapper fontSize={'sm'} letterSpacing={'0.1em'} lineHeight={19}>
+            <TextWrapper fontSize={isMobile ? 16 : 'sm'} letterSpacing={'0.1em'} lineHeight={'120%'}>
               {`Mint Address: ${shortenAddress(option === 'connected' ? account! : wallet)} (${option})`}
             </TextWrapper>
           </FlexColumn>

@@ -5,29 +5,31 @@ import styled from 'styled-components'
 
 import { useAppDispatch } from 'state/hooks'
 import { setMintWallet } from 'state/mint/reducer'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper, TransparentButton } from 'styles/components'
 import { themeBorderRadius } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 import { IMintPanelProps } from 'views/Home/types'
 
 import ConenctedWalletAddrWrapper from './ConenctedAddress'
 
-const GoBackButton = styled(HoverTextWrapper)`
+const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
   position: absolute;
-  top: ${isMobile ? '-10px' : '-4px'};
-  left: ${isMobile ? '-14px' : '-16px'};
+  top: ${(props) => (props.isMobile ? '-10px' : '-4px')};
+  left: ${(props) => (props.isMobile ? '-14px' : '-16px')};
 `
 
 const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
   const dispatch = useAppDispatch()
+  const { isMobile, isLargeScreen } = useScreenSize()
+
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
-      <GoBackButton onClick={() => handlePanelStatus(0)}>
+      <GoBackButton onClick={() => handlePanelStatus(0)} isMobile={isMobile}>
         <FaArrowLeft size={isMobile ? 20 : 24} />
       </GoBackButton>
       <ConenctedWalletAddrWrapper />
       <FlexRow rowWidth={isMobile ? '100%' : '80%'}>
-        <TextWrapper fontSize={isMobile ? 'xl' : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} textAlign={'center'}>
+        <TextWrapper fontSize={isMobile ? 24 : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} lineHeight={'120%'} textAlign={'center'}>
           {'Do you want to mint to the currently connected wallet or a cold wallet?'}
         </TextWrapper>
       </FlexRow>
@@ -41,7 +43,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
             handlePanelStatus(3)
           }}
         >
-          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'semiBold'} lineHeight={24} textAlign={'center'}>
+          <TextWrapper fontSize={isMobile ? 16 : 'sm'} fontWeight={'semiBold'} lineHeight={'150%'} textAlign={'center'}>
             {'Connected Wallet'}
           </TextWrapper>
         </TransparentButton>
@@ -54,7 +56,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
             handlePanelStatus(2)
           }}
         >
-          <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'semiBold'} lineHeight={24} textAlign={'center'}>
+          <TextWrapper fontSize={isMobile ? 16 : 'sm'} fontWeight={'semiBold'} lineHeight={'150%'} textAlign={'center'}>
             {'Cold Wallet'}
           </TextWrapper>
         </TransparentButton>

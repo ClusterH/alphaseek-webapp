@@ -20,7 +20,7 @@ export const FAQList: IFAQItem[] = [
   {
     id: 4,
     title: 'When is the mint?',
-    description: 'Our Mint is scheduled sometime in June, exact date TBA.',
+    description: 'Our Mint is scheduled for July 2022. Join our Discord and follow us on Twitter for announcements!',
   },
   {
     id: 5,
@@ -71,7 +71,7 @@ export const FAQList: IFAQItem[] = [
     id: 12,
     title: 'What other opportunities do I have with the Founders Pass?',
     description:
-      'Holders will have the ability to further reduce fees by staking $SEEK, get airdropped 1000 $SEEK Tokens, and get FREE exclusive Founders Merch!',
+      'Holders will have the ability to further reduce fees by staking $SEEK. Minters of the Founders Pass will be able to claim 1000 $SEEK Tokens per mint and get FREE exclusive Founders Merch!',
   },
   {
     id: 13,

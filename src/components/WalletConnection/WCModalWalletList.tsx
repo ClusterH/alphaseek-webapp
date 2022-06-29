@@ -100,7 +100,7 @@ const WalletConnectionOptionList: React.FC = () => {
   return (
     <FlexColumn>
       <FlexRow>
-        <TextWrapper lineHeight={20} letterSpacing={'-0.01em'} margin={'0 0 24px'}>
+        <TextWrapper lineHeight={'120%'} letterSpacing={'-0.01em'} margin={'0 0 24px'}>
           {'Connect Your wallet'}
         </TextWrapper>
       </FlexRow>

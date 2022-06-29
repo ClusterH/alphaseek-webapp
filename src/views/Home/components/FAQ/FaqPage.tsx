@@ -8,8 +8,8 @@ import BACK_IMG2 from 'assets/images/faq_img2.png'
 import BACK_IMG3 from 'assets/images/faq_img3.png'
 import BACK_IMG4 from 'assets/images/faq_img4.png'
 import { FAQList } from 'config/constants/faqList'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, GradientTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
 import { useFAQ } from 'views/Home/hooks'
 
 import FaqItem from './FaqItem'
@@ -29,6 +29,7 @@ const BackImgWrapper = styled(ImageContainer)<{ top?: string; left?: string; bot
 
 const FAQPage: React.FC = () => {
   const { openedItemID, handleOpenItemID } = useFAQ()
+  const { isLargeScreen, isMobile } = useScreenSize()
 
   return (
     <FlexColumn padding={isMobile ? '133px 30px 47.6px' : isLargeScreen ? '342px 300px 164px' : '23.75% 20.833% 11.389%'}>

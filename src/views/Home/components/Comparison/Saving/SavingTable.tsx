@@ -3,9 +3,9 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 
 import { LOGO_LIST } from 'config/constants'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 import { TComparison, TFeeTypes, TPeriod } from 'views/Home/types'
 
 import { calcSpotSavings } from '../utils'
@@ -13,9 +13,9 @@ import { calcSpotSavings } from '../utils'
 const TableWrapper = styled(FlexRow)`
   overflow-x: auto;
 `
-const TableHeaderWrapper = styled(FlexColumn)`
-  width: ${isMobile ? '240%' : '100%'};
-  min-width: ${isMobile ? '240%' : '100%'};
+const TableHeaderWrapper = styled(FlexColumn)<{ isMobile: boolean }>`
+  width: ${({ isMobile }) => (isMobile ? '240%' : '100%')};
+  min-width: ${({ isMobile }) => (isMobile ? '240%' : '100%')};
 `
 const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
   border-top: ${({ isBorder }) => (isBorder ? themeColor.border1 : 'none')};
@@ -24,6 +24,7 @@ const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
 const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ period, tradeAmount }) => {
   const feeAmounts = useMemo(() => calcSpotSavings(tradeAmount), [tradeAmount])
   const per = useMemo(() => (period === 'Monthly' ? 1 : 12), [period])
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
 
   return (
     <FlexColumn alignItems={'flex-start'} gap={'0px'}>
@@ -31,13 +32,13 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
         color={'text2'}
         fontWeight={'medium'}
         fontSize={isMobile ? 16 : isLargeScreen ? 24 : 'xl'}
-        lineHeight={isMobile ? '19px' : isLargeScreen ? '29px' : 29}
+        lineHeight={isMobile ? '19px' : isLargeScreen ? '29px' : `${(100 * 29) / screenWidth}vmax`}
         letterSpacing={'-0.02em'}
       >
         {`${period} savings versus...`}
       </TextWrapper>
       <TableWrapper>
-        <TableHeaderWrapper gap={'0px'}>
+        <TableHeaderWrapper gap={'0px'} isMobile={isMobile}>
           <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={isMobile ? '42px 0 0' : '47px 0 22px'}>
             {Object.keys(LOGO_LIST).map((comparison) => (
               <FlexColumn key={comparison} alignItems={'flex-start'} colWidth={'calc(100% / 6)'}>
@@ -61,7 +62,7 @@ const SavingTable: React.FC<{ period: TPeriod; tradeAmount: number }> = ({ perio
                       }
                       fontSize={comparison === 'alphaseek' ? (isMobile ? 12 : isLargeScreen ? 16 : 'sm') : isMobile ? 13 : 18}
                       fontWeight={comparison === 'alphaseek' ? 'medium' : 'semiBold'}
-                      lineHeight={isMobile ? '16px' : isLargeScreen ? '21px' : 21}
+                      lineHeight={isMobile ? '16px' : isLargeScreen ? '21px' : `${(100 * 21) / screenWidth}vmax`}
                       letterSpacing={'-0.02em'}
                     >
                       {comparison === 'alphaseek'

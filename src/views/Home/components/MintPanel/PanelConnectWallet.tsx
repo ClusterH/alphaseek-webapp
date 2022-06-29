@@ -8,19 +8,19 @@ import Modal from 'components/Modal/ModalWrapper'
 import { WalletConnectionModal } from 'components/WalletConnection'
 import { useActiveWeb3React, useGetTotalSupply, useModal, useTotalSupply } from 'hooks'
 import { useMintPhase, useMintPrice } from 'state/mint/hooks'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { Divider, FlexColumn, FlexRow, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor, themeFontFamily, themeFontWeight, themeTypography } from 'styles/theme'
-import { isMobile } from 'utils'
 import { useGetMintPrice } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
 import ConenctedWalletAddrWrapper from './ConenctedAddress'
 
-const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean }>`
+const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean; isMobile: boolean }>`
   font-weight: ${themeFontWeight.semiBold};
   font-family: ${themeFontFamily.title};
   font-size: ${(props) => (props.isActived ? themeTypography.xxl : themeTypography.sm)};
-  line-height: ${(props) => (props.isActived ? (isMobile ? '25px' : '38px') : isMobile ? '13px' : '20px')};
+  line-height: ${(props) => (props.isActived ? (props.isMobile ? '25px' : '38px') : props.isMobile ? '13px' : '20px')};
   color: ${(props) => (props.isActived ? themeColor.text1 : themeColor.text2)};
   letter-spacing: -0.02em;
 `
@@ -32,6 +32,8 @@ const MintingSoonWrapper = styled(TextWrapper)`
 `
 
 const RoadMapIndicator: React.FC = () => {
+  const { isMobile } = useScreenSize()
+
   return (
     <FlexColumn gap={'0px'} colWidth={'fit-content'}>
       <Divider width={'1px'} height={isMobile ? '25.71px' : '40px'} margin={'0px'} backColor={themeColor.text1} />
@@ -52,6 +54,7 @@ const TotalSupplyCostWrapper = styled(FlexColumn)<{ isMintStarted: boolean }>`
 const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
   useGetMintPrice()
   useGetTotalSupply()
+  const { screenWidth, isMobile } = useScreenSize()
 
   const { account } = useActiveWeb3React()
   const { isOpen, handleOpenModal } = useModal()
@@ -66,7 +69,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   return (
     <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
       {mintPhase === 0 && (
-        <MintingSoonWrapper fontSize={isMobile ? 'xxl' : 'xl'} fontWeight={'semiBold'}>
+        <MintingSoonWrapper fontSize={isMobile ? 32 : 'xxl'} fontWeight={'semiBold'}>
           {'Minting Soon'}
         </MintingSoonWrapper>
       )}
@@ -75,33 +78,39 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
         <TotalSupplyCostWrapper isMintStarted={mintPhase !== 0}>
           <TextWrapper
             color={'text2'}
-            fontSize={isMobile ? 'base' : 'sm'}
+            fontSize={isMobile ? 16 : 'sm'}
             fontWeight={'semiBold'}
-            lineHeight={isMobile ? 25 : 20}
+            lineHeight={'120%'}
           >{`${totalSupply} / ${tokenSupply} Minted`}</TextWrapper>
           <TextWrapper
             color={'text2'}
-            fontSize={isMobile ? 'base' : 'sm'}
+            fontSize={isMobile ? 16 : 'sm'}
             fontWeight={'semiBold'}
-            lineHeight={isMobile ? 25 : 20}
+            lineHeight={'120%'}
           >{`${ethers.utils.formatEther(mintPrice)} ETH Cost`}</TextWrapper>
         </TotalSupplyCostWrapper>
 
         {mintPhase === 1 && (
           <FlexRow>
-            <PhaseTextWrapper isActived>{'Private mint'}</PhaseTextWrapper>
+            <PhaseTextWrapper isActived isMobile={isMobile}>
+              {'Private mint'}
+            </PhaseTextWrapper>
           </FlexRow>
         )}
         {mintPhase > 0 && mintPhase < 3 && (
           <FlexRow justifyContent={'flex-start'} alignItems={'flex-end'}>
             {mintPhase !== 2 && <RoadMapIndicator />}
-            <PhaseTextWrapper isActived={mintPhase === 2}>{'Waitlist mint'}</PhaseTextWrapper>
+            <PhaseTextWrapper isActived={mintPhase === 2} isMobile={isMobile}>
+              {'Waitlist mint'}
+            </PhaseTextWrapper>
           </FlexRow>
         )}
         {mintPhase > 0 && (
           <FlexRow justifyContent={'flex-start'} alignItems={'flex-end'}>
             {mintPhase !== 3 && <RoadMapIndicator />}
-            <PhaseTextWrapper isActived={mintPhase === 3}>{'Public mint'}</PhaseTextWrapper>
+            <PhaseTextWrapper isActived={mintPhase === 3} isMobile={isMobile}>
+              {'Public mint'}
+            </PhaseTextWrapper>
           </FlexRow>
         )}
       </FlexColumn>
@@ -120,7 +129,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
         </FlexColumn>
       ) : (
         <FlexColumn gap={isMobile ? '20.62px' : '32px'}>
-          <TextWrapper fontSize={isMobile ? 'base' : 'sm'} fontWeight={'medium'} lineHeight={isMobile ? 25 : 19} letterSpacing={'-0.02em'}>
+          <TextWrapper fontSize={isMobile ? 16 : 'sm'} fontWeight={'medium'} lineHeight={'120%'} letterSpacing={'-0.02em'}>
             {'Please connect your wallet to proceed.'}
           </TextWrapper>
           <MainButton

@@ -3,26 +3,34 @@ import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import styled from 'styled-components'
 
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, InputWrapper, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
-import { isMobile } from 'utils'
 import { useColdWalletInput } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
-const GoBackButton = styled(HoverTextWrapper)`
+const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
   position: absolute;
-  top: ${isMobile ? '-10px' : '-4px'};
-  left: ${isMobile ? '-14px' : '-16px'};
+  top: ${({ isMobile }) => (isMobile ? '-10px' : '-4px')};
+  left: ${({ isMobile }) => (isMobile ? '-14px' : '-16px')};
 `
 
 const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
   const { isValid, coldWallet, handleChange } = useColdWalletInput()
+  const { screenWidth, isMobile } = useScreenSize()
+
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
-      <GoBackButton onClick={() => handlePanelStatus(panelStatus - 1)}>
+      <GoBackButton onClick={() => handlePanelStatus(panelStatus - 1)} isMobile={isMobile}>
         <FaArrowLeft size={isMobile ? 20 : 24} />
       </GoBackButton>
-      <TextWrapper fontSize={isMobile ? 'xl' : 'sm'} fontWeight={'bold'} lineHeight={20} letterSpacing={'-0.02em'} textAlign={'center'}>
+      <TextWrapper
+        fontSize={isMobile ? 16 : 'sm'}
+        fontWeight={'bold'}
+        lineHeight={isMobile ? '19px' : `${(100 * 19) / screenWidth}vmax`}
+        letterSpacing={'-0.02em'}
+        textAlign={'center'}
+      >
         {'Paste your external mint address'}
       </TextWrapper>
 
@@ -38,9 +46,9 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
         {isValid === false && (
           <TextWrapper
             color={'error'}
-            fontSize={isMobile ? 'base' : 'xs'}
+            fontSize={isMobile ? 14 : 'xs'}
             fontWeight={'bold'}
-            lineHeight={20}
+            lineHeight={isMobile ? '16px' : `${(100 * 16) / screenWidth}vmax`}
             letterSpacing={'-0.02em'}
             textAlign={'center'}
             margin={'0 0 0 24px'}
@@ -55,7 +63,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           color={'text2'}
           fontSize={isMobile ? 'xl' : 'sm'}
           fontWeight={'semiBold'}
-          lineHeight={isMobile ? 42 : 24}
+          lineHeight={'150%'}
           letterSpacing={'-0.02em'}
           textAlign={'center'}
         >

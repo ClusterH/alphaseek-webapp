@@ -1,12 +1,13 @@
 import React from 'react'
 
 import { UTILITY_LIST } from 'config/constants'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, TextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
 
 import UtilityItem from './UtilityItem'
 
 const UtilityContainer: React.FC = () => {
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
   return (
     <FlexColumn
       alignItems={isMobile ? 'center' : 'flex-start'}
@@ -26,7 +27,7 @@ const UtilityContainer: React.FC = () => {
         <TextWrapper
           fontSize={isMobile ? 32 : 'xxxl'}
           fontWeight={'bold'}
-          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : `${(100 * 62) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {'Utility built solely'}
@@ -34,7 +35,7 @@ const UtilityContainer: React.FC = () => {
         <TextWrapper
           fontSize={isMobile ? 32 : 'xxxl'}
           fontWeight={'bold'}
-          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : `${(100 * 62) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {'for traders.'}
@@ -44,7 +45,7 @@ const UtilityContainer: React.FC = () => {
         <TextWrapper
           fontSize={isMobile ? 14 : 'sm'}
           fontWeight={'medium'}
-          lineHeight={isMobile ? '21px' : isLargeScreen ? '24px' : 24}
+          lineHeight={isMobile ? '21px' : isLargeScreen ? '24px' : `${(100 * 24) / screenWidth}vmax`}
           textAlign={isMobile ? 'center' : 'start'}
         >
           {'The Alphaseek Founders Pass was created with the sole purpose of bringing 100% utility to traders worldwide.'}

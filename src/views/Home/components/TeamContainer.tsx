@@ -1,12 +1,14 @@
 import React from 'react'
 
 import { TEAM_LIST } from 'config/constants'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, GradientTextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
 
 import TeamItem from './TeamItem.tsx'
 
 const TeamContainer: React.FC = () => {
+  const { isLargeScreen, isMobile } = useScreenSize()
+
   return (
     <FlexColumn padding={isMobile ? '112.45px 30px 0' : isLargeScreen ? '194px 178px 0' : '13.472% 12.3611111vw 0'} gap={'0px'}>
       <GradientTextWrapper
@@ -54,7 +56,7 @@ const TeamContainer: React.FC = () => {
       >
         {'Advisory'}
       </GradientTextWrapper>
-      <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} isWrap={isMobile}>
+      <FlexRow alignItems={'stretch'} gap={isMobile ? '128px' : '20px'} justifyContent={'center'} isWrap>
         {TEAM_LIST['advisory'].map((item) => (
           <TeamItem key={item.id} item={item} isAdvisory />
         ))}
@@ -64,7 +66,7 @@ const TeamContainer: React.FC = () => {
         fontWeight={'bold'}
         lineHeight={'100%'}
         letterSpacing={'-0.05em'}
-        margin={isMobile ? '40px 0 125px' : '88px 0 149px'}
+        margin={isMobile ? '40px 0 125px' : '0 0 149px'}
       >
         {'Counsel'}
       </GradientTextWrapper>

@@ -2,7 +2,7 @@ import React from 'react'
 
 import ReactDOM from 'react-dom'
 
-import { useGetWalletBalance, useInactiveListener } from 'hooks'
+import { useGetWalletBalance, useInactiveListener, useResize } from 'hooks'
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastWrapper } from 'styles/components'
 import GlobalStyles from 'styles/globalStyles'
@@ -14,6 +14,7 @@ import { Providers } from './Providers'
 import reportWebVitals from './reportWebVitals'
 
 const GlobalHooks = () => {
+  useResize()
   useInactiveListener()
   useMintPhaseStatus()
   useGetWalletBalance() // We need to check wallet eth balance real-time?

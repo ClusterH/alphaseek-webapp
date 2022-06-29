@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query/react'
 import { load, save } from 'redux-localstorage-simple'
 
 import mintReducer from 'state/mint/reducer'
+import screenSizeReducer from 'state/screenSize/reducer'
 import web3Reducer from 'state/web3/reducer'
 
 import { updateVersion } from './global/actions'
@@ -11,7 +12,7 @@ const PERSISTED_KEYS: string[] = ['']
 
 const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
-  reducer: { web3Reducer, mintReducer },
+  reducer: { web3Reducer, mintReducer, screenSizeReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: true,

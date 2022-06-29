@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, TextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
 import { usePeriodSelect } from 'views/Home/hooks'
 
 import { TRADE_AMOUNT_MIN } from '../utils'
@@ -11,6 +11,7 @@ import SliderContainer from './SliderContainer'
 
 const SavingComparison: React.FC = () => {
   const { period, handlePeriod } = usePeriodSelect()
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
   const [tradeAmount, setTradeAmount] = useState<number>(TRADE_AMOUNT_MIN)
 
   const handleTradeAmount = useCallback((amount: number) => {
@@ -37,7 +38,7 @@ const SavingComparison: React.FC = () => {
         <TextWrapper
           fontSize={isMobile ? 32 : 'xxxl'}
           fontWeight={'bold'}
-          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : `${(100 * 62) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {'How much you could be saving with the Alphaseek Founder’s pass.'}

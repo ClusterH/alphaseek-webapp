@@ -61,7 +61,7 @@ const GlobalStyles = createGlobalStyle`
   /* For Chrome */
   /* width */
   ::-webkit-scrollbar {
-    @media all and (min-width: 990px) {
+    @media all and (min-width: 900px) {
       width: 4px;
       height: 2px;
     }

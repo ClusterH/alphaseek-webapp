@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import RangeInput from 'components/RangeInput'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, MainButton, TextWrapper, TransparentButton } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
 import { TPeriod } from 'views/Home/types'
 
 import { TRADE_AMOUNT_MAX, TRADE_AMOUNT_MIN, TRADE_AMOUNT_STEP } from '../utils'
@@ -12,6 +12,7 @@ const SliderContainer: React.FC<{
   handlePeriod: (period: TPeriod) => void
   handleTradeAmount: (amount: number) => void
 }> = ({ period, handlePeriod, handleTradeAmount }) => {
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
   const [val, setVal] = useState<number>(TRADE_AMOUNT_MIN)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const SliderContainer: React.FC<{
         <TextWrapper
           fontWeight={'bold'}
           fontSize={isMobile ? 14 : 'xl'}
-          lineHeight={isMobile ? '17px' : isLargeScreen ? '29px' : 29}
+          lineHeight={isMobile ? '17px' : isLargeScreen ? '29px' : `${(100 * 29) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {'If you traded'}
@@ -32,7 +33,7 @@ const SliderContainer: React.FC<{
         <TextWrapper
           fontWeight={'bold'}
           fontSize={isMobile ? 14 : 'xl'}
-          lineHeight={isMobile ? '17px' : isLargeScreen ? '29px' : 29}
+          lineHeight={isMobile ? '17px' : isLargeScreen ? '29px' : `${(100 * 29) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >{`${Number(val).toLocaleString('en-US', {
           style: 'currency',
@@ -48,12 +49,18 @@ const SliderContainer: React.FC<{
           color={'text6'}
           fontWeight={'bold'}
           fontSize={isMobile ? 14 : isLargeScreen ? 12 : 'xs'}
-          lineHeight={isMobile ? '17px' : isLargeScreen ? '14px' : 14}
+          lineHeight={isMobile ? '17px' : isLargeScreen ? '14px' : `${(100 * 14) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {TRADE_AMOUNT_MIN.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}
         </TextWrapper>
-        <TextWrapper color={'text6'} fontWeight={'bold'} fontSize={isMobile ? 'base' : 'xs'} lineHeight={14} letterSpacing={'-0.02em'}>
+        <TextWrapper
+          color={'text6'}
+          fontWeight={'bold'}
+          fontSize={isMobile ? 'base' : 'xs'}
+          lineHeight={`${(100 * 14) / screenWidth}vmax`}
+          letterSpacing={'-0.02em'}
+        >
           {TRADE_AMOUNT_MAX.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 })}
         </TextWrapper>
       </FlexRow>

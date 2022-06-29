@@ -5,12 +5,15 @@ import { IoIosCloseCircleOutline } from 'react-icons/io'
 import Modal from 'components/Modal/ModalWrapper'
 import { WalletConnectionModal } from 'components/WalletConnection'
 import { useActiveWeb3React, useModal } from 'hooks'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexRow, HoverTextWrapper } from 'styles/components'
-import { isMobile, shortenAddress } from 'utils'
+import { shortenAddress } from 'utils'
 
 const ConenctedWalletAddrWrapper: React.FC = () => {
   const { account } = useActiveWeb3React()
   const { isOpen, handleOpenModal } = useModal()
+  const { screenWidth, isMobile } = useScreenSize()
+
   return (
     <>
       {account ? (
@@ -19,7 +22,7 @@ const ConenctedWalletAddrWrapper: React.FC = () => {
             color={'text2'}
             fontWeight={'medium'}
             fontSize={isMobile ? 'base' : 'sm'}
-            lineHeight={19}
+            lineHeight={`${(100 * 19) / screenWidth}vmax`}
             letterSpacing={'-0.02em'}
           >
             {`Connected to ${shortenAddress(account)}`}&nbsp;

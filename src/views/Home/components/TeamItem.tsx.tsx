@@ -3,9 +3,10 @@ import React from 'react'
 import { FaTwitter } from 'react-icons/fa'
 import styled from 'styled-components'
 
-import { FlexColumn, GradientTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
+import { useHandleExternalLink } from 'hooks'
+import { useScreenSize } from 'state/screenSize/hooks'
+import { FlexColumn, GradientTextWrapper, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeGradient } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 
 import { ITeamItem } from '../types'
 
@@ -18,11 +19,22 @@ const AvatarWrapper = styled(ImageContainer)<{ isCoreTeam?: boolean; isAdvisory?
   left: 50%;
   transform: translateX(-50%);
 `
+const TwitterIconWrapper = styled(HoverTextWrapper)`
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+`
 
 const TeamItem: React.FC<{ item: ITeamItem; isCoreTeam?: boolean; isAdvisory?: boolean }> = ({ item, isCoreTeam, isAdvisory }) => {
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
+  const { handleOpenExternalLink } = useHandleExternalLink()
+
   return (
     <ItemWrapper
-      padding={isCoreTeam ? '115px 45px 52px' : isAdvisory ? '77px 0 39px' : '90px 0 38px'}
+      colWidth={isAdvisory ? (isMobile ? '100%' : 'calc((100% - 40px) / 3)') : '100%'}
+      padding={isCoreTeam ? '115px 45px 52px' : isAdvisory ? '77px 45px 76px' : '90px 45px 76px'}
+      margin={isAdvisory ? (isMobile ? '0' : '0 0 88px') : '0'}
       borderRadius={themeBorderRadius.small}
       gap={'0px'}
     >
@@ -32,7 +44,7 @@ const TeamItem: React.FC<{ item: ITeamItem; isCoreTeam?: boolean; isAdvisory?: b
           color={'text2'}
           fontSize={isMobile ? 16 : 'sm'}
           fontWeight={'bold'}
-          lineHeight={isMobile ? '19px' : isLargeScreen ? '19px' : 19}
+          lineHeight={isMobile ? '19px' : isLargeScreen ? '19px' : `${(100 * 19) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {item.role}
@@ -44,7 +56,7 @@ const TeamItem: React.FC<{ item: ITeamItem; isCoreTeam?: boolean; isAdvisory?: b
         lineHeight={'100%'}
         letterSpacing={'-0.05em'}
         textAlign={'center'}
-        margin={isCoreTeam ? '14px 0 48px' : isAdvisory ? '0 0 32px' : '14px 0 0px'}
+        margin={isCoreTeam ? '14px 0 48px' : isAdvisory ? '0 0 48px' : '14px 0 48px'}
       >
         {item.name}
       </GradientTextWrapper>
@@ -59,7 +71,11 @@ const TeamItem: React.FC<{ item: ITeamItem; isCoreTeam?: boolean; isAdvisory?: b
           {item.detail}
         </TextWrapper>
       )}
-      {item.twitter && <FaTwitter size={24} />}
+      {item.twitter !== undefined && (
+        <TwitterIconWrapper onClick={() => handleOpenExternalLink(item.twitter!)}>
+          <FaTwitter size={24} />
+        </TwitterIconWrapper>
+      )}
     </ItemWrapper>
   )
 }

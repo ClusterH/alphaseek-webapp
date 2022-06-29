@@ -3,8 +3,8 @@ import React, { memo } from 'react'
 import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai'
 import styled from 'styled-components'
 
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, TextWrapper } from 'styles/components'
-import { isLargeScreen, isMobile } from 'utils'
 import { IFAQItem } from 'views/Home/types'
 
 const ItemWrapper = styled(FlexRow)`
@@ -24,6 +24,8 @@ const FAQItem: React.FC<{ item: IFAQItem; openedItemID: number; handleOpenItemID
   openedItemID,
   handleOpenItemID,
 }) => {
+  const { isLargeScreen, isMobile } = useScreenSize()
+
   return (
     <FlexColumn onClick={() => handleOpenItemID(item)} alignItems={'flex-start'} gap={'0px'}>
       <ItemWrapper style={{ flexGrow: 1 }}>

@@ -2,8 +2,6 @@ import { CgClose } from 'react-icons/cg'
 import { ToastContainer } from 'react-toastify'
 import styled from 'styled-components'
 
-import { isLargeScreen, isMobile, screenHeight, screenWidth } from 'utils'
-
 import { themeBorderRadius, themeBreakPoint, themeColor, themeFontFamily, themeFontWeight, themeGradient, themeTypography } from './theme'
 import { TFlexAlignItems, TFlexJustifyContents, ThemeProps } from './types'
 
@@ -89,9 +87,10 @@ export const FlexColumn = styled.div<{
 `
 export const PageWrapper = styled.div`
   width: 100%;
+  max-width: 1440px;
   min-height: calc(100vh - 160px);
   margin: 0 auto;
-  padding: 0 ${isLargeScreen ? `${(screenWidth - 1440) / 2}px` : 'auto'};
+  padding: 0;
 `
 export const TextWrapper = styled.span<{
   color?: keyof ThemeProps
@@ -109,12 +108,7 @@ export const TextWrapper = styled.span<{
     fontSize ? (typeof fontSize === 'number' ? `${fontSize}px` : themeTypography[fontSize]) : themeTypography.base};
   font-weight: ${({ fontWeight }) => (fontWeight ? themeFontWeight[fontWeight] : themeFontWeight.medium)};
   font-family: ${({ fontFamily }) => (fontFamily ? themeFontFamily[fontFamily] : themeFontFamily.main)};
-  line-height: ${({ lineHeight }) =>
-    lineHeight
-      ? typeof lineHeight === 'number'
-        ? `${((isMobile ? 0.5 : 1) * (100 * lineHeight)) / Math.max(screenWidth, screenHeight)}vmax`
-        : lineHeight
-      : '30px'};
+  line-height: ${({ lineHeight }) => lineHeight ?? '30px'};
   opacity: ${({ opacity }) => (opacity ? opacity : 1)};
   text-align: ${({ textAlign }) => (textAlign ? textAlign : 'start')};
   transition: ease-in-out 0.3s;
@@ -156,7 +150,7 @@ export const MainButton = styled.button<{
   position: relative;
   transition: 0.3s;
   color: ${({ color, theme }) => (color ? color : theme.text1)};
-  font-size: ${isMobile ? themeTypography.base : themeTypography.sm};
+  font-size: ${themeTypography.sm};
   font-weight: ${themeFontWeight.semiBold};
   font-family: 'Poppins';
   line-height: 24px;
@@ -178,6 +172,10 @@ export const MainButton = styled.button<{
     cursor: default;
     pointer-events: none;
     opacity: 0.5;
+  }
+
+  @media only screen and (max-width: 900px) {
+    font-size: ${themeTypography.base};
   }
 `
 export const TransparentButton = styled(MainButton)`

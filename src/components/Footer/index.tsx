@@ -6,10 +6,24 @@ import styled from 'styled-components'
 import LOGO from 'assets/images/main_logo_white.png'
 import { ALPHA_SEEK_TWITTER } from 'config/constants'
 import { useAppNavigate, useHandleExternalLink } from 'hooks'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile, screenWidth } from 'utils'
 
+// const MainWrapper = styled(FlexColumn)`
+//   @media only screen and (max-width: 900px) {
+//     height: auto;
+//     padding: 0 30px 30px;
+//   }
+//   @media only screen and (min-width: 901px) and (max-width: 1439px) {
+//     height: 19.583%;
+//     padding: 0% 12.3611111vw;
+//   }
+//   @media only screen and (min-width: 1440px) {
+//     height: 282px;
+//     padding: 0 ${178 + (screenWidth - 1440) / 2}px;
+//   }
+// `
 const FooterWrapper = styled(FlexRow)`
   border-top: ${themeColor.border1};
   padding: 34px 0;
@@ -17,6 +31,8 @@ const FooterWrapper = styled(FlexRow)`
 const Footer: React.FC = () => {
   const { handleNavigate } = useAppNavigate()
   const { handleOpenExternalLink } = useHandleExternalLink()
+
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
 
   return (
     <FlexColumn

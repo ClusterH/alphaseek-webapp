@@ -44,18 +44,25 @@ export const TEAM_LIST: { [key: string]: ITeamItem[] } = {
       role: 'CEO',
       name: 'Justin Ortiz',
       avatar: AVATAR_IMG4,
+      detail: 'Serial Entrepreneur, real estate developer, crypto investor since 2017, surfing madman',
+      twitter: 'https://twitter.com/just_in_gains',
     },
     {
       id: 2,
       role: 'COO',
       name: 'Andrew Schleifer',
       avatar: AVATAR_IMG5,
+      detail: 'Gamer, entrepreneur and metaverse fanatic. Believer in DeFi and Web3. CEO of Unreal Accelerator',
+      twitter: 'https://twitter.com/0xandyg',
     },
     {
       id: 3,
       role: 'CTO',
       name: 'Jason LeBlanc',
       avatar: AVATAR_IMG6,
+      detail:
+        'Jason has over twenty years of experience in software development and engineering. He`s spent the last ten years as an Executive Manager at a multi-discipline Engineering Firm leading 160 + employees into successfully executing complex projects.',
+      twitter: 'https://twitter.com/nonfungiblejson',
     },
   ],
   advisory: [
@@ -63,25 +70,33 @@ export const TEAM_LIST: { [key: string]: ITeamItem[] } = {
       id: 1,
       name: 'Von Doom',
       avatar: AVATAR_IMG7,
-      twitter: 'https://twitter.com',
+      detail:
+        'At the intersection of tech and marketing, Doom stumbled into Crypto in 2013. Thus began his journey down the rabbit hole of distraction. While IRL Doom runs both a marketing agency and a visualization startup he`s been busy exploring and obsessing over the NFT space since late 2020.',
+      twitter: 'https://twitter.com/CryptoVonDoom',
     },
     {
       id: 2,
       name: 'Josh Ong',
       avatar: AVATAR_IMG8,
-      twitter: 'https://twitter.com',
+      detail:
+        'Co-Founder of marketing and communications firm Causeway Strategies NFT advisor and marketer (advised projects include BYOPills, Jenkins the Valet Writer`s Room, Smilesssvrs, Property`s, and more)',
+      twitter: 'https://twitter.com/beijingdou',
     },
     {
       id: 3,
       name: 'Adam Hollander',
       avatar: AVATAR_IMG9,
-      twitter: 'https://twitter.com',
+      detail:
+        'Founder of Hungry Wolves NFT and White Sands Game. Adam is a seriel entreprenuer with an impressive track record in the web2 and web3 space.',
+      twitter: 'https://twitter.com/HollanderAdam',
     },
     {
       id: 4,
       name: 'BlockChain Brown',
       avatar: AVATAR_IMG10,
-      twitter: 'https://twitter.com',
+      detail:
+        'Co Founder of White Sands Game, Brandon is an NFT affianado and a wiz when it comes to developing strategies and marketing a web3 project.',
+      twitter: 'https://twitter.com/br0wnblockchain',
     },
   ],
   counsel: [
@@ -90,6 +105,9 @@ export const TEAM_LIST: { [key: string]: ITeamItem[] } = {
       role: 'MetaCounsel.io',
       name: 'Andrew Cripps',
       avatar: AVATAR_IMG11,
+      detail:
+        'Decades of experience in web2 law, Andrew recently decided to go full time into web3 law and serves as the full time legal counsel for the Alphaseek team.',
+      twitter: 'https://twitter.com/Drew_Kryptonite',
     },
   ],
 }

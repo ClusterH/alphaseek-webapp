@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 import BLUR_IMG from 'assets/images/blur_img1.svg'
 import TRADING_IMG from 'assets/images/trading_img.png'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 
 const MainWrapper = styled(FlexColumn)`
   background: linear-gradient(180deg, #1e1e1e 0%, rgba(51, 51, 51, 0) 100%);
@@ -19,6 +19,7 @@ const BlurImgWrapper = styled(ImageContainer)`
 `
 
 const WhatIsAlphaseekContainer: React.FC = () => {
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
   return (
     <FlexColumn padding={isMobile ? '34px 0px 0px' : isLargeScreen ? '104px 178px 0' : '7.22% 12.3611111vw 0'}>
       <MainWrapper
@@ -34,7 +35,7 @@ const WhatIsAlphaseekContainer: React.FC = () => {
           <TextWrapper
             fontSize={isMobile ? 48 : isLargeScreen ? 80 : 'extra'}
             fontWeight={'bold'}
-            lineHeight={isMobile ? '48px' : isLargeScreen ? '80px' : 80}
+            lineHeight={isMobile ? '48px' : isLargeScreen ? '80px' : `${(100 * 80) / screenWidth}vmax`}
             letterSpacing={'-0.05em'}
           >
             {'A new standard'}
@@ -42,7 +43,7 @@ const WhatIsAlphaseekContainer: React.FC = () => {
           <TextWrapper
             fontSize={isMobile ? 48 : isLargeScreen ? 80 : 'extra'}
             fontWeight={'bold'}
-            lineHeight={isMobile ? '48px' : isLargeScreen ? '80px' : 80}
+            lineHeight={isMobile ? '48px' : isLargeScreen ? '80px' : `${(100 * 80) / screenWidth}vmax`}
             letterSpacing={'-0.05em'}
           >
             {'for crypto trading.'}

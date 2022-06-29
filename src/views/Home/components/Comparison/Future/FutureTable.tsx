@@ -3,18 +3,18 @@ import React, { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 
 import { LOGO_LIST_FEE } from 'config/constants'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, ImageContainer, TextWrapper } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 
 import { calcFuturesFee } from '../utils'
 
 const TableWrapper = styled(FlexRow)`
   overflow-x: auto;
 `
-const TableHeaderWrapper = styled(FlexColumn)`
-  width: ${isMobile ? '240%' : '100%'};
-  min-width: ${isMobile ? '240%' : '100%'};
+const TableHeaderWrapper = styled(FlexColumn)<{ isMobile: boolean }>`
+  width: ${({ isMobile }) => (isMobile ? '240%' : '100%')};
+  min-width: ${({ isMobile }) => (isMobile ? '240%' : '100%')};
 `
 const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
   border-top: ${({ isBorder }) => (isBorder ? themeColor.border1 : 'none')};
@@ -22,6 +22,7 @@ const TableItemWrapper = styled(FlexRow)<{ isBorder: boolean }>`
 
 const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
   const feeAmounts = useMemo(() => calcFuturesFee(tradeAmount), [tradeAmount])
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
 
   const handleGetFee = useCallback(
     (comparison, type: 'maker' | 'taker' | 'feeAmount') => {
@@ -43,7 +44,7 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
   return (
     <FlexColumn alignItems={'flex-start'} margin={isMobile ? '47px 0 0' : isLargeScreen ? '120px 0 0' : '8.33% 0 0'}>
       <TableWrapper>
-        <TableHeaderWrapper gap={'0px'}>
+        <TableHeaderWrapper gap={'0px'} isMobile={isMobile}>
           <FlexRow justifyContent={'flex-start'} gap={'0px'} margin={isMobile ? '0 0 8.66px' : '0 0 15px'}>
             <FlexColumn alignItems={'flex-start'} colWidth={'calc(100% / 5)'} />
             {Object.keys(LOGO_LIST_FEE).map((comparison) => (
@@ -66,7 +67,7 @@ const FutureTable: React.FC<{ tradeAmount: number }> = ({ tradeAmount }) => {
                       color={comparison === 'none' ? 'text3' : comparison === 'alphaseek' ? 'text1' : 'text4'}
                       fontSize={isMobile ? 12 : isLargeScreen ? 16 : 'sm'}
                       fontWeight={comparison === 'none' ? 'medium' : comparison === 'alphaseek' ? 'semiBold' : 'regular'}
-                      lineHeight={isMobile ? '14px' : isLargeScreen ? '19px' : 19}
+                      lineHeight={isMobile ? '14px' : isLargeScreen ? '19px' : `${(100 * 19) / screenWidth}vmax`}
                       letterSpacing={'-0.02em'}
                     >
                       {handleGetFee(comparison, type as 'maker' | 'taker' | 'feeAmount')}

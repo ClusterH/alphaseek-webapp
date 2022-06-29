@@ -12,22 +12,23 @@ import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
 import { useMintPhase } from 'state/mint/hooks'
 import { setPanelStatus } from 'state/mint/reducer'
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, ImageContainer } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { getMinterAddress, isLargeScreen, isMobile, isSupportedNetwork, screenWidth } from 'utils'
+import { getMinterAddress, isSupportedNetwork, screenWidth } from 'utils'
 
 import { MintContainer } from './MintPanel'
 
-const ImgWrapper = styled(ImageContainer)`
+const ImgWrapper = styled(ImageContainer)<{ isMobile: boolean; isLargeScreen: boolean }>`
   position: absolute;
-  right: ${isMobile ? 'unset' : isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px'};
-  bottom: ${isMobile || isLargeScreen ? 'unset' : 'unset'};
-  left: ${isMobile ? '0px' : 'unset'};
-  top: ${isMobile || isLargeScreen ? '0px' : '0px'};
+  right: ${(props) => (props.isMobile ? 'unset' : props.isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px')};
+  bottom: ${(props) => (props.isMobile || props.isLargeScreen ? 'unset' : 'unset')};
+  left: ${(props) => (props.isMobile ? '0px' : 'unset')};
+  top: ${({ isMobile, isLargeScreen }) => (isMobile || isLargeScreen ? '0px' : '0px')};
   z-index: 0;
 
   @media only screen and (max-width: 1300px) {
-    height: ${isMobile ? 'auto' : '86vh'};
+    height: ${({ isMobile }) => (isMobile ? 'auto' : '86vh')};
   }
   @media only screen and (min-width: 1300px) and (max-width: 1368px) {
     height: 110vh;
@@ -43,6 +44,7 @@ const SeekImgWrapper = styled(ImageContainer)`
 `
 
 const WelcomeContainer: React.FC = () => {
+  const { isLargeScreen, isMobile } = useScreenSize()
   const { account, chainId, library } = useActiveWeb3React()
   const mintPhase = useMintPhase()
   const dispatch = useAppDispatch()
@@ -61,7 +63,13 @@ const WelcomeContainer: React.FC = () => {
       padding={isMobile ? '0% 30px' : isLargeScreen ? `0% 178px 0` : '0% 12.3611111vw 0'}
       justifyContent={'flex-start'}
     >
-      <ImgWrapper src={isMobile ? BG_IMG_MOBILE : BLUR_BG} height={isMobile || isLargeScreen ? 'auto' : '103vh'} width={'auto'} />
+      <ImgWrapper
+        src={isMobile ? BG_IMG_MOBILE : BLUR_BG}
+        height={isMobile || isLargeScreen ? 'auto' : '103vh'}
+        width={'auto'}
+        isMobile={isMobile}
+        isLargeScreen={isLargeScreen}
+      />
       <FlexRow
         isWrap={isMobile}
         margin={isMobile ? 'calc(80px + 54px) 0 0' : isLargeScreen ? 'calc(194px + 7.3vw) 0 0' : 'calc(16.72vh + 7.3vw) 0 0'}

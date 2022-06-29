@@ -39,14 +39,14 @@ export const themeColor: ThemeProps = {
 }
 
 export const themeTypography = {
-  xs: isMobile ? '1vmax' : screenWidth > 1440 ? '12px' : '0.8vmax',
-  sm: isMobile ? '1.3vmax' : screenWidth > 1440 ? '16px' : '1.1vmax',
-  base: isMobile ? '1.5vmax' : screenWidth > 1440 ? '20px' : '1.3vmax',
-  lg: isMobile ? '1.7vmax' : screenWidth > 1440 ? '22px' : '1.5vmax',
-  xl: isMobile ? '1.8vmax' : screenWidth > 1440 ? '24px' : '1.6vmax',
-  xxl: isMobile ? '2.4vmax' : screenWidth > 1440 ? '32px' : '2.2vmax',
-  xxxl: isMobile ? '3.5vmax' : screenWidth > 1440 ? '52px' : '3.3vmax',
-  extra: isMobile ? '3.8vmax' : screenWidth > 1440 ? '80px' : '3.6vmax',
+  xs: isMobile ? '1vmax' : screenWidth >= 1440 ? '12px' : '0.8vmax',
+  sm: isMobile ? '1.3vmax' : screenWidth >= 1440 ? '16px' : '1.1vmax',
+  base: isMobile ? '1.5vmax' : screenWidth >= 1440 ? '20px' : '1.3vmax',
+  lg: isMobile ? '1.7vmax' : screenWidth >= 1440 ? '22px' : '1.5vmax',
+  xl: isMobile ? '1.8vmax' : screenWidth >= 1440 ? '24px' : '1.6vmax',
+  xxl: isMobile ? '2.4vmax' : screenWidth >= 1440 ? '32px' : '2.2vmax',
+  xxxl: isMobile ? '3.5vmax' : screenWidth >= 1440 ? '52px' : '3.3vmax',
+  extra: isMobile ? '3.8vmax' : screenWidth >= 1440 ? '80px' : '3.6vmax',
 }
 
 // export const themeTypography = {

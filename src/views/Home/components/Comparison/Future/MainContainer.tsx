@@ -2,9 +2,9 @@ import React, { ChangeEvent, useCallback, useState } from 'react'
 
 import styled from 'styled-components'
 
+import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, InputWrapper, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
-import { isLargeScreen, isMobile } from 'utils'
 
 import { convertCurrency2Number } from '../utils'
 
@@ -16,6 +16,7 @@ const AmountInputWrapper = styled(InputWrapper)`
 `
 
 const FutureComparison: React.FC = () => {
+  const { screenWidth, isLargeScreen, isMobile } = useScreenSize()
   const [val, setVal] = useState<string>('$500000')
   const handleOnChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const v = e.target.value.replace(/,/g, '')
@@ -73,7 +74,7 @@ const FutureComparison: React.FC = () => {
         <TextWrapper
           fontSize={isMobile ? 32 : 'xxxl'}
           fontWeight={'bold'}
-          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : 62}
+          lineHeight={isMobile ? '38px' : isLargeScreen ? '62px' : `${(100 * 62) / screenWidth}vmax`}
           letterSpacing={'-0.02em'}
         >
           {'See how our fees stack up against the competition.'}
