@@ -4,7 +4,7 @@ import { BsDiscord, BsTwitter } from 'react-icons/bs'
 import styled from 'styled-components'
 
 import LOGO from 'assets/images/main_logo_white.png'
-import { ALPHA_SEEK_TWITTER } from 'config/constants'
+import { ALPHA_SEEK_DISCORD, ALPHA_SEEK_TWITTER } from 'config/constants'
 import { useAppNavigate, useHandleExternalLink } from 'hooks'
 import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, ImageContainer, TextWrapper } from 'styles/components'
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
           </TextWrapper>
           <FlexRow rowWidth={'fit-content'} gap={'22px'}>
             <HoverTextWrapper>
-              <BsDiscord size={24} />
+              <BsDiscord size={24} onClick={() => handleOpenExternalLink(ALPHA_SEEK_DISCORD)} />
             </HoverTextWrapper>
             <HoverTextWrapper onClick={() => handleOpenExternalLink(ALPHA_SEEK_TWITTER)}>
               <BsTwitter size={24} />

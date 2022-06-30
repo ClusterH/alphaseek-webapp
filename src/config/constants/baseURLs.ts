@@ -9,3 +9,4 @@ export const SIGNATURE_RELAY_API = 'https://us-central1-alphaseek-signature-rela
 
 export const ALPHA_SEEK_URL = 'https://alphaseek.io'
 export const ALPHA_SEEK_TWITTER = 'https://twitter.com/Alphaseek_io'
+export const ALPHA_SEEK_DISCORD = 'https://discord.gg/AzJ3w6ypWR'
