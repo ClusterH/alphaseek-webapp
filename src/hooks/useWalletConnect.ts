@@ -10,7 +10,7 @@ import {
 
 import { connectorLocalStorageKey, ConnectorNames } from 'config/constants'
 import { connectorsByName } from 'config/constants/web3Connectors'
-import { notifyToast } from 'config/toast'
+import { notifyToast } from 'hooks/toast'
 import { setupNetwork } from 'utils'
 
 export const useWalletConnect = () => {

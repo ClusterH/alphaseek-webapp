@@ -60,8 +60,7 @@ export const TEAM_LIST: { [key: string]: ITeamItem[] } = {
       role: 'CTO',
       name: 'Jason LeBlanc',
       avatar: AVATAR_IMG6,
-      detail:
-        'Jason has over twenty years of experience in software development and engineering. He`s spent the last ten years as an Executive Manager at a multi-discipline Engineering Firm leading 160 + employees into successfully executing complex projects.',
+      detail: 'Jason has over twenty years of experience in software development and engineering.',
       twitter: 'https://twitter.com/nonfungiblejson',
     },
   ],

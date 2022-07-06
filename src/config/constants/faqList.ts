@@ -37,7 +37,7 @@ export const FAQList: IFAQItem[] = [
   {
     id: 22,
     title: 'How many Founders Passes will be in the collection?',
-    description: 'There are only 1,383 Founders Passes; 1333 for sale and 50 set aside for marketing/promotional purposes.',
+    description: 'There are only 1,383 Founders Passes; 1,333 for sale and 50 set aside for marketing/promotional purposes.',
   },
   {
     id: 7,
