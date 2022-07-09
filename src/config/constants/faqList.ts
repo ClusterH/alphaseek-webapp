@@ -20,7 +20,7 @@ export const FAQList: IFAQItem[] = [
   {
     id: 4,
     title: 'When is the mint?',
-    description: 'Our Mint is scheduled for July 2022. Join our Discord and follow us on Twitter for announcements!',
+    description: 'Our Mint is scheduled for Q3 2022. Join our Discord and follow us on Twitter for announcements!',
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ export const FAQList: IFAQItem[] = [
   {
     id: 22,
     title: 'How many Founders Passes will be in the collection?',
-    description: 'There are only 1,383 Founders Passes; 1,333 for sale and 50 set aside for marketing/promotional purposes.',
+    description: 'There are only 1,333 Founders Passes.',
   },
   {
     id: 7,
@@ -49,7 +49,7 @@ export const FAQList: IFAQItem[] = [
     id: 8,
     title: 'How much time would it take to make the money back from the Founders Pass?',
     description:
-      'For Founders Pass holders averaging $5 million trade volume, they would make their money back in 4.5 months from spot fees.',
+      'For Founders Pass holders averaging $5 million trade volume, break even will occur in approximately 1.5 months from spot fees.',
   },
   {
     id: 9,
