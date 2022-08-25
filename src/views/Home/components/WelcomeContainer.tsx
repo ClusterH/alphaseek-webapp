@@ -21,7 +21,7 @@ import { MintContainer } from './MintPanel'
 
 const ImgWrapper = styled(ImageContainer)<{ isMobile: boolean; isLargeScreen: boolean }>`
   position: absolute;
-  right: ${(props) => (props.isMobile ? 'unset' : props.isLargeScreen ? `-${(screenWidth - 1440) / 2}px` : '0px')};
+  right: ${(props) => (props.isMobile ? 'unset' : props.isLargeScreen ? `calc(2px - ${(screenWidth - 1440) / 2}px)` : '0px')};
   bottom: ${(props) => (props.isMobile || props.isLargeScreen ? 'unset' : 'unset')};
   left: ${(props) => (props.isMobile ? '0px' : 'unset')};
   top: ${({ isMobile, isLargeScreen }) => (isMobile || isLargeScreen ? '0px' : '0px')};

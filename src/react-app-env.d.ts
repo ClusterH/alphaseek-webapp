@@ -10,6 +10,7 @@ interface Window {
     providers?: any[]
     request?: (...args: any[]) => Promise<void>
     autoRefreshOnNetworkChange?: boolean
+    setSelectedProvider?
   }
   web3?: Record<string, unknown>
 }

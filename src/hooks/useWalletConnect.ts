@@ -20,7 +20,17 @@ export const useWalletConnect = () => {
     (connector: AbstractConnector | undefined, connectorId: ConnectorNames | undefined) => {
       if (connectorId) window.localStorage.setItem(connectorLocalStorageKey, connectorId)
 
+      let provider
+
       if (connector) {
+        if (connectorId === 'injected') {
+          provider = window.ethereum?.providers?.find(({ isMetaMask }) => isMetaMask)
+        } else if (connectorId === 'walletlink') {
+          provider = window.ethereum?.providers?.find(({ isCoinbaseWallet }) => isCoinbaseWallet)
+        }
+
+        if (provider) window.ethereum?.setSelectedProvider(provider)
+
         activate(connector, async (error: Error) => {
           if (error instanceof UnsupportedChainIdError) {
             const hasSetup = await setupNetwork()

@@ -107,9 +107,12 @@ const WalletConnectionOptionList: React.FC = () => {
       <FlexColumn gap={'24px'}>{getOptions()}</FlexColumn>
       {account && (
         <FlexRow justifyContent={'flex-end'} margin={'12px 0 0'} gap={'24px'}>
-          <HoverTextWrapper onClick={handleSwitch} fontSize={'sm'}>
-            {'Switch account'}
-          </HoverTextWrapper>
+          {connector === connectorsByName.injected && (
+            <HoverTextWrapper onClick={handleSwitch} fontSize={'sm'}>
+              {'Switch account'}
+            </HoverTextWrapper>
+          )}
+
           <HoverTextWrapper onClick={disconnect} fontSize={'sm'}>
             {'Disconnect'}
           </HoverTextWrapper>
