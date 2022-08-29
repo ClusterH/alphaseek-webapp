@@ -50,7 +50,8 @@ export const useIsAllowedToMint = () => {
     } catch (error) {
       console.log(error)
     }
-  }, [account, ethBalance, mintPrice, minterContract, option, wallet])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ethBalance])
 
   useEffect(() => {
     handleIsAllowedToMint()

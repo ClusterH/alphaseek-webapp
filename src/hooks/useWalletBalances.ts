@@ -33,5 +33,5 @@ export const useGetWalletBalance = () => {
 
   useEffect(() => {
     handleFetchBalances()
-  }, [handleFetchBalances])
+  }, [handleFetchBalances, account])
 }

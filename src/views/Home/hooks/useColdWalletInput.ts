@@ -17,7 +17,7 @@ export const useColdWalletInput = () => {
       setColdWallet(e.target.value)
 
       if (isAddress(e.target.value)) {
-        dispatch(setMintWallet({ wallet: e.target.value }))
+        dispatch(setMintWallet({ wallet: e.target.value, option: 'cold' }))
         setIsValid(true)
       } else setIsValid(false)
     },
