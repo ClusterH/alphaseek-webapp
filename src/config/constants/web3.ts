@@ -27,7 +27,7 @@ type AddressMap = { [chainId: number]: string }
 
 export const MINTER_CONTRACT_ADDRESSES: AddressMap = {
   [SupportedChainId.MAIN]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x0160b7AA8897782643765a40a25013A83CB344cE',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x01943ff8638E9b89a545e8746CDE5880f824A093',
 }
 
 export const PASS_CONTRACT_ADDRESSES: AddressMap = {
@@ -37,7 +37,7 @@ export const PASS_CONTRACT_ADDRESSES: AddressMap = {
 
 export const CLAIMS_CONTRACT_ADDRESSES: AddressMap = {
   [SupportedChainId.MAIN]: '0x23E25fD67092A04a261667F5EA9Cc00734B14585',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x5f2a82530c57aAc9CB2766528Eed9fe436cc90D2',
+  [SupportedChainId.RINKEBY_TESTNET]: '0x9914BE7357890a66E70DBE4A3f8CC665bC02c274',
 }
 
 export const CONTRACT_ABIS = {

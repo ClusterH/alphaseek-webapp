@@ -23,7 +23,7 @@ export const getTotalSupply = async (contract: Contract) => {
 }
 
 export const getTokenSupply = async (contract: Contract) => {
-  return (await contract.MINTABLE_TOKENS()).toNumber()
+  return (await contract.TOKEN_SUPPLY()).toNumber()
 }
 
 export const checkMintPhaseStatus = async (minterContract: Contract) => {
@@ -31,7 +31,7 @@ export const checkMintPhaseStatus = async (minterContract: Contract) => {
 }
 
 export const getMintPrice = async (minterContract: Contract) => {
-  return await minterContract.mintPrice()
+  return await minterContract.currentMintPrice()
 }
 
 export const getWalletLimit = async (minterContract: Contract, address: string) => {
@@ -47,13 +47,14 @@ export const getWalletCount = async (minterContract: Contract, address: string) 
 export const executeMint = async (
   minterContract: Contract,
   to: string,
+  amount: number,
   nonce: string,
   signature: string,
   merkleProof: string[],
   value: BigNumber,
   gasLimit: BigNumber
 ) => {
-  const txHash = await minterContract.mint(to, nonce, signature, merkleProof, { value, gasLimit })
+  const txHash = await minterContract.mint(to, amount, nonce, signature, merkleProof, { value, gasLimit })
   const receipt = await txHash.wait()
   return { status: receipt.status, txHash: receipt.transactionHash }
 }

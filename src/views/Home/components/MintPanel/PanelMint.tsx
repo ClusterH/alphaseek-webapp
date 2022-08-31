@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { FaArrowLeft, FaExternalLinkAlt } from 'react-icons/fa'
+import { ethers } from 'ethers'
+import { FaArrowLeft, FaExternalLinkAlt, FaMinus, FaPlus } from 'react-icons/fa'
 import ClipLoader from 'react-spinners/ClipLoader'
 import styled from 'styled-components'
 
@@ -9,8 +10,8 @@ import { useMintWallet } from 'state/mint/hooks'
 import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor } from 'styles/theme'
-import { ExplorerDataType, getExplorerLink, isSupportedNetwork, shortenAddress } from 'utils'
-import { useIsAllowedToMint, useMint } from 'views/Home/hooks'
+import { caluMultipleForBigNumber, convertToBigNumber, ExplorerDataType, getExplorerLink, isSupportedNetwork, shortenAddress } from 'utils'
+import { useAmountCounter, useIsAllowedToMint, useMint } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
 const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
@@ -25,6 +26,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
   const { account, chainId } = useActiveWeb3React()
   const { option, wallet } = useMintWallet()
   const { isAllowed, walletLimit, walletCount } = useIsAllowedToMint()
+  const { handleCount } = useAmountCounter()
   const { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint } = useMint()
 
   return (
@@ -86,9 +88,16 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
               </TextWrapper>
             </FlexColumn>
             <FlexRow rowWidth={'fit-content'} gap={'32px'}>
+              <HoverTextWrapper onClick={() => handleCount(false)}>
+                <FaMinus />
+              </HoverTextWrapper>
+
               <TextWrapper fontSize={isMobile ? 24 : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} lineHeight={'100%'}>
                 {mintCount}
               </TextWrapper>
+              <HoverTextWrapper onClick={() => handleCount(true)}>
+                <FaPlus />
+              </HoverTextWrapper>
             </FlexRow>
           </FlexRow>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
@@ -98,7 +107,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
               </TextWrapper>
             </FlexColumn>
             <TextWrapper fontWeight={'bold'} letterSpacing={'0.1em'} lineHeight={'120%'}>
-              {`${mintCount * Number(mintPrice)} ETH`}
+              {`${caluMultipleForBigNumber(convertToBigNumber(mintCount.toString(), 0), convertToBigNumber(mintPrice))} ETH`}
             </TextWrapper>
           </FlexRow>
           <FlexColumn gap={isMobile ? '8px' : '12px'}>

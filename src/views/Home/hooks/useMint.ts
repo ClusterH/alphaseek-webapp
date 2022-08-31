@@ -7,7 +7,7 @@ import { notifyToast } from 'config/toast'
 import { useActiveWeb3React, useGetMinterContract } from 'hooks'
 import { useMintCount, useMintPhase, useMintPrice, useMintWallet } from 'state/mint/hooks'
 import { useWalletBalance } from 'state/web3/hooks'
-import { estimateGas, executeMint, getWalletCount, getWalletLimit } from 'utils'
+import { caluMultipleForBigNumber, convertToBigNumber, estimateGas, executeMint, getWalletCount, getWalletLimit } from 'utils'
 import { getSignatureAndNonce } from 'utils/api'
 
 export const useIsAllowedToMint = () => {
@@ -101,8 +101,23 @@ export const useMint = () => {
 
       const res = await getSignatureAndNonce(account, mintCount)
       if (res) {
-        const gas = await estimateGas(minterContract, 'mint', [mintWallet, res.nonce, res.signature, merkleProof, { value: price }], 3000)
-        const { status, txHash } = await executeMint(minterContract, mintWallet, res.nonce, res.signature, merkleProof, price, gas)
+        const totalPriceToPay = convertToBigNumber(mintCount.toString(), 0).mul(price)
+        const gas = await estimateGas(
+          minterContract,
+          'mint',
+          [mintWallet, mintCount, res.nonce, res.signature, merkleProof, { value: totalPriceToPay }],
+          3000
+        )
+        const { status, txHash } = await executeMint(
+          minterContract,
+          mintWallet,
+          mintCount,
+          res.nonce,
+          res.signature,
+          merkleProof,
+          totalPriceToPay,
+          gas
+        )
         if (status) {
           setIsMintSuccess(true)
           setTxHash(txHash)
