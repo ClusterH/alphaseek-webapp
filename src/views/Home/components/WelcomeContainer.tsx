@@ -15,7 +15,7 @@ import { setPanelStatus } from 'state/mint/reducer'
 import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, ImageContainer } from 'styles/components'
 import { themeColor } from 'styles/theme'
-import { getMinterAddress, isSupportedNetwork, screenWidth } from 'utils'
+import { getFoundersPassAddress, isSupportedNetwork, screenWidth } from 'utils'
 
 import { MintContainer } from './MintPanel'
 
@@ -50,7 +50,7 @@ const WelcomeContainer: React.FC = () => {
   const dispatch = useAppDispatch()
 
   const ABIs = useMemo(() => {
-    return [[getMinterAddress(chainId!), CONTRACT_ABIS.MINTER]] as [[address: string, abi: any]]
+    return [[getFoundersPassAddress(chainId!), CONTRACT_ABIS.FOUNDERS_PASS]] as [[address: string, abi: any]]
   }, [chainId])
 
   useEffect(() => {

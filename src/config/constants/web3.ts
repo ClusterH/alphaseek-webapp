@@ -1,7 +1,6 @@
 import ETHEREUM_ICON from 'assets/images/ethereum.svg'
 import CLAIMS_ABI from 'config/abis/claims.json'
 import FOUNDERS_PASS_ABI from 'config/abis/foundersPass.json'
-import MINTER_ABI from 'config/abis/minter.json'
 
 export enum SupportedChainId {
   MAIN = 1,
@@ -25,14 +24,9 @@ export const SUPPORTED_CHAIN_IDS: SupportedChainId[] = [SupportedChainId.MAIN, S
 
 type AddressMap = { [chainId: number]: string }
 
-export const MINTER_CONTRACT_ADDRESSES: AddressMap = {
+export const FOUNDERS_PASS_CONTRACT_ADDRESSES: AddressMap = {
   [SupportedChainId.MAIN]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
   [SupportedChainId.RINKEBY_TESTNET]: '0x01943ff8638E9b89a545e8746CDE5880f824A093',
-}
-
-export const PASS_CONTRACT_ADDRESSES: AddressMap = {
-  [SupportedChainId.MAIN]: '0xCECa344cCa67170D1b224b91fa57Ce9eA0C05f5C',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x768eBd460a7f1521d92a6083045518BC65Fe050c',
 }
 
 export const CLAIMS_CONTRACT_ADDRESSES: AddressMap = {
@@ -41,8 +35,7 @@ export const CLAIMS_CONTRACT_ADDRESSES: AddressMap = {
 }
 
 export const CONTRACT_ABIS = {
-  MINTER: MINTER_ABI,
-  PASS: FOUNDERS_PASS_ABI,
+  FOUNDERS_PASS: FOUNDERS_PASS_ABI,
   CLAIMS: CLAIMS_ABI,
 }
 

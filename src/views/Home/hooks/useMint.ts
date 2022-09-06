@@ -3,11 +3,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ethers } from 'ethers'
 
 import { ALLOW_LIST_API } from 'config/constants'
-import { notifyToast } from 'config/toast'
-import { useActiveWeb3React, useGetMinterContract } from 'hooks'
+import { notifyToast, NOTIFY_MESSAGES } from 'config/toast'
+import { useActiveWeb3React, useCheckMintable, useGetFoundersPassContract } from 'hooks'
 import { useMintCount, useMintPhase, useMintPrice, useMintWallet } from 'state/mint/hooks'
 import { useWalletBalance } from 'state/web3/hooks'
-import { caluMultipleForBigNumber, convertToBigNumber, estimateGas, executeMint, getWalletCount, getWalletLimit } from 'utils'
+import { convertToBigNumber, estimateGas, executeMint, getWalletCount, getWalletLimit } from 'utils'
 import { getSignatureAndNonce } from 'utils/api'
 
 export const useIsAllowedToMint = () => {
@@ -15,7 +15,7 @@ export const useIsAllowedToMint = () => {
   const { account } = useActiveWeb3React()
   const mintPrice = useMintPrice()
   const { ethBalance } = useWalletBalance()
-  const minterContract = useGetMinterContract(true, false)
+  const foundersPassContract = useGetFoundersPassContract(true, false)
 
   const [isAllowed, setIsAllowed] = useState(false)
   const [walletLimit, setWalletLimit] = useState(0)
@@ -23,12 +23,12 @@ export const useIsAllowedToMint = () => {
 
   const handleIsAllowedToMint = useCallback(async () => {
     try {
-      if (!minterContract || !account) return
+      if (!foundersPassContract || !account) return
 
       const mintWallet = option === 'cold' ? wallet : account
       // We will check limit and count before doing Mint
-      const limit = await getWalletLimit(minterContract, mintWallet)
-      const count = await getWalletCount(minterContract, mintWallet)
+      const limit = await getWalletLimit(foundersPassContract, mintWallet)
+      const count = await getWalletCount(foundersPassContract, mintWallet)
 
       setWalletLimit(limit)
       setWalletCount(count)
@@ -64,11 +64,12 @@ export const useMint = () => {
   const { option, wallet } = useMintWallet()
   const { account } = useActiveWeb3React()
   const { ethBalance } = useWalletBalance()
+  const { handleIsMintable } = useCheckMintable()
 
   const price = useMintPrice()
   const mintCount = useMintCount()
   const mintPhase = useMintPhase()
-  const minterContract = useGetMinterContract(true, false)
+  const foundersPassContract = useGetFoundersPassContract(true, false)
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isMintSuccess, setIsMintSuccess] = useState<boolean>(false)
@@ -78,11 +79,15 @@ export const useMint = () => {
 
   const handleMint = useCallback(async () => {
     try {
-      if (!minterContract || !account) return
+      if (!foundersPassContract || !account) return
 
       const mintWallet = option === 'cold' ? wallet : account
 
       setIsLoading(true)
+
+      const isMintable = await handleIsMintable(mintWallet, mintCount)
+
+      if (isMintable === false) return
 
       let merkleProof: string[] = []
       if (mintPhase === 0) return
@@ -93,7 +98,7 @@ export const useMint = () => {
         const item = proofs.filter((item: { address: string; proof: string[] }) => item.address === mintWallet)
 
         if (item.length === 0) {
-          notifyToast({ id: 'validate_address', type: 'error', content: 'Your address is not allowed to mint' })
+          notifyToast({ id: 'validate_address', type: 'error', content: NOTIFY_MESSAGES.VALIDATE_ADDRESS })
           setIsLoading(false)
           return
         } else merkleProof = item[0].proof
@@ -103,13 +108,13 @@ export const useMint = () => {
       if (res) {
         const totalPriceToPay = convertToBigNumber(mintCount.toString(), 0).mul(price)
         const gas = await estimateGas(
-          minterContract,
+          foundersPassContract,
           'mint',
           [mintWallet, mintCount, res.nonce, res.signature, merkleProof, { value: totalPriceToPay }],
           3000
         )
         const { status, txHash } = await executeMint(
-          minterContract,
+          foundersPassContract,
           mintWallet,
           mintCount,
           res.nonce,
@@ -121,17 +126,19 @@ export const useMint = () => {
         if (status) {
           setIsMintSuccess(true)
           setTxHash(txHash)
-        } else notifyToast({ id: 'mint_failed', type: 'error', content: 'Mint Failed!' })
-      } else notifyToast({ id: 'signature_nonce', type: 'error', content: 'Failed to get Signature' })
+        } else notifyToast({ id: 'mint_failed', type: 'error', content: NOTIFY_MESSAGES.MINT_FAILED })
+      } else notifyToast({ id: 'signature_nonce', type: 'error', content: NOTIFY_MESSAGES.SIGNATURE_FAILED })
 
       setIsLoading(false)
     } catch (error: any) {
       console.log(error)
       // To do ----- should be able to make readable message for errors
-      notifyToast({ id: 'mint_failed', type: 'error', content: 'Error Occured, please check console' })
+      notifyToast({ id: 'mint_failed', type: 'error', content: NOTIFY_MESSAGES.FAILED_TRANSACTION })
+      setIsLoading(false)
+    } finally {
       setIsLoading(false)
     }
-  }, [account, mintCount, mintPhase, minterContract, option, price, wallet])
+  }, [foundersPassContract, account, option, wallet, handleIsMintable, mintCount, mintPhase, price])
 
   return { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint }
 }

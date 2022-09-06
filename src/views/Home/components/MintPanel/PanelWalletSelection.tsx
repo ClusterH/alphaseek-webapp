@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { FaArrowLeft } from 'react-icons/fa'
 import styled from 'styled-components'
 
+import { useActiveWeb3React, useCheckMintable } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
 import { setMintWallet } from 'state/mint/reducer'
 import { useScreenSize } from 'state/screenSize/hooks'
@@ -20,7 +21,14 @@ const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
 
 const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
   const dispatch = useAppDispatch()
+  const { account } = useActiveWeb3React()
   const { isMobile, isLargeScreen } = useScreenSize()
+  const { isMintable, handleIsMintable } = useCheckMintable()
+
+  useEffect(() => {
+    if (account) handleIsMintable(account)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>
@@ -38,9 +46,12 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
           width={isMobile ? '100%' : isLargeScreen ? '183px' : '12.7vw'}
           height={isMobile ? '40px' : '52px'}
           borderRadius={isMobile ? '8px' : themeBorderRadius.small}
-          onClick={() => {
-            dispatch(setMintWallet({ option: 'connected', wallet: '' }))
-            handlePanelStatus(3)
+          disabled={isMintable === false}
+          onClick={async () => {
+            if (isMintable === true) {
+              dispatch(setMintWallet({ option: 'connected', wallet: account }))
+              handlePanelStatus(3)
+            }
           }}
         >
           <TextWrapper fontSize={isMobile ? 16 : 'sm'} fontWeight={'semiBold'} lineHeight={'150%'} textAlign={'center'}>

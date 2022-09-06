@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import { ethers } from 'ethers'
 import { FaCircle } from 'react-icons/fa'
@@ -6,9 +6,10 @@ import styled from 'styled-components'
 
 import Modal from 'components/Modal/ModalWrapper'
 import { WalletConnectionModal } from 'components/WalletConnection'
-import { useActiveWeb3React, useGetTotalSupply, useModal, useTotalSupply } from 'hooks'
+import { useActiveWeb3React, useCheckMintable, useGetSupplyAmounts, useModal } from 'hooks'
 import { useMintPhase, useMintPrice } from 'state/mint/hooks'
 import { useScreenSize } from 'state/screenSize/hooks'
+import { useSupplyAmounts } from 'state/web3/hooks'
 import { Divider, FlexColumn, FlexRow, MainButton, TextWrapper } from 'styles/components'
 import { themeBorderRadius, themeColor, themeFontFamily, themeFontWeight, themeTypography } from 'styles/theme'
 import { useGetMintPrice } from 'views/Home/hooks'
@@ -53,18 +54,27 @@ const TotalSupplyCostWrapper = styled(FlexColumn)<{ isMintStarted: boolean }>`
 
 const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
   useGetMintPrice()
-  useGetTotalSupply()
-  const { screenWidth, isMobile } = useScreenSize()
+  // useGetSupplyAmounts()
+
+  const { isMobile } = useScreenSize()
 
   const { account } = useActiveWeb3React()
   const { isOpen, handleOpenModal } = useModal()
   const mintPhase = useMintPhase()
   const mintPrice = useMintPrice()
-  const { totalSupply, tokenSupply } = useTotalSupply()
+  const { isMintable, handleIsMintable } = useCheckMintable()
+  const { totalSupply, tokenSupply, limitedEditionTokens } = useSupplyAmounts()
 
   useEffect(() => {
     if (account && isOpen) handleOpenModal()
   }, [account, handleOpenModal, isOpen])
+
+  useEffect(() => {
+    console.log('useEffect start===>>>')
+    handleIsMintable()
+    // Only once when component rendered
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
@@ -114,6 +124,15 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
           </FlexRow>
         )}
       </FlexColumn>
+      {mintPhase === 1 && (
+        <TextWrapper color={'text2'} fontSize={isMobile ? 14 : 'sm'} fontWeight={'medium'} lineHeight={'150%'} textAlign={'center'}>
+          {'There are'}{' '}
+          <TextWrapper fontSize={isMobile ? 14 : 'sm'} fontWeight={'semiBold'} lineHeight={'120%'} textAlign={'center'}>
+            {limitedEditionTokens - totalSupply}
+          </TextWrapper>{' '}
+          {'Limited Edition Founders Passes remaining.'}
+        </TextWrapper>
+      )}
       {account ? (
         <FlexColumn gap={'32px'}>
           <ConenctedWalletAddrWrapper />
@@ -121,7 +140,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
             borderRadius={themeBorderRadius.small}
             width={'100%'}
             height={isMobile ? '40px' : '54px'}
-            disabled={mintPhase === 0 || !account}
+            disabled={mintPhase === 0 || isMintable === false}
             onClick={() => handlePanelStatus(1)}
           >
             {mintPhase === 0 ? 'The mint has not started' : 'Continue to Mint'}
@@ -129,7 +148,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
         </FlexColumn>
       ) : (
         <FlexColumn gap={isMobile ? '20.62px' : '32px'}>
-          <TextWrapper fontSize={isMobile ? 16 : 'sm'} fontWeight={'medium'} lineHeight={'120%'} letterSpacing={'-0.02em'}>
+          <TextWrapper fontSize={isMobile ? 14 : 'sm'} fontWeight={'medium'} lineHeight={'120%'} letterSpacing={'-0.02em'}>
             {'Please connect your wallet to proceed.'}
           </TextWrapper>
           <MainButton

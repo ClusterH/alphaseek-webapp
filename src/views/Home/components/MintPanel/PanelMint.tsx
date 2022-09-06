@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { ethers } from 'ethers'
 import { FaArrowLeft, FaExternalLinkAlt, FaMinus, FaPlus } from 'react-icons/fa'
 import ClipLoader from 'react-spinners/ClipLoader'
 import styled from 'styled-components'
@@ -14,6 +13,8 @@ import { caluMultipleForBigNumber, convertToBigNumber, ExplorerDataType, getExpl
 import { useAmountCounter, useIsAllowedToMint, useMint } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
+import ConenctedWalletAddrWrapper from './ConenctedAddress'
+
 const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
   position: absolute;
   top: ${(props) => (props.isMobile ? '-10px' : '-4px')};
@@ -26,7 +27,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
   const { account, chainId } = useActiveWeb3React()
   const { option, wallet } = useMintWallet()
   const { isAllowed, walletLimit, walletCount } = useIsAllowedToMint()
-  const { handleCount } = useAmountCounter()
+  const { isMintable, handleCount } = useAmountCounter()
   const { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint } = useMint()
 
   return (
@@ -71,6 +72,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
           <GoBackButton onClick={() => handlePanelStatus(option === 'connected' ? panelStatus - 2 : panelStatus - 1)} isMobile={isMobile}>
             <FaArrowLeft size={isMobile ? 20 : 24} />
           </GoBackButton>
+          <ConenctedWalletAddrWrapper />
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
             <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
               <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>

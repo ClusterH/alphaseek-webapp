@@ -26,26 +26,30 @@ export const getTokenSupply = async (contract: Contract) => {
   return (await contract.TOKEN_SUPPLY()).toNumber()
 }
 
-export const checkMintPhaseStatus = async (minterContract: Contract) => {
-  return await minterContract.phase()
+export const getLimitedEditionTokens = async (contract: Contract) => {
+  return (await contract.LIMITED_EDITION_TOKENS()).toNumber()
 }
 
-export const getMintPrice = async (minterContract: Contract) => {
-  return await minterContract.currentMintPrice()
+export const checkMintPhaseStatus = async (foundersPassContract: Contract) => {
+  return await foundersPassContract.phase()
 }
 
-export const getWalletLimit = async (minterContract: Contract, address: string) => {
-  const limit = await minterContract.getWalletLimit(address)
+export const getMintPrice = async (foundersPassContract: Contract) => {
+  return await foundersPassContract.currentMintPrice()
+}
+
+export const getWalletLimit = async (foundersPassContract: Contract, address: string) => {
+  const limit = await foundersPassContract.getWalletLimit(address)
   return limit.toNumber()
 }
 
-export const getWalletCount = async (minterContract: Contract, address: string) => {
-  const count = await minterContract.getWalletCount(address)
+export const getWalletCount = async (foundersPassContract: Contract, address: string) => {
+  const count = await foundersPassContract.getWalletCount(address)
   return count.toNumber()
 }
 
 export const executeMint = async (
-  minterContract: Contract,
+  foundersPassContract: Contract,
   to: string,
   amount: number,
   nonce: string,
@@ -54,7 +58,7 @@ export const executeMint = async (
   value: BigNumber,
   gasLimit: BigNumber
 ) => {
-  const txHash = await minterContract.mint(to, amount, nonce, signature, merkleProof, { value, gasLimit })
+  const txHash = await foundersPassContract.mint(to, amount, nonce, signature, merkleProof, { value, gasLimit })
   const receipt = await txHash.wait()
   return { status: receipt.status, txHash: receipt.transactionHash }
 }

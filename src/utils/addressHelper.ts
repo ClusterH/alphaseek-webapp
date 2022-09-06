@@ -1,9 +1,5 @@
-import { MINTER_CONTRACT_ADDRESSES, PASS_CONTRACT_ADDRESSES } from 'config/constants'
+import { FOUNDERS_PASS_CONTRACT_ADDRESSES } from 'config/constants'
 
-export const getMinterAddress = (chainId: number) => {
-  return MINTER_CONTRACT_ADDRESSES[chainId]
-}
-
-export const getFounderPassAddress = (chainId: number) => {
-  return PASS_CONTRACT_ADDRESSES[chainId]
+export const getFoundersPassAddress = (chainId: number) => {
+  return FOUNDERS_PASS_CONTRACT_ADDRESSES[chainId]
 }

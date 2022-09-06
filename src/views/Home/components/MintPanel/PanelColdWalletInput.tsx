@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn, FlexRow, HoverTextWrapper, InputWrapper, MainButton, TextWrapper } from 'styles/components'
-import { themeBorderRadius, themeColor } from 'styles/theme'
+import { themeBorderRadius, themeColor, themeTypography } from 'styles/theme'
 import { useColdWalletInput } from 'views/Home/hooks'
 import { IMintPanelProps } from 'views/Home/types'
 
@@ -16,7 +16,7 @@ const GoBackButton = styled(HoverTextWrapper)<{ isMobile: boolean }>`
 `
 
 const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }) => {
-  const { isValid, coldWallet, handleChange } = useColdWalletInput()
+  const { isValid, coldWallet, isMintable, handleChange } = useColdWalletInput()
   const { screenWidth, isMobile } = useScreenSize()
 
   return (
@@ -42,6 +42,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           border={isValid ? themeColor.border1 : `1px solid ${themeColor.error}`}
           height={isMobile ? '40px' : '40px'}
           borderRadius={themeBorderRadius.small}
+          fontSize={themeTypography.sm}
         />
         {isValid === false && (
           <TextWrapper
@@ -74,7 +75,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
         width={'100%'}
         height={isMobile ? '40px' : '50px'}
         borderRadius={isMobile ? '8px' : themeBorderRadius.small}
-        disabled={isValid === false || coldWallet === ''}
+        disabled={isValid === false || coldWallet === '' || isMintable === false}
         onClick={() => handlePanelStatus(3)}
       >
         {'Confirm Address'}

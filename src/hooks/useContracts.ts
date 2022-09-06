@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { Contract } from 'ethers'
 
-import { MINTER_CONTRACT_ADDRESSES, CONTRACT_ABIS, PASS_CONTRACT_ADDRESSES, DEFAULT_CHAIN_ID } from 'config/constants'
+import { FOUNDERS_PASS_CONTRACT_ADDRESSES, CONTRACT_ABIS, DEFAULT_CHAIN_ID } from 'config/constants'
 import { getContract, getContractWithSimpleProvider, isSupportedNetwork } from 'utils'
 
 import { useActiveWeb3React } from './useActiveWeb3React'
@@ -34,10 +34,6 @@ export function useContract<T extends Contract = Contract>(
   }, [addressOrAddressMap, ABI, library, chainId, withSimpleProvider, withSignerIfPossible, account]) as T
 }
 
-export const useGetMinterContract = (withSigner = false, withSimpleProvider = true) => {
-  return useContract(MINTER_CONTRACT_ADDRESSES, CONTRACT_ABIS.MINTER, withSigner, withSimpleProvider)
-}
-
 export const useGetFoundersPassContract = (withSigner = false, withSimpleProvider = true) => {
-  return useContract(PASS_CONTRACT_ADDRESSES, CONTRACT_ABIS.PASS, withSigner, withSimpleProvider)
+  return useContract(FOUNDERS_PASS_CONTRACT_ADDRESSES, CONTRACT_ABIS.FOUNDERS_PASS, withSigner, withSimpleProvider)
 }

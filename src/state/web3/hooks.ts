@@ -9,6 +9,6 @@ export const useGasPrice = () => {
   return useAppSelector((state: AppState) => state.web3Reducer.gasPrice)
 }
 
-export const useTotalSupply = () => {
-  return useAppSelector((state: AppState) => state.web3Reducer.totalSupply)
+export const useSupplyAmounts = () => {
+  return useAppSelector((state: AppState) => state.web3Reducer.supplyAmounts)
 }

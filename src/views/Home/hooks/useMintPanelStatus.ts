@@ -5,7 +5,7 @@ import { useActiveWeb3React } from 'hooks'
 import { useAppDispatch } from 'state/hooks'
 import { usePanelStatus } from 'state/mint/hooks'
 import { setMintPhase, setPanelStatus } from 'state/mint/reducer'
-import { checkMintPhaseStatus, getContractWithSimpleProvider, getMinterAddress } from 'utils'
+import { checkMintPhaseStatus, getContractWithSimpleProvider, getFoundersPassAddress } from 'utils'
 
 import { MintPanelStatus } from '../types'
 
@@ -14,15 +14,15 @@ export const useMintPhaseStatus = () => {
   const dispatch = useAppDispatch()
 
   const handleCheckMintPhaseStatus = useCallback(async () => {
-    const minterContract = getContractWithSimpleProvider(
-      getMinterAddress(chainId && account ? chainId : DEFAULT_CHAIN_ID),
-      CONTRACT_ABIS.MINTER,
+    const foundersPassContract = getContractWithSimpleProvider(
+      getFoundersPassAddress(chainId && account ? chainId : DEFAULT_CHAIN_ID),
+      CONTRACT_ABIS.FOUNDERS_PASS,
       chainId && account ? chainId : DEFAULT_CHAIN_ID
     )
 
-    if (!minterContract) return
+    if (!foundersPassContract) return
     try {
-      const status = await checkMintPhaseStatus(minterContract)
+      const status = await checkMintPhaseStatus(foundersPassContract)
       dispatch(setMintPhase(status))
     } catch (error) {
       console.log(error)

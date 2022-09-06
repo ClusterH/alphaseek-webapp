@@ -9,7 +9,7 @@ import { setMintPhase } from 'state/mint/reducer'
 import { useScreenSize } from 'state/screenSize/hooks'
 import { FlexColumn } from 'styles/components'
 import { themeBorderRadius, themeGradient } from 'styles/theme'
-import { getMinterAddress } from 'utils'
+import { getFoundersPassAddress } from 'utils'
 import { useMintPanelStatus } from 'views/Home/hooks'
 
 import ColdWalletInputPanel from './PanelColdWalletInput'
@@ -31,7 +31,7 @@ const MintContainer: React.FC = () => {
 
   const dispatch = useAppDispatch()
 
-  useEtherSWR([getMinterAddress(chainId!), 'phase'], {
+  useEtherSWR([getFoundersPassAddress(chainId!), 'phase'], {
     subscribe: [
       {
         name: 'MintPhaseSet',

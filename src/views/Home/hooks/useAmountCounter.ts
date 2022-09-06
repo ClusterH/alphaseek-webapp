@@ -1,18 +1,21 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 
 import { ethers } from 'ethers'
 
 import { useAppDispatch } from 'state/hooks'
-import { useMintCount, useMintPrice } from 'state/mint/hooks'
+import { useMintCount, useMintPrice, useMintWallet } from 'state/mint/hooks'
 import { setMintCount } from 'state/mint/reducer'
 import { useWalletBalance } from 'state/web3/hooks'
 
+import { useCheckMintable } from './useCheckMintable'
 import { useIsAllowedToMint } from './useMint'
 
 export const useAmountCounter = () => {
   const mintCount = useMintCount()
   const price = useMintPrice()
   const { walletCount, walletLimit } = useIsAllowedToMint()
+  const { wallet } = useMintWallet()
+  const { isMintable, handleIsMintable } = useCheckMintable()
 
   const mintPrice = useMemo(() => ethers.utils.formatEther(price), [price])
 
@@ -21,10 +24,11 @@ export const useAmountCounter = () => {
   const dispatch = useAppDispatch()
 
   const handleCount = useCallback(
-    (isPlus: boolean) => {
+    async (isPlus: boolean) => {
       if (isPlus) {
         if (Number(mintPrice) * (mintCount + 1) > Number(ethBalance)) return
         if (mintCount + 1 > walletLimit - walletCount) return
+
         dispatch(setMintCount(mintCount + 1))
       } else {
         if (mintCount < 1) return
@@ -34,5 +38,11 @@ export const useAmountCounter = () => {
     [mintPrice, mintCount, ethBalance, walletLimit, walletCount, dispatch]
   )
 
-  return { ethBalance, mintCount, mintPrice, handleCount }
+  useEffect(() => {
+    return () => {
+      dispatch(setMintCount(1))
+    }
+  }, [dispatch])
+
+  return { ethBalance, mintCount, mintPrice, isMintable, handleCount }
 }
