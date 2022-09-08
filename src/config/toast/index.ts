@@ -23,4 +23,5 @@ export const NOTIFY_MESSAGES: { [key: string]: string } = {
   MINT_FAILED: 'Mint Failed!',
   SIGNATURE_FAILED: 'Failed to get Signature.',
   FAILED_TRANSACTION: 'Error Occured, please check console.',
+  BALANCE_NOT_ENOUGH: 'Connected Wallet have not enough balance to Mint.',
 }

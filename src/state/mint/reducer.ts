@@ -9,7 +9,6 @@ interface IState {
   mintWallet: { option: 'connected' | 'cold'; wallet: string }
   mintPrice: BigNumber
   panelStatus: MintPanelStatus
-  isMintable: boolean
 }
 
 export const initialState: IState = {
@@ -18,7 +17,6 @@ export const initialState: IState = {
   mintWallet: { option: 'connected', wallet: '' },
   mintPrice: ethers.constants.Zero,
   panelStatus: 0,
-  isMintable: false,
 }
 
 const mintSlice = createSlice({
@@ -40,11 +38,8 @@ const mintSlice = createSlice({
     setPanelStatus(state, action) {
       state.panelStatus = action.payload
     },
-    setIsMintable(state, action) {
-      state.isMintable = action.payload
-    },
   },
 })
 
-export const { setMintPhase, setMintCount, setMintWallet, setMintPrice, setPanelStatus, setIsMintable } = mintSlice.actions
+export const { setMintPhase, setMintCount, setMintWallet, setMintPrice, setPanelStatus } = mintSlice.actions
 export default mintSlice.reducer

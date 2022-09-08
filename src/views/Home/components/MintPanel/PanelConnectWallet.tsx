@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import Modal from 'components/Modal/ModalWrapper'
 import { WalletConnectionModal } from 'components/WalletConnection'
-import { useActiveWeb3React, useCheckMintable, useGetSupplyAmounts, useModal } from 'hooks'
+import { useActiveWeb3React, useCheckMintable, useModal } from 'hooks'
 import { useMintPhase, useMintPrice } from 'state/mint/hooks'
 import { useScreenSize } from 'state/screenSize/hooks'
 import { useSupplyAmounts } from 'state/web3/hooks'
@@ -54,7 +54,6 @@ const TotalSupplyCostWrapper = styled(FlexColumn)<{ isMintStarted: boolean }>`
 
 const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
   useGetMintPrice()
-  // useGetSupplyAmounts()
 
   const { isMobile } = useScreenSize()
 
@@ -70,7 +69,6 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   }, [account, handleOpenModal, isOpen])
 
   useEffect(() => {
-    console.log('useEffect start===>>>')
     handleIsMintable()
     // Only once when component rendered
     // eslint-disable-next-line react-hooks/exhaustive-deps

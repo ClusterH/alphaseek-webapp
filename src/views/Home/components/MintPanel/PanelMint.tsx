@@ -27,7 +27,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
   const { account, chainId } = useActiveWeb3React()
   const { option, wallet } = useMintWallet()
   const { isAllowed, walletLimit, walletCount } = useIsAllowedToMint()
-  const { isMintable, handleCount } = useAmountCounter()
+  const { handleCount } = useAmountCounter()
   const { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint } = useMint()
 
   return (

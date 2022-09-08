@@ -28,7 +28,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
   useEffect(() => {
     if (account) handleIsMintable(account)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [account])
 
   return (
     <FlexColumn justifyContent={'space-evenly'} colHeight={'100%'}>

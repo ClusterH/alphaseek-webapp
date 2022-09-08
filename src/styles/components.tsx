@@ -182,6 +182,10 @@ export const TransparentButton = styled(MainButton)`
   color: ${({ color, theme }) => (color ? color : theme.text1)};
   background: transparent;
   outline: ${({ theme }) => `1px solid ${theme.text1}`};
+
+  &:disabled {
+    outline: none;
+  }
 `
 export const GradientButton = styled(MainButton)<{ gradient?: string }>`
   background: ${({ gradient }) => gradient ?? themeGradient.buttonGradient};

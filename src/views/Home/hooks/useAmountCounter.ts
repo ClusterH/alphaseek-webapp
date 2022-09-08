@@ -3,19 +3,16 @@ import { useCallback, useEffect, useMemo } from 'react'
 import { ethers } from 'ethers'
 
 import { useAppDispatch } from 'state/hooks'
-import { useMintCount, useMintPrice, useMintWallet } from 'state/mint/hooks'
+import { useMintCount, useMintPrice } from 'state/mint/hooks'
 import { setMintCount } from 'state/mint/reducer'
 import { useWalletBalance } from 'state/web3/hooks'
 
-import { useCheckMintable } from './useCheckMintable'
 import { useIsAllowedToMint } from './useMint'
 
 export const useAmountCounter = () => {
   const mintCount = useMintCount()
   const price = useMintPrice()
   const { walletCount, walletLimit } = useIsAllowedToMint()
-  const { wallet } = useMintWallet()
-  const { isMintable, handleIsMintable } = useCheckMintable()
 
   const mintPrice = useMemo(() => ethers.utils.formatEther(price), [price])
 
@@ -44,5 +41,5 @@ export const useAmountCounter = () => {
     }
   }, [dispatch])
 
-  return { ethBalance, mintCount, mintPrice, isMintable, handleCount }
+  return { handleCount }
 }

@@ -27,5 +27,6 @@ export const useGetMintPrice = () => {
 
   useEffect(() => {
     handleGetMintPrice()
-  }, [handleGetMintPrice])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 }
