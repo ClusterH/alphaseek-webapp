@@ -20,7 +20,7 @@ export const useColdWalletInput = () => {
       setColdWallet(e.target.value)
 
       if (isAddress(e.target.value)) {
-        const isMintable = await handleIsMintable(e.target.value)
+        const isMintable = await handleIsMintable(e.target.value, true)
         if (isMintable === false) return
 
         if (account === e.target.value) notifyToast({ id: 'same-address', type: 'warning', content: NOTIFY_MESSAGES.SAME_ADDRESS })

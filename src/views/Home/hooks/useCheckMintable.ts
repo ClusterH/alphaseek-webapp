@@ -36,7 +36,7 @@ export const useCheckMintable = () => {
   const [isMintable, setIsMintable] = useState<boolean>(false)
 
   const handleIsMintable = useCallback(
-    async (mintWallet?: string, mintCount?: number) => {
+    async (mintWallet?: string, isCold?: boolean, mintCount?: number) => {
       try {
         if (!foundersPassContract) {
           setIsMintable(false)
@@ -63,7 +63,11 @@ export const useCheckMintable = () => {
             const item = proofs.filter((item: { address: string; proof: string[] }) => item.address === mintWallet)
 
             if (item.length === 0) {
-              notifyToast({ id: 'validate_address', type: 'error', content: NOTIFY_MESSAGES.VALIDATE_ADDRESS })
+              notifyToast({
+                id: 'validate-address',
+                type: isCold ? 'error' : 'warning',
+                content: NOTIFY_MESSAGES[isCold ? 'NOT_LISTED_COLD' : 'NOT_LISTED'],
+              })
               setIsMintable(false)
 
               return false
@@ -74,11 +78,20 @@ export const useCheckMintable = () => {
           const count = await getWalletCount(foundersPassContract, mintWallet)
 
           if (limit - count <= 0) {
-            notifyToast({ id: 'mint-limited', type: 'error', content: NOTIFY_MESSAGES.MINTED_LIMITED })
+            notifyToast({
+              id: 'mint-limited',
+              type: isCold ? 'error' : 'warning',
+              content:
+                NOTIFY_MESSAGES[
+                  isCold ? `Cold Wallet is limited! Allowed to mint ${limit}. Current wallet count is ${count}` : 'LIMITED_WALLET'
+                ],
+            })
             setIsMintable(false)
 
             return false
           }
+
+          notifyToast({ id: 'listed-wallet', type: 'success', content: NOTIFY_MESSAGES[isCold ? 'WALLET_LISTED_COLD' : 'WALLET_LISTED'] })
 
           if (mintCount) {
             if (mintCount > (mintPhase === 1 ? limitedEditionTokens : tokenSupply) - totalSupply || mintCount > limit - count) {
@@ -107,7 +120,7 @@ export const useCheckMintable = () => {
         return false
       }
     },
-    [dispatch, foundersPassContract, mintPhase]
+    [dispatch, ethBalance, foundersPassContract, mintPhase, mintPrice]
   )
 
   return { isMintable, handleIsMintable }

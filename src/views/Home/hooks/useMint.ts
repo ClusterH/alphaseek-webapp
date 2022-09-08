@@ -13,7 +13,6 @@ import { getSignatureAndNonce } from 'utils/api'
 export const useIsAllowedToMint = () => {
   const { option, wallet } = useMintWallet()
   const { account } = useActiveWeb3React()
-  const mintPrice = useMintPrice()
   const { ethBalance } = useWalletBalance()
   const foundersPassContract = useGetFoundersPassContract(true, false)
 
@@ -33,14 +32,8 @@ export const useIsAllowedToMint = () => {
       setWalletLimit(limit)
       setWalletCount(count)
 
-      if (Number(ethBalance) < Number(ethers.utils.formatEther(mintPrice))) {
-        notifyToast({ id: 'insufficient_balance', type: 'error', content: 'Connected Wallet have not enough balance to Mint' })
-        setIsAllowed(false)
-        return
-      }
-
       if (limit - count <= 0) {
-        notifyToast({ id: 'mint_limited', type: 'error', content: 'Your address limited to mint, please use another one' })
+        notifyToast({ id: 'mint_limited', type: 'error', content: NOTIFY_MESSAGES.MINTED_LIMITED })
         setIsAllowed(false)
 
         return
@@ -85,7 +78,7 @@ export const useMint = () => {
 
       setIsLoading(true)
 
-      const isMintable = await handleIsMintable(mintWallet, mintCount)
+      const isMintable = await handleIsMintable(mintWallet, option === 'cold', mintCount)
 
       if (isMintable === false) return
 
@@ -98,7 +91,6 @@ export const useMint = () => {
         const item = proofs.filter((item: { address: string; proof: string[] }) => item.address === mintWallet)
 
         if (item.length === 0) {
-          notifyToast({ id: 'validate_address', type: 'error', content: NOTIFY_MESSAGES.VALIDATE_ADDRESS })
           setIsLoading(false)
           return
         } else merkleProof = item[0].proof

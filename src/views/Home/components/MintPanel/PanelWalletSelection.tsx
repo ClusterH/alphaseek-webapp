@@ -26,7 +26,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
   const { isMintable, handleIsMintable } = useCheckMintable()
 
   useEffect(() => {
-    if (account) handleIsMintable(account)
+    if (account) handleIsMintable(account, false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account])
 
