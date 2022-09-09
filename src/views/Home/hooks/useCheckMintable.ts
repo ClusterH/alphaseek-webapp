@@ -83,18 +83,24 @@ export const useCheckMintable = () => {
               type: isCold ? 'error' : 'warning',
               content: isCold
                 ? `Cold Wallet is limited! Allowed to mint ${limit}. Current wallet count is ${count}.`
-                : NOTIFY_MESSAGES.LIMITED_WALLET,
+                : NOTIFY_MESSAGES[mintPhase === 3 ? 'LIMITED_WALLET_PUBLIC' : 'LIMITED_WALLET'],
             })
             setIsMintable(false)
 
             return false
           }
 
-          notifyToast({ id: 'listed-wallet', type: 'success', content: NOTIFY_MESSAGES[isCold ? 'WALLET_LISTED_COLD' : 'WALLET_LISTED'] })
+          if (mintPhase !== 3)
+            notifyToast({ id: 'listed-wallet', type: 'success', content: NOTIFY_MESSAGES[isCold ? 'WALLET_LISTED_COLD' : 'WALLET_LISTED'] })
 
           if (mintCount) {
-            if (mintCount > (mintPhase === 1 ? limitedEditionTokens : tokenSupply) - totalSupply || mintCount > limit - count) {
-              notifyToast({ id: 'mint-exceed', type: 'error', content: NOTIFY_MESSAGES.MINT_EXCEED })
+            if (mintCount > (mintPhase === 1 ? limitedEditionTokens : tokenSupply) - totalSupply) {
+              notifyToast({ id: 'mint-exceed-supply', type: 'error', content: NOTIFY_MESSAGES.MINT_EXCEED_SUPPLY })
+              setIsMintable(false)
+
+              return false
+            } else if (mintCount > limit - count) {
+              notifyToast({ id: 'mint-exceed-limit', type: 'error', content: NOTIFY_MESSAGES.MINT_EXCEED_LIMIT })
               setIsMintable(false)
 
               return false

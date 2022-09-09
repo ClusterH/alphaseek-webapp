@@ -16,8 +16,10 @@ export const notifyToast = (t: IToast, toastOption = {}) => {
 
 export const NOTIFY_MESSAGES: { [key: string]: string } = {
   FULL_MINTED: 'You cannot mint NFT anymore.',
-  MINT_EXCEED: 'You cannot mint more amount in your address.',
+  MINT_EXCEED_SUPPLY: 'Amount selected will exceed the Supply.',
+  MINT_EXCEED_LIMIT: 'Amount selected will exceed the Limit.',
   LIMITED_WALLET: 'Connected wallet is listed, but has minted the limit. You must mint to a listed cold wallet.',
+  LIMITED_WALLET_PUBLIC: 'Connected wallet has minted the limit. Please mint to a cold wallet.',
   SAME_ADDRESS: 'Your cold wallet is same with connected one.',
   WALLET_LISTED: 'Connected wallet is listed!',
   WALLET_LISTED_COLD: 'Cold wallet is listed!',
