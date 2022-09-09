@@ -2,12 +2,12 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { ethers } from 'ethers'
 
-import { ALLOW_LIST_API } from 'config/constants'
+import { ALLOW_LIST_API, DEFAULT_CHAIN_ID } from 'config/constants'
 import { notifyToast, NOTIFY_MESSAGES } from 'config/toast'
 import { useActiveWeb3React, useCheckMintable, useGetFoundersPassContract } from 'hooks'
 import { useMintCount, useMintPhase, useMintPrice, useMintWallet } from 'state/mint/hooks'
 import { useWalletBalance } from 'state/web3/hooks'
-import { convertToBigNumber, estimateGas, executeMint, getWalletCount, getWalletLimit } from 'utils'
+import { convertToBigNumber, estimateGas, executeMint, getWalletCount, getWalletLimit, isSupportedNetwork } from 'utils'
 import { getSignatureAndNonce } from 'utils/api'
 
 export const useIsAllowedToMint = () => {
@@ -55,7 +55,7 @@ export const useIsAllowedToMint = () => {
 
 export const useMint = () => {
   const { option, wallet } = useMintWallet()
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const { ethBalance } = useWalletBalance()
   const { handleIsMintable } = useCheckMintable()
 
@@ -86,7 +86,12 @@ export const useMint = () => {
       if (mintPhase === 0) return
       else if (mintPhase === 3) merkleProof = [ethers.constants.HashZero]
       else {
-        const res = await fetch(ALLOW_LIST_API[mintPhase])
+        if (isSupportedNetwork(chainId) === false) {
+          notifyToast({ id: 'wrong-network', type: 'error', content: 'You are connecting to Unsupported network!' })
+          setIsLoading(false)
+          return
+        }
+        const res = await fetch(ALLOW_LIST_API[chainId ?? DEFAULT_CHAIN_ID][mintPhase])
         const { proofs } = await res.json()
         const item = proofs.filter((item: { address: string; proof: string[] }) => item.address === mintWallet)
 
@@ -130,7 +135,7 @@ export const useMint = () => {
     } finally {
       setIsLoading(false)
     }
-  }, [foundersPassContract, account, option, wallet, handleIsMintable, mintCount, mintPhase, price])
+  }, [foundersPassContract, account, option, wallet, handleIsMintable, mintCount, mintPhase, chainId, price])
 
   return { mintPhase, mintCount, mintPrice, ethBalance, isLoading, isMintSuccess, txHash, handleMint }
 }

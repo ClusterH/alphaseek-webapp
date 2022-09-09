@@ -58,15 +58,15 @@ export const useCheckMintable = () => {
 
         if (mintWallet) {
           if (mintPhase !== 0 && mintPhase !== 3) {
-            const res = await fetch(ALLOW_LIST_API[mintPhase])
+            const res = await fetch(ALLOW_LIST_API[chainId ?? DEFAULT_CHAIN_ID][mintPhase])
             const { proofs } = await res.json()
             const item = proofs.filter((item: { address: string; proof: string[] }) => item.address === mintWallet)
 
             if (item.length === 0) {
               notifyToast({
                 id: 'validate-address',
-                type: isCold ? 'error' : 'warning',
-                content: NOTIFY_MESSAGES[isCold ? 'NOT_LISTED_COLD' : 'NOT_LISTED'],
+                type: isCold === true ? 'error' : 'warning',
+                content: NOTIFY_MESSAGES[isCold === true ? 'NOT_LISTED_COLD' : 'NOT_LISTED'],
               })
               setIsMintable(false)
 
@@ -81,10 +81,9 @@ export const useCheckMintable = () => {
             notifyToast({
               id: 'mint-limited',
               type: isCold ? 'error' : 'warning',
-              content:
-                NOTIFY_MESSAGES[
-                  isCold ? `Cold Wallet is limited! Allowed to mint ${limit}. Current wallet count is ${count}` : 'LIMITED_WALLET'
-                ],
+              content: isCold
+                ? `Cold Wallet is limited! Allowed to mint ${limit}. Current wallet count is ${count}.`
+                : NOTIFY_MESSAGES.LIMITED_WALLET,
             })
             setIsMintable(false)
 
@@ -120,7 +119,7 @@ export const useCheckMintable = () => {
         return false
       }
     },
-    [dispatch, ethBalance, foundersPassContract, mintPhase, mintPrice]
+    [chainId, dispatch, ethBalance, foundersPassContract, mintPhase, mintPrice]
   )
 
   return { isMintable, handleIsMintable }
