@@ -25,9 +25,9 @@ const PhaseTextWrapper = styled(TextWrapper)<{ isActived: boolean; isMobile: boo
   color: ${(props) => (props.isActived ? themeColor.text1 : themeColor.text2)};
   letter-spacing: -0.02em;
 `
-const MintingSoonWrapper = styled(TextWrapper)`
+const MintingSoonWrapper = styled(TextWrapper)<{ isMobile: boolean }>`
   position: absolute;
-  top: 40%;
+  top: ${({ isMobile }) => (isMobile ? '32%' : '40%')};
   left: 50%;
   transform: translateX(-50%);
 `
@@ -53,8 +53,6 @@ const TotalSupplyCostWrapper = styled(FlexColumn)<{ isMintStarted: boolean }>`
 `
 
 const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) => {
-  useGetMintPrice()
-
   const { isMobile } = useScreenSize()
 
   const { account } = useActiveWeb3React()
@@ -63,10 +61,15 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   const mintPrice = useMintPrice()
   const { isMintable, handleIsMintable } = useCheckMintable()
   const { totalSupply, tokenSupply, limitedEditionTokens } = useSupplyAmounts()
+  const { handleGetMintPrice } = useGetMintPrice()
 
   useEffect(() => {
     if (account && isOpen) handleOpenModal()
   }, [account, handleOpenModal, isOpen])
+
+  useEffect(() => {
+    handleGetMintPrice()
+  }, [mintPhase, handleGetMintPrice])
 
   useEffect(() => {
     handleIsMintable()
@@ -77,7 +80,7 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
   return (
     <FlexColumn justifyContent={'space-between'} colHeight={'100%'} gap={'0px'}>
       {mintPhase === 0 && (
-        <MintingSoonWrapper fontSize={isMobile ? 32 : 'xxl'} fontWeight={'semiBold'}>
+        <MintingSoonWrapper fontSize={isMobile ? 24 : 'xxl'} fontWeight={'semiBold'} textAlign={'center'} isMobile={isMobile}>
           {'Minting Soon'}
         </MintingSoonWrapper>
       )}
@@ -86,13 +89,13 @@ const ConnectWalletPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) =>
         <TotalSupplyCostWrapper isMintStarted={mintPhase !== 0}>
           <TextWrapper
             color={'text2'}
-            fontSize={isMobile ? 16 : 'sm'}
+            fontSize={isMobile ? 14 : 'sm'}
             fontWeight={'semiBold'}
             lineHeight={'120%'}
           >{`${totalSupply} / ${tokenSupply} Minted`}</TextWrapper>
           <TextWrapper
             color={'text2'}
-            fontSize={isMobile ? 16 : 'sm'}
+            fontSize={isMobile ? 14 : 'sm'}
             fontWeight={'semiBold'}
             lineHeight={'120%'}
           >{`${ethers.utils.formatEther(mintPrice)} ETH Cost`}</TextWrapper>

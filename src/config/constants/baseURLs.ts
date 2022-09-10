@@ -9,7 +9,7 @@ export const ALLOW_LIST_API: { [key: number]: { 1: string; 2: string } } = {
   },
   [SupportedChainId.RINKEBY_TESTNET]: {
     1: 'https://alphaseek-allowlist-api.s3.us-east-2.amazonaws.com/allowlist-private-testnet.json',
-    2: ' https://alphaseek-allowlist-api.s3.us-east-2.amazonaws.com/allowlist-waitlist-testnet.json',
+    2: 'https://alphaseek-allowlist-api.s3.us-east-2.amazonaws.com/allowlist-waitlist-testnet.json',
   },
 }
 

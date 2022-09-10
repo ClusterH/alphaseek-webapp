@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 
 import { CONTRACT_ABIS, DEFAULT_CHAIN_ID } from 'config/constants'
 import { useActiveWeb3React } from 'hooks'
@@ -25,8 +25,5 @@ export const useGetMintPrice = () => {
     }
   }, [chainId, dispatch])
 
-  useEffect(() => {
-    handleGetMintPrice()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  return { handleGetMintPrice }
 }

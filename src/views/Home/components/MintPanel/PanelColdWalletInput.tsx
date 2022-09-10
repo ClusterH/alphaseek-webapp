@@ -42,7 +42,7 @@ const ColdWalletInputPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePa
           border={isValid ? themeColor.border1 : `1px solid ${themeColor.error}`}
           height={isMobile ? '40px' : '40px'}
           borderRadius={themeBorderRadius.small}
-          fontSize={themeTypography.sm}
+          fontSize={isMobile ? '14px' : themeTypography.sm}
         />
         {isValid === false && (
           <TextWrapper

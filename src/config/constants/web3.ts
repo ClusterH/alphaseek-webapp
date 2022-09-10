@@ -25,8 +25,8 @@ export const SUPPORTED_CHAIN_IDS: SupportedChainId[] = [SupportedChainId.MAIN, S
 type AddressMap = { [chainId: number]: string }
 
 export const FOUNDERS_PASS_CONTRACT_ADDRESSES: AddressMap = {
-  [SupportedChainId.MAIN]: '0x97674a205919D16264f698f576CF8Bf0Ec35B13b',
-  [SupportedChainId.RINKEBY_TESTNET]: '0x01943ff8638E9b89a545e8746CDE5880f824A093',
+  [SupportedChainId.MAIN]: '0xA13b8cBD068Fe176b3D37C6694173064E17Ef563',
+  [SupportedChainId.RINKEBY_TESTNET]: '0xF6F8B4D960f74cE22ba76da9C76455E0B67F7B93',
 }
 
 export const CLAIMS_CONTRACT_ADDRESSES: AddressMap = {

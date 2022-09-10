@@ -37,7 +37,7 @@ const WalletSelectionPanel: React.FC<IMintPanelProps> = ({ handlePanelStatus }) 
       </GoBackButton>
       <ConenctedWalletAddrWrapper />
       <FlexRow rowWidth={isMobile ? '100%' : '80%'}>
-        <TextWrapper fontSize={isMobile ? 24 : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} lineHeight={'120%'} textAlign={'center'}>
+        <TextWrapper fontSize={isMobile ? 20 : 'xl'} fontWeight={'bold'} letterSpacing={'-0.02em'} lineHeight={'120%'} textAlign={'center'}>
           {'Do you want to mint to the currently connected wallet or a cold wallet?'}
         </TextWrapper>
       </FlexRow>

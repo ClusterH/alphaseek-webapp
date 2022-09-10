@@ -42,6 +42,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
             fontWeight={'bold'}
             lineHeight={isMobile ? '32px' : isLargeScreen ? '78px' : `${(100 * 78) / screenWidth}vmax`}
             fontFamily={'title'}
+            textAlign={'center'}
           >
             {'Founders Pass Minted!'}
           </TextWrapper>
@@ -74,7 +75,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
           </GoBackButton>
           <ConenctedWalletAddrWrapper />
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
-            <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
+            <FlexColumn colWidth={isMobile ? '30%' : '20%'} alignItems={'flex-start'}>
               <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
                 {'BALANCE'}
               </TextWrapper>
@@ -84,7 +85,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
             </TextWrapper>
           </FlexRow>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
-            <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
+            <FlexColumn colWidth={isMobile ? '30%' : '20%'} alignItems={'flex-start'}>
               <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
                 {'AMOUNT'}
               </TextWrapper>
@@ -103,7 +104,7 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
             </FlexRow>
           </FlexRow>
           <FlexRow justifyContent={'flex-start'} gap={'24px'}>
-            <FlexColumn colWidth={'20%'} alignItems={'flex-start'}>
+            <FlexColumn colWidth={isMobile ? '30%' : '20%'} alignItems={'flex-start'}>
               <TextWrapper color={'text2'} fontSize={isMobile ? 16 : 'sm'} fontWeight={'bold'} lineHeight={'120%'} letterSpacing={'0.1em'}>
                 {'TOTAL'}
               </TextWrapper>
@@ -113,10 +114,10 @@ const MintPanel: React.FC<IMintPanelProps> = ({ panelStatus, handlePanelStatus }
             </TextWrapper>
           </FlexRow>
           <FlexColumn gap={isMobile ? '8px' : '12px'}>
-            <TextWrapper fontSize={isMobile ? 16 : 'sm'} letterSpacing={'0.1em'} lineHeight={'120%'}>
+            <TextWrapper fontSize={isMobile ? 14 : 'sm'} letterSpacing={'0.1em'} lineHeight={'120%'} textAlign={'center'}>
               {`Mint Limit: ${walletLimit}, Minted Count: ${walletCount}`}
             </TextWrapper>
-            <TextWrapper fontSize={isMobile ? 16 : 'sm'} letterSpacing={'0.1em'} lineHeight={'120%'}>
+            <TextWrapper fontSize={isMobile ? 14 : 'sm'} letterSpacing={'0.1em'} lineHeight={'120%'} textAlign={'center'}>
               {`Mint Address: ${shortenAddress(option === 'connected' ? account! : wallet)} (${option})`}
             </TextWrapper>
           </FlexColumn>

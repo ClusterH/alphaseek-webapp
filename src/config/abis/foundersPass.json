@@ -19,8 +19,10 @@
   { "inputs": [], "name": "BalanceQueryForZeroAddress", "type": "error" },
   { "inputs": [], "name": "CallerIsContract", "type": "error" },
   { "inputs": [], "name": "InsufficentSupply", "type": "error" },
-  { "inputs": [{ "internalType": "string", "name": "v", "type": "string" }], "name": "InvalidAddress", "type": "error" },
+  { "inputs": [], "name": "InvalidAddress", "type": "error" },
   { "inputs": [], "name": "InvalidSignature", "type": "error" },
+  { "inputs": [], "name": "InvalidSignerAddress", "type": "error" },
+  { "inputs": [], "name": "MessageUsed", "type": "error" },
   { "inputs": [], "name": "MintERC2309QuantityExceedsLimit", "type": "error" },
   {
     "inputs": [{ "internalType": "enum AlphaseekFoundersPass.MintPhase", "name": "phase", "type": "uint8" }],
@@ -229,6 +231,13 @@
   },
   {
     "inputs": [],
+    "name": "getMerkleRoot",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getSigner",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
@@ -386,6 +395,13 @@
   {
     "inputs": [{ "internalType": "string", "name": "contractURI_", "type": "string" }],
     "name": "setContractURI",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "bytes32", "name": "merkleRoot", "type": "bytes32" }],
+    "name": "setMerkleRoot",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
