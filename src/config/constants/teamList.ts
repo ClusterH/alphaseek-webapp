@@ -86,7 +86,7 @@ export const TEAM_LIST: { [key: string]: ITeamItem[] } = {
       name: 'Adam Hollander',
       avatar: AVATAR_IMG9,
       detail:
-        'Founder of Hungry Wolves NFT and White Sands Game. Adam is a seriel entreprenuer with an impressive track record in the web2 and web3 space.',
+        'Founder of Hungry Wolves NFT and White Sands Game. Adam is a serial entrepreneur with an impressive track record in the web2 and web3 space.',
       twitter: 'https://twitter.com/HollanderAdam',
     },
     {
@@ -94,7 +94,7 @@ export const TEAM_LIST: { [key: string]: ITeamItem[] } = {
       name: 'BlockChain Brown',
       avatar: AVATAR_IMG10,
       detail:
-        'Co Founder of White Sands Game, Brandon is an NFT affianado and a wiz when it comes to developing strategies and marketing a web3 project.',
+        'Co Founder of White Sands Game, Brandon is an NFT aficionado and a wiz when it comes to developing strategies and marketing a web3 project.',
       twitter: 'https://twitter.com/br0wnblockchain',
     },
   ],
