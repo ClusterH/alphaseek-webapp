@@ -25,3 +25,14 @@ export const setupInterceptorsTo = (axiosInstance: AxiosInstance): AxiosInstance
   axiosInstance.interceptors.response.use(onResponse, onResponseError)
   return axiosInstance
 }
+
+export const fetchAPIHeader = () => {
+  const fetchHeader = new Headers()
+  fetchHeader.set('Accept', 'application/json')
+  fetchHeader.set('Content-Type', 'application/json')
+  fetchHeader.set('Cache-Control', 'no-cache')
+  fetchHeader.set('Pragma', 'no-cache')
+  fetchHeader.set('Expires', '0')
+
+  return fetchHeader
+}

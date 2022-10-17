@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { ethers } from 'ethers'
 
+import { fetchAPIHeader } from 'config/axios/axiosInterceptors'
 import { ALLOW_LIST_API, DEFAULT_CHAIN_ID } from 'config/constants'
 import { notifyToast, NOTIFY_MESSAGES } from 'config/toast'
 import { useActiveWeb3React, useCheckMintable, useGetFoundersPassContract } from 'hooks'
@@ -91,7 +92,7 @@ export const useMint = () => {
           setIsLoading(false)
           return
         }
-        const res = await fetch(ALLOW_LIST_API[chainId ?? DEFAULT_CHAIN_ID][mintPhase])
+        const res = await fetch(ALLOW_LIST_API[chainId ?? DEFAULT_CHAIN_ID][mintPhase], { method: 'GET', headers: fetchAPIHeader() })
         const { proofs } = await res.json()
         const item = proofs.filter((item: { address: string; proof: string[] }) => item.address === mintWallet)
 
